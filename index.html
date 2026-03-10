@@ -28,16 +28,12 @@ line-height:1.6;
 /* LINKS */
 
 a{
-color:#38bdf8;
 text-decoration:none;
+color:#38bdf8;
 }
 
 a:visited{
 color:#38bdf8;
-}
-
-a:hover{
-color:#7dd3fc;
 }
 
 /* NAVBAR */
@@ -52,6 +48,25 @@ position:sticky;
 top:0;
 }
 
+.nav-links{
+display:flex;
+gap:12px;
+}
+
+.nav-btn{
+padding:8px 16px;
+border:1px solid #38bdf8;
+border-radius:6px;
+font-size:14px;
+color:#38bdf8;
+transition:0.25s;
+}
+
+.nav-btn:hover{
+background:#38bdf8;
+color:#020617;
+}
+
 /* HERO */
 
 .hero{
@@ -60,7 +75,6 @@ display:flex;
 align-items:center;
 gap:40px;
 flex-wrap:wrap;
-animation:fadeUp 1s ease;
 }
 
 .profile-img{
@@ -83,7 +97,7 @@ font-size:18px;
 max-width:600px;
 }
 
-/* BUTTONS */
+/* HERO BUTTONS */
 
 .hero-buttons{
 margin-top:25px;
@@ -102,7 +116,6 @@ transition:0.25s;
 
 .btn:hover{
 background:#0ea5e9;
-color:#020617 !important;
 }
 
 .btn-outline{
@@ -124,7 +137,6 @@ color:#020617 !important;
 padding:70px 10%;
 max-width:1100px;
 margin:auto;
-animation:fadeUp 1s ease;
 }
 
 .section h2{
@@ -219,18 +231,6 @@ font-size:32px;
 color:#38bdf8;
 }
 
-/* GITHUB STATS */
-
-.github{
-display:flex;
-justify-content:center;
-margin-top:30px;
-}
-
-.github img{
-max-width:100%;
-}
-
 /* FOOTER */
 
 footer{
@@ -238,19 +238,6 @@ padding:40px 10%;
 font-size:14px;
 color:#94a3b8;
 text-align:center;
-}
-
-/* ANIMATION */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
 }
 
 </style>
@@ -263,12 +250,14 @@ transform:translateY(0);
 
 <h2>Santiago Acosta</h2>
 
-<div>
-<a href="#about">About</a>
-<a href="#projects">Projects</a>
-<a href="#skills">Skills</a>
-<a href="#workflow">Workflow</a>
-<a href="#contact">Contact</a>
+<div class="nav-links">
+
+<a class="nav-btn" href="#about">About</a>
+<a class="nav-btn" href="#projects">Projects</a>
+<a class="nav-btn" href="#skills">Skills</a>
+<a class="nav-btn" href="#workflow">Workflow</a>
+<a class="nav-btn" href="#contact">Contact</a>
+
 </div>
 
 </nav>
@@ -326,10 +315,10 @@ Data Analyst focused on transforming raw data into insights through data explora
 <h3>DataForge</h3>
 
 <p>
-Collection of Python projects focused on data manipulation and practical problem solving.
+Collection of Python projects focused on data manipulation and problem solving.
 </p>
 
-<p><strong>Tools:</strong> Python, Data Processing</p>
+<p><strong>Tools:</strong> Python</p>
 
 <a href="https://github.com/santiagoacostab17/dataforge" target="_blank">
 View Project →
@@ -362,7 +351,7 @@ View Project →
 <h3>Trading Profit Patterns</h3>
 
 <p>
-Statistical analysis of candlestick trading patterns using Python.
+Statistical analysis of trading patterns using Python.
 </p>
 
 <p><strong>Tools:</strong> Python, Statistics</p>
@@ -403,55 +392,43 @@ View Project →
 
 <div class="step">
 <h3>1. Data Collection</h3>
-<p>Gathering data from databases, files or APIs.</p>
+<p>Gathering data from files, databases or APIs.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>2. Data Cleaning</h3>
-<p>Preparing datasets and handling missing values.</p>
+<p>Handling missing values and preparing datasets.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>3. Exploratory Analysis</h3>
-<p>Understanding distributions and patterns.</p>
+<p>Understanding patterns and distributions.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>4. Statistical Analysis</h3>
-<p>Applying statistical methods to validate findings.</p>
+<p>Evaluating trends and relationships.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>5. Visualization</h3>
-<p>Creating charts and dashboards.</p>
+<p>Building charts and dashboards.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>6. Insights</h3>
-<p>Communicating results and actionable insights.</p>
+<p>Communicating findings and insights.</p>
 </div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2>GitHub Activity</h2>
-
-<div class="github">
-
-<img src="https://github-readme-stats.vercel.app/api?username=santiagoacostab17&show_icons=true&theme=tokyonight">
 
 </div>
 
@@ -486,5 +463,4 @@ linkedin.com/in/santiagoacostab17
 </footer>
 
 </body>
-
 </html>
