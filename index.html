@@ -2,355 +2,242 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Santiago Acosta | Data Analyst</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-
 html{
-scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
-
 body{
-font-family:'Inter',sans-serif;
-background:#0f172a;
-color:#e2e8f0;
-line-height:1.6;
-overflow-x:hidden;
+  font-family:'Inter',sans-serif;
+  background:#0f172a;
+  color:#e2e8f0;
+  line-height:1.6;
+  overflow-x:hidden;
 }
 
 /* HERO */
-
 .hero{
-padding:80px 8%;
-display:flex;
-align-items:center;
-gap:30px;
-flex-wrap:wrap;
-justify-content:center;
-text-align:center;
+  padding:80px 8%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:20px;
 }
-
 .profile-img{
-width:150px;
-height:150px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #38bdf8;
-box-shadow:0 0 20px rgba(56,189,248,0.3);
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #38bdf8;
+  box-shadow:0 0 20px rgba(56,189,248,0.3);
 }
-
 .hero-text h1{
-font-size:42px;
-margin-bottom:10px;
+  font-size:42px;
+  margin-bottom:6px;
 }
-
 .hero-text h2{
-font-size:22px;
-color:#38bdf8;
-margin-bottom:15px;
+  font-size:20px;
+  color:#38bdf8;
+  margin-bottom:15px;
 }
-
 .hero-buttons{
-margin-top:20px;
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-justify-content:center;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
-
 .btn{
-background:#38bdf8;
-color:#020617;
-padding:10px 20px;
-border-radius:8px;
-font-weight:600;
+  background:#38bdf8;
+  color:#020617;
+  padding:10px 20px;
+  border-radius:8px;
+  font-weight:600;
 }
-
 .btn-outline{
-border:1px solid #38bdf8;
-padding:10px 20px;
-border-radius:8px;
-color:#38bdf8;
+  border:1px solid #38bdf8;
+  padding:10px 20px;
+  border-radius:8px;
+  color:#38bdf8;
 }
-
 .btn-outline:hover{
-background:#38bdf8;
-color:#020617;
+  background:#38bdf8;
+  color:#020617;
 }
 
-/* SECTION */
-
+/* SECTIONS */
 .section{
-padding:70px 8%;
-max-width:1100px;
-margin:auto;
-scroll-margin-top:90px;
+  padding:70px 8%;
+  max-width:1100px;
+  margin:auto;
+  scroll-margin-top:90px;
 }
-
 .section h2{
-margin-bottom:25px;
-font-size:28px;
-position:relative;
+  margin-bottom:25px;
+  font-size:28px;
+  position:relative;
 }
-
 .section h2:after{
-content:"";
-display:block;
-width:60px;
-height:3px;
-background:#38bdf8;
-margin-top:8px;
+  content:"";
+  display:block;
+  width:60px;
+  height:3px;
+  background:#38bdf8;
+  margin-top:8px;
 }
 
 /* ABOUT */
-
+.about-text{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  font-size:16px;
+  color:#cbd5e1;
+}
 .about-text p{
-margin-bottom:12px;
-color:#cbd5e1;
-font-size:16px;
-line-height:1.5;
-}
-
-.about-text ul{
-margin-left:20px;
-list-style:disc;
-color:#cbd5e1;
-}
-
-.about-text ul li{
-margin-bottom:6px;
+  margin-bottom:12px;
+  line-height:1.6;
 }
 
 /* PROJECTS */
-
 .projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
 }
-
 .card{
-background:#1e293b;
-border-radius:12px;
-padding:22px;
-text-align:center;
-transition:0.3s;
+  background:#1e293b;
+  border-radius:12px;
+  padding:22px;
+  text-align:center;
+  transition:0.3s;
 }
-
 .card:hover{
-background:#334155;
-transform:translateY(-5px);
+  background:#334155;
+  transform:translateY(-5px);
 }
-
 .project-img{
-width:100px;
-height:100px;
-border-radius:50%;
-object-fit:cover;
-margin-bottom:15px;
-border:2px solid #38bdf8;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:15px;
+  border:2px solid #38bdf8;
 }
 
 /* SKILLS */
-
 .skills{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin-bottom:20px;
-justify-content:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:20px;
+  justify-content:center;
 }
-
 .skill{
-background:#1e293b;
-padding:8px 14px;
-border-radius:20px;
-font-size:13px;
+  background:#1e293b;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:13px;
 }
 
 /* WORKFLOW */
-
 .workflow{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
 }
-
 .step{
-background:#1e293b;
-padding:20px;
-border-radius:12px;
-width:100%;
-max-width:420px;
-text-align:center;
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
 }
-
 .arrow{
-font-size:28px;
-color:#38bdf8;
+  font-size:28px;
+  color:#38bdf8;
 }
 
 /* FOOTER */
-
 footer{
-padding:40px;
-text-align:center;
-color:#94a3b8;
-font-size:14px;
+  padding:40px;
+  text-align:center;
+  color:#94a3b8;
+  font-size:14px;
 }
 
 /* MOBILE */
-
 @media (max-width:768px){
-
-.hero-text h1{
-font-size:34px;
+  .hero-text h1{font-size:34px;}
+  .hero-text h2{font-size:18px;}
+  .profile-img{width:130px;height:130px;}
+  .projects{grid-template-columns:1fr;}
+  .skills{justify-content:center;}
 }
-
-.hero-text h2{
-font-size:18px;
-}
-
-.profile-img{
-width:130px;
-height:130px;
-}
-
-.projects{
-grid-template-columns:1fr;
-}
-
-.skills{
-justify-content:center;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
 <section class="hero">
-
 <img class="profile-img" src="images/profile.jpg" alt="Santiago Acosta">
-
 <div class="hero-text">
-
 <h1>Santiago Acosta</h1>
-<h2>📊 Data Analyst | Quantitative & Business Intelligence Specialist</h2>
-
-<p>
-I transform complex data into actionable insights using Python, SQL, and Power BI, delivering solutions for real-world business and financial challenges. Skilled in time-series analysis, ETL pipelines, BI dashboards, and data modeling, I excel at building modular, reproducible, and scalable workflows.
-</p>
-
+<h2>📊 Data Analyst | Business & Quantitative Intelligence</h2>
+<p>Transforming complex data into actionable insights using Python, SQL, and Power BI. I build clean, reproducible, and scalable data workflows that support business and financial decision-making.</p>
 <div class="hero-buttons">
 <a class="btn" href="#projects">View Projects</a>
 <a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank">GitHub</a>
 <a class="btn-outline" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">LinkedIn</a>
 </div>
-
 </div>
-
 </section>
 
 <section class="section" id="about">
-
-<h2>About & Core Skills</h2>
-
+<h2>About</h2>
 <div class="about-text">
-<p>💻 Core Skills:</p>
-<ul>
-<li>SQL | Python | Pandas | Power BI | Data Visualization | Dashboards | KPIs</li>
-<li>Exploratory Data Analysis (EDA), ETL, Data Cleaning, Data Modeling</li>
-<li>Business Intelligence & Time-Series Analysis</li>
-</ul>
-
-<p>📈 Highlighted Projects:</p>
-
-<ul>
-<li>
-<strong>Northwind Revenue Insights – H1 2006</strong>  
-🗓 Jan 2026 – Feb 2026 | 🛠 SQL, Power BI, Business Intelligence  
-ETL & Data Modeling: Structured sales data  
-Revenue Analysis: Top products 64% of total revenue  
-Interactive Dashboards: KPIs across products, categories, employees, and customers  
-Metrics: Revenue $13M | Orders 48 | Customers 29 | Avg Order $268K
-</li>
-<li>
-<strong>Trading Profit Patterns</strong>  
-🗓 Aug 2025 – Feb 2026 | 🛠 Python, Pandas, Time-Series Analysis  
-Data Processing: 3M+ 1-min EURUSD candles aggregated  
-Pattern Detection: Bullish/bearish signals with predictive accuracy 46.8%  
-Reproducible Pipeline & Visualizations  
-Metrics: 433,334 patterns detected
-</li>
-<li>
-<strong>PythonForge: Advanced Python Portfolio</strong>  
-🗓 2026 | 🛠 Python, Pandas, Matplotlib, APIs  
-Projects showcasing automation, data handling, and algorithmic problem-solving  
-Batch CSV/Excel Processor | API Data Dashboard | Sudoku Solver
-</li>
-</ul>
-
-<p>🌎 Open to full-time remote Data Analyst roles</p>
-<p>📧 santiagoacostab17@gmail.com | 📱 +57 304 674 2454</p>
-
+<p>I am a Data Analyst specializing in building **modular and scalable workflows**. I focus on turning raw data into clear, actionable insights, enabling better decision-making without overloading with technical jargon.</p>
+<p>Core Competencies: <strong>Python, SQL, Pandas, Power BI, Data Visualization, ETL, Data Cleaning, Data Modeling, BI Dashboards</strong></p>
 </div>
-
 </section>
 
 <section class="section" id="projects">
-
 <h2>Featured Projects</h2>
-
 <div class="projects">
-
 <div class="card">
 <img class="project-img" src="images/dataforge.jpg" alt="DataForge">
 <h3>DataForge</h3>
-<p>Collection of Python projects focused on data manipulation and problem solving.</p>
+<p>Python projects focused on data manipulation and problem solving.</p>
 <a href="https://github.com/santiagoacostab17/dataforge" target="_blank">View Project →</a>
 </div>
-
 <div class="card">
 <img class="project-img" src="images/northwind.jpg" alt="Northwind Revenue Insights">
 <h3>Northwind Revenue Insights</h3>
-<p>Sales and customer analysis using SQL queries and dashboards.</p>
+<p>SQL and Power BI dashboards for sales and customer analysis.</p>
 <a href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank">View Project →</a>
 </div>
-
 <div class="card">
 <img class="project-img" src="images/trading.jpg" alt="Trading Profit Patterns">
 <h3>Trading Profit Patterns</h3>
 <p>Statistical analysis of trading patterns using Python.</p>
 <a href="https://github.com/santiagoacostab17/Trading-Profit-Patterns" target="_blank">View Project →</a>
 </div>
-
 </div>
-
 </section>
 
 <section class="section" id="skills">
-
 <h2>Tech Stack</h2>
-
 <div class="skills">
-
 <div class="skill">Python</div>
 <div class="skill">SQL</div>
 <div class="skill">Pandas</div>
@@ -361,75 +248,53 @@ Batch CSV/Excel Processor | API Data Dashboard | Sudoku Solver
 <div class="skill">Data Cleaning</div>
 <div class="skill">Data Modeling</div>
 <div class="skill">Business Intelligence</div>
-
 </div>
-
 </section>
 
 <section class="section" id="workflow">
-
 <h2>Data Analysis Workflow</h2>
-
 <div class="workflow">
-
 <div class="step">
-<h3>1. Data Collection</h3>
-<p>Gathering datasets from files, APIs or databases.</p>
+<h3>1. System Recognition / Problem Definition</h3>
+<p>Understand the system, define objectives and identify KPIs.</p>
 </div>
-
 <div class="arrow">↓</div>
-
 <div class="step">
-<h3>2. Data Cleaning</h3>
-<p>Preparing and cleaning raw data.</p>
+<h3>2. Data Collection</h3>
+<p>Gather datasets from files, APIs, or databases.</p>
 </div>
-
 <div class="arrow">↓</div>
-
 <div class="step">
-<h3>3. Exploratory Analysis</h3>
-<p>Understanding patterns and distributions.</p>
+<h3>3. Data Cleaning</h3>
+<p>Prepare and clean raw data for analysis.</p>
 </div>
-
 <div class="arrow">↓</div>
-
 <div class="step">
-<h3>4. Statistical Analysis</h3>
-<p>Evaluating trends and relationships.</p>
+<h3>4. Exploratory Analysis</h3>
+<p>Analyze distributions, patterns, and anomalies.</p>
 </div>
-
 <div class="arrow">↓</div>
-
 <div class="step">
-<h3>5. Visualization</h3>
-<p>Building charts and dashboards.</p>
+<h3>5. Statistical Analysis & Modeling</h3>
+<p>Test hypotheses, detect trends and build predictive models.</p>
 </div>
-
 <div class="arrow">↓</div>
-
 <div class="step">
-<h3>6. Insights</h3>
-<p>Communicating insights to support decisions.</p>
+<h3>6. Visualization & Insights</h3>
+<p>Create dashboards and communicate actionable insights.</p>
 </div>
-
 </div>
-
 </section>
 
 <section class="section" id="contact">
-
 <h2>Contact</h2>
-
 <p>Email: santiagoacostab17@gmail.com</p>
 <p>GitHub: <a href="https://github.com/santiagoacostab17">github.com/santiagoacostab17</a></p>
 <p>LinkedIn: <a href="https://www.linkedin.com/in/santiagoacostab17">linkedin.com/in/santiagoacostab17</a></p>
-
 </section>
 
 <footer>
-
 <p>© 2026 Santiago Acosta — Data Analyst Portfolio</p>
-
 </footer>
 
 </body>
