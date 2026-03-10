@@ -25,6 +25,21 @@ color:#e2e8f0;
 line-height:1.6;
 }
 
+/* LINKS */
+
+a{
+color:#38bdf8;
+text-decoration:none;
+}
+
+a:visited{
+color:#38bdf8;
+}
+
+a:hover{
+color:#7dd3fc;
+}
+
 /* NAVBAR */
 
 nav{
@@ -41,19 +56,13 @@ font-weight:600;
 
 nav a{
 margin-left:20px;
-text-decoration:none;
-color:#e2e8f0;
 font-size:14px;
-}
-
-nav a:hover{
-color:#38bdf8;
 }
 
 /* HERO */
 
 .hero{
-padding:80px 10%;
+padding:90px 10%;
 display:flex;
 align-items:center;
 gap:40px;
@@ -70,7 +79,7 @@ box-shadow:0 0 20px rgba(56,189,248,0.4);
 }
 
 .hero-text h1{
-font-size:42px;
+font-size:46px;
 margin-bottom:10px;
 }
 
@@ -91,20 +100,27 @@ gap:15px;
 .btn{
 background:#38bdf8;
 color:#020617;
-padding:10px 20px;
+padding:11px 22px;
 border-radius:8px;
-text-decoration:none;
-font-size:14px;
 font-weight:600;
+transition:0.25s;
+}
+
+.btn:hover{
+background:#0ea5e9;
 }
 
 .btn-outline{
 border:1px solid #38bdf8;
-padding:10px 20px;
+padding:11px 22px;
 border-radius:8px;
-text-decoration:none;
 color:#38bdf8;
-font-size:14px;
+transition:0.25s;
+}
+
+.btn-outline:hover{
+background:#38bdf8;
+color:#020617;
 }
 
 /* SECTION */
@@ -117,6 +133,16 @@ max-width:1100px;
 .section h2{
 margin-bottom:30px;
 font-size:28px;
+position:relative;
+}
+
+.section h2:after{
+content:"";
+display:block;
+width:60px;
+height:3px;
+background:#38bdf8;
+margin-top:8px;
 }
 
 /* PROJECTS */
@@ -129,15 +155,17 @@ gap:30px;
 
 .card{
 background:#1e293b;
-border-radius:12px;
+border-radius:14px;
 padding:25px;
 text-align:center;
-transition:0.25s;
+transition:0.3s;
+border:1px solid rgba(255,255,255,0.05);
 }
 
 .card:hover{
 background:#334155;
-transform:translateY(-5px);
+transform:translateY(-6px);
+border-color:#38bdf8;
 }
 
 .project-img{
@@ -165,6 +193,32 @@ border-radius:20px;
 font-size:13px;
 }
 
+/* WORKFLOW */
+
+.workflow{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+}
+
+.step{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+width:420px;
+text-align:center;
+}
+
+.step h3{
+margin-bottom:8px;
+}
+
+.arrow{
+font-size:28px;
+color:#38bdf8;
+}
+
 /* FOOTER */
 
 footer{
@@ -187,12 +241,11 @@ color:#94a3b8;
 <a href="#about">About</a>
 <a href="#projects">Projects</a>
 <a href="#skills">Skills</a>
+<a href="#workflow">Workflow</a>
 <a href="#contact">Contact</a>
 </div>
 
 </nav>
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -204,7 +257,7 @@ color:#94a3b8;
 
 <p>
 I analyze data to uncover insights, explore patterns and build
-analytical solutions using Python, SQL and data visualization tools.
+analytical workflows using Python, SQL and data visualization tools.
 </p>
 
 <div class="hero-buttons">
@@ -229,25 +282,21 @@ LinkedIn
 
 </section>
 
-<!-- ABOUT -->
-
 <section class="section" id="about">
 
 <h2>About</h2>
 
 <p>
 Data Analyst focused on exploring data, identifying patterns and
-building analytical workflows that support decision making.
+building analytical workflows that support better decision making.
 </p>
 
 <p>
 My work involves data cleaning, exploratory analysis, statistical
-investigation and building dashboards that communicate insights clearly.
+evaluation and building visualizations that communicate insights clearly.
 </p>
 
 </section>
-
-<!-- PROJECTS -->
 
 <section class="section" id="projects">
 
@@ -262,8 +311,8 @@ investigation and building dashboards that communicate insights clearly.
 <h3>DataForge</h3>
 
 <p>
-Collection of practical Python projects focused on data manipulation,
-automation and solving real-world data problems.
+Collection of Python projects focused on data manipulation,
+automation and solving practical data problems.
 </p>
 
 <p><strong>Tools:</strong> Python, Data Processing</p>
@@ -281,8 +330,7 @@ View Project →
 <h3>Northwind Revenue Insights</h3>
 
 <p>
-Sales and customer analysis using SQL queries and interactive
-business dashboards.
+Sales and customer analysis using SQL queries and business dashboards.
 </p>
 
 <p><strong>Tools:</strong> SQL, Power BI, Business Analysis</p>
@@ -301,7 +349,7 @@ View Project →
 
 <p>
 Statistical analysis of candlestick trading patterns using
-historical market data and Python.
+historical market data with Python.
 </p>
 
 <p><strong>Tools:</strong> Python, Statistics, Data Analysis</p>
@@ -316,19 +364,19 @@ View Project →
 
 </section>
 
-<!-- SKILLS -->
-
 <section class="section" id="skills">
 
 <h2>Tech Stack</h2>
 
 <h3>Languages</h3>
+
 <div class="skills">
 <div class="skill">Python</div>
 <div class="skill">SQL</div>
 </div>
 
 <h3>Data Analysis</h3>
+
 <div class="skills">
 <div class="skill">Pandas</div>
 <div class="skill">Statistics</div>
@@ -336,6 +384,7 @@ View Project →
 </div>
 
 <h3>Visualization</h3>
+
 <div class="skills">
 <div class="skill">Power BI</div>
 <div class="skill">Data Visualization</div>
@@ -343,34 +392,55 @@ View Project →
 
 </section>
 
-<!-- WORKFLOW -->
-
-<section class="section">
+<section class="section" id="workflow">
 
 <h2>Data Analysis Workflow</h2>
 
-<div class="projects">
+<div class="workflow">
 
-<div class="card">
-<h3>Data Cleaning</h3>
-<p>Handling missing values, formatting datasets and preparing data.</p>
+<div class="step">
+<h3>1. Data Collection</h3>
+<p>Gathering datasets from databases, files or APIs.</p>
 </div>
 
-<div class="card">
-<h3>Exploratory Analysis</h3>
-<p>Identifying patterns, trends and relationships in datasets.</p>
+<div class="arrow">↓</div>
+
+<div class="step">
+<h3>2. Data Cleaning</h3>
+<p>Handling missing values and preparing structured datasets.</p>
 </div>
 
-<div class="card">
-<h3>Visualization</h3>
-<p>Building dashboards and visualizations to communicate insights.</p>
+<div class="arrow">↓</div>
+
+<div class="step">
+<h3>3. Exploratory Analysis</h3>
+<p>Exploring distributions, correlations and patterns.</p>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="step">
+<h3>4. Statistical Analysis</h3>
+<p>Applying statistical methods to evaluate trends.</p>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="step">
+<h3>5. Visualization</h3>
+<p>Creating charts and dashboards to communicate findings.</p>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="step">
+<h3>6. Insight Generation</h3>
+<p>Transforming analysis results into actionable insights.</p>
 </div>
 
 </div>
 
 </section>
-
-<!-- CONTACT -->
 
 <section class="section" id="contact">
 
@@ -401,5 +471,4 @@ linkedin.com/in/santiagoacostab17
 </footer>
 
 </body>
-
 </html>
