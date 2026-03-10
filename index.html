@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Santiago Acosta | Data Analyst</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
@@ -22,15 +23,14 @@ body{
   line-height:1.6;
   overflow-x:hidden;
 }
-
 /* HERO */
 .hero{
   padding:80px 8%;
   display:flex;
   flex-direction:column;
   align-items:center;
+  gap:25px;
   text-align:center;
-  gap:20px;
 }
 .profile-img{
   width:150px;
@@ -42,10 +42,10 @@ body{
 }
 .hero-text h1{
   font-size:42px;
-  margin-bottom:6px;
+  margin-bottom:5px;
 }
 .hero-text h2{
-  font-size:20px;
+  font-size:22px;
   color:#38bdf8;
   margin-bottom:15px;
 }
@@ -72,7 +72,6 @@ body{
   background:#38bdf8;
   color:#020617;
 }
-
 /* SECTIONS */
 .section{
   padding:70px 8%;
@@ -93,20 +92,22 @@ body{
   background:#38bdf8;
   margin-top:8px;
 }
-
-/* ABOUT */
+/* ABOUT MINIMAL */
 .about-text{
   max-width:800px;
   margin:auto;
-  text-align:center;
   font-size:16px;
   color:#cbd5e1;
-}
-.about-text p{
-  margin-bottom:12px;
+  text-align:center;
   line-height:1.6;
 }
-
+.about-text a{
+  color:#38bdf8;
+  text-decoration:none;
+}
+.about-text a:hover{
+  text-decoration:underline;
+}
 /* PROJECTS */
 .projects{
   display:grid;
@@ -132,14 +133,13 @@ body{
   margin-bottom:15px;
   border:2px solid #38bdf8;
 }
-
 /* SKILLS */
 .skills{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-bottom:20px;
   justify-content:center;
+  margin-bottom:20px;
 }
 .skill{
   background:#1e293b;
@@ -147,7 +147,6 @@ body{
   border-radius:20px;
   font-size:13px;
 }
-
 /* WORKFLOW */
 .workflow{
   display:flex;
@@ -167,7 +166,6 @@ body{
   font-size:28px;
   color:#38bdf8;
 }
-
 /* FOOTER */
 footer{
   padding:40px;
@@ -175,26 +173,37 @@ footer{
   color:#94a3b8;
   font-size:14px;
 }
-
 /* MOBILE */
 @media (max-width:768px){
-  .hero-text h1{font-size:34px;}
-  .hero-text h2{font-size:18px;}
-  .profile-img{width:130px;height:130px;}
-  .projects{grid-template-columns:1fr;}
-  .skills{justify-content:center;}
+  .hero-text h1{
+    font-size:34px;
+  }
+  .hero-text h2{
+    font-size:18px;
+  }
+  .profile-img{
+    width:130px;
+    height:130px;
+  }
+  .projects{
+    grid-template-columns:1fr;
+  }
+  .skills{
+    justify-content:center;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <section class="hero">
 <img class="profile-img" src="images/profile.jpg" alt="Santiago Acosta">
 <div class="hero-text">
 <h1>Santiago Acosta</h1>
-<h2>📊 Data Analyst | Business & Quantitative Intelligence</h2>
-<p>Transforming complex data into actionable insights using Python, SQL, and Power BI. I build clean, reproducible, and scalable data workflows that support business and financial decision-making.</p>
+<h2>📊 Data Analyst</h2>
+<p>Transforming data into actionable insights using Python, SQL, and Power BI. Specializing in clean, reproducible, and scalable workflows for business and financial intelligence.</p>
 <div class="hero-buttons">
 <a class="btn" href="#projects">View Projects</a>
 <a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank">GitHub</a>
@@ -203,27 +212,28 @@ footer{
 </div>
 </section>
 
+<!-- ABOUT -->
 <section class="section" id="about">
 <h2>About</h2>
 <div class="about-text">
-<p>I am a Data Analyst specializing in building **modular and scalable workflows**. I focus on turning raw data into clear, actionable insights, enabling better decision-making without overloading with technical jargon.</p>
-<p>Core Competencies: <strong>Python, SQL, Pandas, Power BI, Data Visualization, ETL, Data Cleaning, Data Modeling, BI Dashboards</strong></p>
+<p>Data Analyst focused on transforming raw data into insights through structured workflows and visualizations. Skilled in Python, SQL, Power BI, and data modeling. Open to full-time remote opportunities.</p>
 </div>
 </section>
 
+<!-- PROJECTS -->
 <section class="section" id="projects">
 <h2>Featured Projects</h2>
 <div class="projects">
 <div class="card">
 <img class="project-img" src="images/dataforge.jpg" alt="DataForge">
 <h3>DataForge</h3>
-<p>Python projects focused on data manipulation and problem solving.</p>
+<p>Collection of Python projects focused on data manipulation and problem solving.</p>
 <a href="https://github.com/santiagoacostab17/dataforge" target="_blank">View Project →</a>
 </div>
 <div class="card">
 <img class="project-img" src="images/northwind.jpg" alt="Northwind Revenue Insights">
 <h3>Northwind Revenue Insights</h3>
-<p>SQL and Power BI dashboards for sales and customer analysis.</p>
+<p>Sales and customer analysis using SQL queries and dashboards.</p>
 <a href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank">View Project →</a>
 </div>
 <div class="card">
@@ -235,8 +245,9 @@ footer{
 </div>
 </section>
 
+<!-- SKILLS -->
 <section class="section" id="skills">
-<h2>Tech Stack</h2>
+<h2>Skills</h2>
 <div class="skills">
 <div class="skill">Python</div>
 <div class="skill">SQL</div>
@@ -245,23 +256,23 @@ footer{
 <div class="skill">Data Visualization</div>
 <div class="skill">EDA</div>
 <div class="skill">ETL</div>
-<div class="skill">Data Cleaning</div>
 <div class="skill">Data Modeling</div>
 <div class="skill">Business Intelligence</div>
 </div>
 </section>
 
+<!-- WORKFLOW -->
 <section class="section" id="workflow">
 <h2>Data Analysis Workflow</h2>
 <div class="workflow">
 <div class="step">
-<h3>1. System Recognition / Problem Definition</h3>
-<p>Understand the system, define objectives and identify KPIs.</p>
+<h3>1. System Recognition</h3>
+<p>Understand the system or process to improve, defining scope and objectives.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
 <h3>2. Data Collection</h3>
-<p>Gather datasets from files, APIs, or databases.</p>
+<p>Gather relevant datasets from files, APIs, or databases.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
@@ -271,26 +282,29 @@ footer{
 <div class="arrow">↓</div>
 <div class="step">
 <h3>4. Exploratory Analysis</h3>
-<p>Analyze distributions, patterns, and anomalies.</p>
+<p>Identify patterns, trends, and anomalies.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
-<h3>5. Statistical Analysis & Modeling</h3>
-<p>Test hypotheses, detect trends and build predictive models.</p>
+<h3>5. Visualization</h3>
+<p>Create charts and dashboards to communicate findings.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
-<h3>6. Visualization & Insights</h3>
-<p>Create dashboards and communicate actionable insights.</p>
+<h3>6. Insights</h3>
+<p>Deliver actionable recommendations for decision-making.</p>
 </div>
 </div>
 </section>
 
+<!-- CONTACT -->
 <section class="section" id="contact">
 <h2>Contact</h2>
-<p>Email: santiagoacostab17@gmail.com</p>
-<p>GitHub: <a href="https://github.com/santiagoacostab17">github.com/santiagoacostab17</a></p>
-<p>LinkedIn: <a href="https://www.linkedin.com/in/santiagoacostab17">linkedin.com/in/santiagoacostab17</a></p>
+<div class="about-text">
+<p>Email: <a href="mailto:santiagoacostab17@gmail.com">santiagoacostab17@gmail.com</a></p>
+<p>GitHub: <a href="https://github.com/santiagoacostab17" target="_blank">github.com/santiagoacostab17</a></p>
+<p>LinkedIn: <a href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">linkedin.com/in/santiagoacostab17</a></p>
+</div>
 </section>
 
 <footer>
