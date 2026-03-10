@@ -48,38 +48,32 @@ justify-content:space-between;
 align-items:center;
 padding:20px 10%;
 background:#020617;
-}
-
-nav h2{
-font-weight:600;
-}
-
-nav a{
-margin-left:20px;
-font-size:14px;
+position:sticky;
+top:0;
 }
 
 /* HERO */
 
 .hero{
-padding:90px 10%;
+padding:100px 10%;
 display:flex;
 align-items:center;
 gap:40px;
 flex-wrap:wrap;
+animation:fadeUp 1s ease;
 }
 
 .profile-img{
-width:170px;
-height:170px;
-object-fit:cover;
+width:180px;
+height:180px;
 border-radius:50%;
+object-fit:cover;
 border:3px solid #38bdf8;
-box-shadow:0 0 20px rgba(56,189,248,0.4);
+box-shadow:0 0 25px rgba(56,189,248,0.4);
 }
 
 .hero-text h1{
-font-size:46px;
+font-size:48px;
 margin-bottom:10px;
 }
 
@@ -89,18 +83,18 @@ font-size:18px;
 max-width:600px;
 }
 
-/* HERO BUTTONS */
+/* BUTTONS */
 
 .hero-buttons{
-margin-top:20px;
+margin-top:25px;
 display:flex;
 gap:15px;
 }
 
 .btn{
 background:#38bdf8;
-color:#020617;
-padding:11px 22px;
+color:#020617 !important;
+padding:12px 24px;
 border-radius:8px;
 font-weight:600;
 transition:0.25s;
@@ -108,31 +102,34 @@ transition:0.25s;
 
 .btn:hover{
 background:#0ea5e9;
+color:#020617 !important;
 }
 
 .btn-outline{
 border:1px solid #38bdf8;
-padding:11px 22px;
+padding:12px 24px;
 border-radius:8px;
-color:#38bdf8;
+color:#38bdf8 !important;
 transition:0.25s;
 }
 
 .btn-outline:hover{
 background:#38bdf8;
-color:#020617;
+color:#020617 !important;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 .section{
-padding:60px 10%;
+padding:70px 10%;
 max-width:1100px;
+margin:auto;
+animation:fadeUp 1s ease;
 }
 
 .section h2{
 margin-bottom:30px;
-font-size:28px;
+font-size:30px;
 position:relative;
 }
 
@@ -166,6 +163,7 @@ border:1px solid rgba(255,255,255,0.05);
 background:#334155;
 transform:translateY(-6px);
 border-color:#38bdf8;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 .project-img{
@@ -182,15 +180,16 @@ border:2px solid #38bdf8;
 .skills{
 display:flex;
 flex-wrap:wrap;
-gap:10px;
-margin-bottom:20px;
+gap:12px;
+margin-bottom:25px;
 }
 
 .skill{
 background:#1e293b;
-padding:8px 14px;
+padding:9px 15px;
 border-radius:20px;
 font-size:13px;
+border:1px solid rgba(255,255,255,0.05);
 }
 
 /* WORKFLOW */
@@ -199,15 +198,16 @@ font-size:13px;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:15px;
+gap:20px;
 }
 
 .step{
 background:#1e293b;
-padding:20px;
+padding:22px;
 border-radius:12px;
-width:420px;
+width:440px;
 text-align:center;
+border:1px solid rgba(255,255,255,0.05);
 }
 
 .step h3{
@@ -215,8 +215,20 @@ margin-bottom:8px;
 }
 
 .arrow{
-font-size:28px;
+font-size:32px;
 color:#38bdf8;
+}
+
+/* GITHUB STATS */
+
+.github{
+display:flex;
+justify-content:center;
+margin-top:30px;
+}
+
+.github img{
+max-width:100%;
 }
 
 /* FOOTER */
@@ -225,6 +237,20 @@ footer{
 padding:40px 10%;
 font-size:14px;
 color:#94a3b8;
+text-align:center;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 </style>
@@ -249,30 +275,25 @@ color:#94a3b8;
 
 <section class="hero">
 
-<img class="profile-img" src="images/profile.jpg" alt="Santiago Acosta">
+<img class="profile-img" src="images/profile.jpg">
 
 <div class="hero-text">
 
 <h1>Data Analyst</h1>
 
 <p>
-I analyze data to uncover insights, explore patterns and build
-analytical workflows using Python, SQL and data visualization tools.
+I analyze data to uncover insights, explore patterns and build analytical workflows using Python, SQL and visualization tools.
 </p>
 
 <div class="hero-buttons">
 
 <a class="btn" href="#projects">View Projects</a>
 
-<a class="btn-outline"
-href="https://github.com/santiagoacostab17"
-target="_blank">
+<a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank">
 GitHub
 </a>
 
-<a class="btn-outline"
-href="https://www.linkedin.com/in/santiagoacostab17"
-target="_blank">
+<a class="btn-outline" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">
 LinkedIn
 </a>
 
@@ -287,13 +308,7 @@ LinkedIn
 <h2>About</h2>
 
 <p>
-Data Analyst focused on exploring data, identifying patterns and
-building analytical workflows that support better decision making.
-</p>
-
-<p>
-My work involves data cleaning, exploratory analysis, statistical
-evaluation and building visualizations that communicate insights clearly.
+Data Analyst focused on transforming raw data into insights through data exploration, statistical analysis and visualization.
 </p>
 
 </section>
@@ -311,8 +326,7 @@ evaluation and building visualizations that communicate insights clearly.
 <h3>DataForge</h3>
 
 <p>
-Collection of Python projects focused on data manipulation,
-automation and solving practical data problems.
+Collection of Python projects focused on data manipulation and practical problem solving.
 </p>
 
 <p><strong>Tools:</strong> Python, Data Processing</p>
@@ -330,10 +344,10 @@ View Project →
 <h3>Northwind Revenue Insights</h3>
 
 <p>
-Sales and customer analysis using SQL queries and business dashboards.
+Sales and customer analysis using SQL queries and dashboards.
 </p>
 
-<p><strong>Tools:</strong> SQL, Power BI, Business Analysis</p>
+<p><strong>Tools:</strong> SQL, Power BI</p>
 
 <a href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank">
 View Project →
@@ -348,11 +362,10 @@ View Project →
 <h3>Trading Profit Patterns</h3>
 
 <p>
-Statistical analysis of candlestick trading patterns using
-historical market data with Python.
+Statistical analysis of candlestick trading patterns using Python.
 </p>
 
-<p><strong>Tools:</strong> Python, Statistics, Data Analysis</p>
+<p><strong>Tools:</strong> Python, Statistics</p>
 
 <a href="https://github.com/santiagoacostab17/Trading-Profit-Patterns" target="_blank">
 View Project →
@@ -368,26 +381,16 @@ View Project →
 
 <h2>Tech Stack</h2>
 
-<h3>Languages</h3>
-
 <div class="skills">
+
 <div class="skill">Python</div>
 <div class="skill">SQL</div>
-</div>
-
-<h3>Data Analysis</h3>
-
-<div class="skills">
 <div class="skill">Pandas</div>
 <div class="skill">Statistics</div>
-<div class="skill">Exploratory Data Analysis</div>
-</div>
-
-<h3>Visualization</h3>
-
-<div class="skills">
 <div class="skill">Power BI</div>
 <div class="skill">Data Visualization</div>
+<div class="skill">Exploratory Data Analysis</div>
+
 </div>
 
 </section>
@@ -400,43 +403,55 @@ View Project →
 
 <div class="step">
 <h3>1. Data Collection</h3>
-<p>Gathering datasets from databases, files or APIs.</p>
+<p>Gathering data from databases, files or APIs.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>2. Data Cleaning</h3>
-<p>Handling missing values and preparing structured datasets.</p>
+<p>Preparing datasets and handling missing values.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>3. Exploratory Analysis</h3>
-<p>Exploring distributions, correlations and patterns.</p>
+<p>Understanding distributions and patterns.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>4. Statistical Analysis</h3>
-<p>Applying statistical methods to evaluate trends.</p>
+<p>Applying statistical methods to validate findings.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
 <h3>5. Visualization</h3>
-<p>Creating charts and dashboards to communicate findings.</p>
+<p>Creating charts and dashboards.</p>
 </div>
 
 <div class="arrow">↓</div>
 
 <div class="step">
-<h3>6. Insight Generation</h3>
-<p>Transforming analysis results into actionable insights.</p>
+<h3>6. Insights</h3>
+<p>Communicating results and actionable insights.</p>
 </div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>GitHub Activity</h2>
+
+<div class="github">
+
+<img src="https://github-readme-stats.vercel.app/api?username=santiagoacostab17&show_icons=true&theme=tokyonight">
 
 </div>
 
@@ -450,14 +465,14 @@ View Project →
 
 <p>
 GitHub:
-<a href="https://github.com/santiagoacostab17" target="_blank">
+<a href="https://github.com/santiagoacostab17">
 github.com/santiagoacostab17
 </a>
 </p>
 
 <p>
 LinkedIn:
-<a href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">
+<a href="https://www.linkedin.com/in/santiagoacostab17">
 linkedin.com/in/santiagoacostab17
 </a>
 </p>
@@ -471,4 +486,5 @@ linkedin.com/in/santiagoacostab17
 </footer>
 
 </body>
+
 </html>
