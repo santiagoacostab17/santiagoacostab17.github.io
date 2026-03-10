@@ -25,16 +25,16 @@ a:visited {color:#38bdf8;}
 .hero-text h2 {font-size:22px; color:#38bdf8; margin-bottom:15px;}
 .hero-text p {font-size:16px; color:#cbd5e1; max-width:700px; margin:auto;}
 .hero-buttons {display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
-.btn {background:#38bdf8; color:#020617; padding:10px 20px; border-radius:8px; font-weight:600;}
-.btn-outline {border:1px solid #38bdf8; padding:10px 20px; border-radius:8px; color:#38bdf8;}
+.btn, .btn-outline {padding:10px 20px; border-radius:8px; font-weight:600; text-align:center;}
+.btn {background:#38bdf8; color:#020617;}
+.btn:hover {opacity:0.9;}
+.btn-outline {border:1px solid #38bdf8; color:#38bdf8; background:transparent;}
 .btn-outline:hover {background:#38bdf8; color:#020617;}
 
 /* Sections */
 .section {margin-bottom:50px;}
 .section h2 {margin-bottom:25px; font-size:28px; border-bottom:3px solid #38bdf8; display:inline-block; padding-bottom:5px;}
-.about-text p {font-size:16px; color:#cbd5e1; margin-bottom:12px;}
-.about-text ul {list-style:disc; margin-left:20px; margin-bottom:12px; color:#cbd5e1;}
-.about-text ul li {margin-bottom:6px;}
+.about-text p {font-size:16px; color:#cbd5e1; margin-bottom:12px; line-height:1.5;}
 
 /* Projects */
 .projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px;}
@@ -85,13 +85,9 @@ footer {padding:40px; text-align:center; color:#94a3b8; font-size:14px;}
 </section>
 
 <section class="section" id="about">
-<h2>About & Skills</h2>
+<h2>About</h2>
 <div class="about-text">
-<p>💻 Core Skills:</p>
-<ul>
-<li>Python | SQL | Pandas | Power BI | Data Visualization | Dashboards | KPIs</li>
-<li>EDA | ETL | Data Cleaning | Data Modeling | Business Intelligence</li>
-</ul>
+<p>Data Analyst with expertise in turning complex datasets into actionable business insights. Focused on clean, reproducible, and scalable workflows for data-driven decision making.</p>
 </div>
 </section>
 
@@ -140,32 +136,32 @@ footer {padding:40px; text-align:center; color:#94a3b8; font-size:14px;}
 <div class="workflow">
 <div class="step">
 <h3>1. Reconocimiento del sistema</h3>
-<p>Identifying the system, business domain, and data sources to improve.</p>
+<p>Identify the business domain, goals, and data sources to improve.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
 <h3>2. Data Collection</h3>
-<p>Gathering datasets from files, APIs, or databases.</p>
+<p>Gather datasets from files, APIs, or databases.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
 <h3>3. Data Cleaning</h3>
-<p>Preparing, cleaning, and validating raw data.</p>
+<p>Prepare, clean, and validate raw data for analysis.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
 <h3>4. Exploratory Analysis</h3>
-<p>Understanding distributions, patterns, and anomalies.</p>
+<p>Explore distributions, trends, and anomalies.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
 <h3>5. Visualization</h3>
-<p>Building charts, dashboards, and KPIs to communicate insights.</p>
+<p>Create dashboards, charts, and KPIs to communicate insights.</p>
 </div>
 <div class="arrow">↓</div>
 <div class="step">
 <h3>6. Insights</h3>
-<p>Delivering actionable recommendations for business decisions.</p>
+<p>Deliver actionable recommendations to support decisions.</p>
 </div>
 </div>
 </section>
