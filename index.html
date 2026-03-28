@@ -1,186 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Santiago Acosta | Data Analyst</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Santiago Acosta — Data Analyst</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-/* General */
-* {margin:0; padding:0; box-sizing:border-box;}
-html {scroll-behavior:smooth;}
-body {font-family:'Inter',sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.6; overflow-x:hidden;}
-a {text-decoration:none; color:#38bdf8;}
-a:visited {color:#38bdf8;}
+:root{
+  --bg:#05070d;
+  --bg2:#0a0f1a;
+  --bg3:#101726;
+  --border:rgba(80,140,255,0.15);
 
-/* Container general */
-.container {max-width:1100px; margin:auto; padding:40px 20px; border:1px solid rgba(56,189,248,0.3); border-radius:14px; background:#111827;}
+  --blue:#4f8cff;
+  --blue2:#7aa2ff;
+
+  --text:#f5f7ff;
+  --muted:#8a93a8;
+  --dim:#2a3142;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'JetBrains Mono',monospace;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+a{color:var(--blue);text-decoration:none;}
+
+nav{
+  position:fixed;top:0;left:0;right:0;
+  padding:20px 48px;display:flex;justify-content:space-between;
+  background:rgba(5,7,13,0.8);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Bricolage Grotesque';font-weight:800;}
+.nav-logo span{color:var(--blue);}
+.nav-right{display:flex;gap:10px;}
+.nav-link{font-size:11px;color:var(--muted);}
+.nav-cta{
+  background:var(--blue);color:#fff;
+  padding:8px 16px;border-radius:6px;
+}
 
 /* HERO */
-.hero {display:flex; flex-wrap:wrap; align-items:center; gap:30px; justify-content:center; text-align:center; margin-bottom:40px;}
-.profile-img {width:150px; height:150px; border-radius:50%; object-fit:cover; border:3px solid #38bdf8; box-shadow:0 0 20px rgba(56,189,248,0.3);}
-.hero-text h1 {font-size:42px; margin-bottom:5px;}
-.hero-text h2 {font-size:22px; color:#38bdf8; margin-bottom:15px;}
-.hero-text p {font-size:16px; color:#cbd5e1; max-width:700px; margin:auto;}
-.hero-buttons {display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
-.btn-outline {border:1px solid #38bdf8; padding:10px 20px; border-radius:8px; color:#38bdf8; background:transparent; font-weight:600;}
-.btn-outline:hover {background:#38bdf8; color:#020617;}
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:120px 48px;
+  max-width:1100px;margin:auto;
+}
+.hero h1{
+  font-family:'Bricolage Grotesque';
+  font-size:72px;font-weight:800;
+}
+.hero h1 em{color:var(--blue);font-style:normal;}
+.hero-desc{color:var(--muted);max-width:500px;margin:20px 0;}
+.hero-buttons{display:flex;gap:10px;margin-top:20px;}
 
-/* Sections */
-.section {margin-bottom:50px;}
-.section h2 {margin-bottom:25px; font-size:28px; border-bottom:3px solid #38bdf8; display:inline-block; padding-bottom:5px;}
-.about-text p {font-size:16px; color:#cbd5e1; margin-bottom:12px; line-height:1.5;}
+.btn-fill{
+  background:var(--blue);
+  color:#fff;padding:12px 20px;border-radius:8px;
+}
+.btn-line{
+  border:1px solid var(--dim);
+  padding:12px 20px;border-radius:8px;
+}
 
-/* Projects */
-.projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px;}
-.card {background:#1e293b; border-radius:12px; padding:22px; text-align:center; transition:0.3s;}
-.card:hover {background:#334155; transform:translateY(-5px);}
-.project-img {width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:15px; border:2px solid #38bdf8;}
-.card a {color:#38bdf8; font-weight:500; display:inline-block; margin-top:8px;}
+/* SECTION */
+.section{max-width:1100px;margin:auto;padding:80px 48px;}
+.section-title{
+  font-family:'Bricolage Grotesque';
+  font-size:36px;margin-bottom:40px;
+}
 
-/* Skills */
-.skills {display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:20px;}
-.skill {background:#1e293b; padding:8px 14px; border-radius:20px; font-size:13px;}
+/* PROJECTS */
+.project-featured{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:40px;border-radius:16px;
+}
+.project-title{font-size:22px;margin-bottom:10px;}
+.project-desc{color:var(--muted);margin-bottom:20px;}
 
-/* Workflow */
-.workflow {display:flex; flex-direction:column; align-items:center; gap:18px;}
-.step {background:#1e293b; padding:20px; border-radius:12px; width:100%; max-width:420px; text-align:center;}
-.arrow {font-size:28px; color:#38bdf8;}
+.project-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:30px;border-radius:16px;
+  margin-top:20px;
+}
 
-/* Footer */
-footer {padding:40px; text-align:center; color:#94a3b8; font-size:14px;}
+/* STACK */
+.stack-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.stack-group{
+  background:var(--bg2);
+  padding:20px;border-radius:12px;
+}
 
-/* Mobile */
-@media (max-width:768px){
-.hero-text h1 {font-size:34px;}
-.hero-text h2 {font-size:18px;}
-.profile-img {width:130px; height:130px;}
-.projects {grid-template-columns:1fr;}
-.skills {justify-content:center;}
+/* CONTACT */
+.contact-box{
+  background:var(--bg2);
+  padding:40px;border-radius:16px;
+}
+.contact-link{
+  display:block;
+  margin-top:10px;
+  color:var(--muted);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<nav>
+  <div class="nav-logo">Santiago <span>Acosta</span></div>
+  <div class="nav-right">
+    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#stack">Stack</a>
+    <a class="nav-link" href="#certifications">Certifications</a>
+    <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">LinkedIn</a>
+  </div>
+</nav>
 
-<!-- HERO -->
-<section class="hero">
-<img class="profile-img" src="images/profile.jpg" alt="Santiago Acosta">
-<div class="hero-text">
-<h1>Santiago Acosta</h1>
-<h2>📊 Data Analyst | Business & Quantitative Intelligence</h2>
-<p>Transforming data into actionable insights using Python, SQL, and Power BI. Specializing in clean, reproducible, and scalable workflows for business and financial intelligence.</p>
-<div class="hero-buttons">
-<a class="btn-outline" href="#projects">View Projects</a>
-<a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank">GitHub</a>
-<a class="btn-outline" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">LinkedIn</a>
-</div>
-</div>
-</section>
+<div class="hero">
+  <div>
+    <h1>Turn data into <em>decisions</em></h1>
+    <p class="hero-desc">
+      I build end-to-end analytical pipelines using Python, SQL and Power BI.
+    </p>
 
-<!-- ABOUT -->
-<section class="section" id="about">
-<h2>About</h2>
-<div class="about-text">
-<p>Data Analyst focused on leveraging data for actionable business insights. Experienced in ETL, dashboards, and reproducible workflows for financial and business intelligence.</p>
+    <div class="hero-buttons">
+      <a class="btn-fill" href="#projects">Projects</a>
+      <a class="btn-line" href="https://github.com/santiagoacostab17">GitHub</a>
+    </div>
+  </div>
 </div>
-</section>
 
-<!-- PROJECTS -->
 <section class="section" id="projects">
-<h2>Featured Projects</h2>
-<div class="projects">
-<div class="card">
-<img class="project-img" src="images/dataforge.jpg" alt="DataForge">
-<h3>DataForge</h3>
-<p>Python projects showcasing automation, data handling, and problem-solving.</p>
-<a href="https://github.com/santiagoacostab17/dataforge" target="_blank">View Project →</a>
-</div>
-<div class="card">
-<img class="project-img" src="images/northwind.jpg" alt="Northwind Revenue Insights">
-<h3>Northwind Revenue Insights</h3>
-<p>SQL & Power BI dashboards analyzing sales, products, and customers.</p>
-<a href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank">View Project →</a>
-</div>
-<div class="card">
-<img class="project-img" src="images/trading.jpg" alt="Trading Profit Patterns">
-<h3>eurusd-pipeline</h3>
-<p>Time-series analysis detecting profitable candlestick patterns using Python.</p>
-<a href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank">View Project →</a>
-</div>
-</div>
+  <h2 class="section-title">Projects</h2>
+
+  <div class="project-featured">
+    <div class="project-title">Northwind Revenue Insights</div>
+    <p class="project-desc">
+      SQL & Power BI analysis identifying revenue concentration risk.
+    </p>
+  </div>
+
+  <div class="project-card">
+    <div class="project-title">EURUSD Data Pipeline</div>
+    <p class="project-desc">Forex data pipeline with Python.</p>
+  </div>
+
+  <div class="project-card">
+    <div class="project-title">Netflix Analytics</div>
+    <p class="project-desc">User behavior analysis and segmentation.</p>
+  </div>
+
 </section>
 
-<!-- TECH STACK -->
-<section class="section" id="skills">
-<h2>Tech Stack</h2>
-<div class="skills">
-<div class="skill">Python</div>
-<div class="skill">SQL</div>
-<div class="skill">Pandas</div>
-<div class="skill">Power BI</div>
-<div class="skill">Data Visualization</div>
-<div class="skill">EDA</div>
-<div class="skill">ETL</div>
-<div class="skill">Data Cleaning</div>
-<div class="skill">Data Modeling</div>
-<div class="skill">Business Intelligence</div>
-</div>
+<section class="section" id="stack">
+  <h2 class="section-title">Tech Stack</h2>
+
+  <div class="stack-grid">
+    <div class="stack-group">
+      Python<br>SQL
+    </div>
+    <div class="stack-group">
+      pandas<br>NumPy<br>Matplotlib
+    </div>
+  </div>
 </section>
 
-<!-- WORKFLOW -->
-<section class="section" id="workflow">
-<h2>Data Analysis Workflow</h2>
-<div class="workflow">
-<div class="step">
-<h3>1. System Recognition</h3>
-<p>Identify the business domain, goals, and data sources.</p>
-</div>
-<div class="arrow">↓</div>
-<div class="step">
-<h3>2. Data Collection</h3>
-<p>Gather datasets from files, APIs, or databases.</p>
-</div>
-<div class="arrow">↓</div>
-<div class="step">
-<h3>3. Data Cleaning</h3>
-<p>Prepare and validate raw data for analysis.</p>
-</div>
-<div class="arrow">↓</div>
-<div class="step">
-<h3>4. Exploratory Analysis</h3>
-<p>Identify patterns, trends, and anomalies.</p>
-</div>
-<div class="arrow">↓</div>
-<div class="step">
-<h3>5. Visualization</h3>
-<p>Create charts, dashboards, and KPIs to communicate insights.</p>
-</div>
-<div class="arrow">↓</div>
-<div class="step">
-<h3>6. Insights</h3>
-<p>Provide actionable recommendations for decision-making.</p>
-</div>
-</div>
+<section class="section" id="certifications">
+  <h2 class="section-title">Certifications</h2>
+
+  <p>Data Analyst — TripleTen</p>
+  <p>Data Scientist — A2</p>
 </section>
 
-<!-- CONTACT -->
 <section class="section" id="contact">
-<h2>Contact</h2>
-<p>Email: <a href="mailto:santiagoacostab17@gmail.com">santiagoacostab17@gmail.com</a></p>
-<p>GitHub: <a href="https://github.com/santiagoacostab17">github.com/santiagoacostab17</a></p>
-<p>LinkedIn: <a href="https://www.linkedin.com/in/santiagoacostab17">linkedin.com/in/santiagoacostab17</a></p>
+  <div class="contact-box">
+    <h2>Let's work together</h2>
+    <a class="contact-link" href="mailto:santiagoacostab17@gmail.com">Email</a>
+    <a class="contact-link" href="https://linkedin.com">LinkedIn</a>
+  </div>
 </section>
 
 <footer>
-<p>© 2026 Santiago Acosta — Data Analyst Portfolio</p>
+© 2026 Santiago Acosta — Data Analyst
 </footer>
-
-</div>
 
 </body>
 </html>
