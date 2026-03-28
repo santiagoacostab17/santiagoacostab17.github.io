@@ -4,208 +4,482 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Santiago Acosta — Data Analyst</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --bg:#05070d;
-  --bg2:#0a0f1a;
-  --bg3:#101726;
-  --border:rgba(80,140,255,0.15);
-
-  --blue:#4f8cff;
-  --blue2:#7aa2ff;
-
-  --text:#f5f7ff;
-  --muted:#8a93a8;
-  --dim:#2a3142;
+  --bg:#08090c;
+  --bg2:#0f1117;
+  --bg3:#161820;
+  --border:rgba(232,160,48,0.12);
+  --gold:#e8a030;
+  --gold2:#f5c878;
+  --text:#f0ede4;
+  --muted:#7a7670;
+  --dim:#3a3830;
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
   font-family:'JetBrains Mono',monospace;
   background:var(--bg);
   color:var(--text);
   line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold);text-decoration:none;}
+img{display:block;}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.025;pointer-events:none;z-index:9999;
+}
+.glow{
+  position:fixed;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,160,48,0.05) 0%,transparent 70%);
+  top:-200px;right:-200px;pointer-events:none;z-index:0;
 }
 
-a{color:var(--blue);text-decoration:none;}
-
+/* NAV */
 nav{
-  position:fixed;top:0;left:0;right:0;
-  padding:20px 48px;display:flex;justify-content:space-between;
-  background:rgba(5,7,13,0.8);backdrop-filter:blur(20px);
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 48px;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(8,9,12,0.75);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
-.nav-logo{font-family:'Bricolage Grotesque';font-weight:800;}
-.nav-logo span{color:var(--blue);}
-.nav-right{display:flex;gap:10px;}
-.nav-link{font-size:11px;color:var(--muted);}
-.nav-cta{
-  background:var(--blue);color:#fff;
-  padding:8px 16px;border-radius:6px;
+.nav-logo{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:800;font-size:18px;letter-spacing:-0.5px;color:var(--text);
 }
+.nav-logo span{color:var(--gold);}
+.nav-right{display:flex;gap:8px;align-items:center;}
+.nav-link{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);padding:8px 14px;border-radius:6px;transition:color .2s,background .2s;
+}
+.nav-link:hover{color:var(--text);background:var(--bg3);}
+.nav-cta{
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--bg);background:var(--gold);padding:8px 18px;border-radius:6px;
+  font-weight:600;transition:background .2s,transform .2s;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px);}
 
 /* HERO */
 .hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:120px 48px;
-  max-width:1100px;margin:auto;
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 48px 80px;position:relative;z-index:1;
+  max-width:1100px;margin:0 auto;
 }
+.hero-grid{
+  display:grid;grid-template-columns:1fr auto;
+  gap:80px;align-items:center;width:100%;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
 .hero h1{
-  font-family:'Bricolage Grotesque';
-  font-size:72px;font-weight:800;
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(52px,7vw,86px);font-weight:800;
+  line-height:0.95;letter-spacing:-3px;color:#fff;margin-bottom:32px;
 }
-.hero h1 em{color:var(--blue);font-style:normal;}
-.hero-desc{color:var(--muted);max-width:500px;margin:20px 0;}
-.hero-buttons{display:flex;gap:10px;margin-top:20px;}
-
+.hero h1 em{font-style:normal;color:var(--gold);}
+.hero-desc{font-size:14px;color:var(--muted);max-width:460px;line-height:1.9;margin-bottom:36px;}
+.hero-desc strong{color:var(--text);}
+.hero-meta{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.meta-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.meta-dot.pulse{animation:pulse 2s infinite;}
+@keyframes pulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(232,160,48,0.4);}
+  50%{opacity:.7;box-shadow:0 0 0 5px rgba(232,160,48,0);}
+}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;}
 .btn-fill{
-  background:var(--blue);
-  color:#fff;padding:12px 20px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--bg);
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13px;
+  padding:13px 24px;border-radius:8px;transition:background .2s,transform .2s,box-shadow .2s;
 }
+.btn-fill:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,160,48,0.2);}
 .btn-line{
-  border:1px solid var(--dim);
-  padding:12px 20px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--dim);color:var(--muted);font-size:13px;
+  padding:13px 22px;border-radius:8px;transition:border-color .2s,color .2s,transform .2s;
+}
+.btn-line:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+/* Photo */
+.hero-photo-wrap{position:relative;flex-shrink:0;}
+.hero-photo{
+  width:240px;height:300px;object-fit:cover;border-radius:16px;
+  filter:grayscale(20%);position:relative;z-index:1;border:1px solid var(--border);
+}
+.photo-frame{
+  position:absolute;top:14px;left:14px;
+  width:240px;height:300px;border-radius:16px;
+  border:1px solid rgba(232,160,48,0.18);z-index:0;
+}
+
+/* DIVIDER */
+.divider{
+  max-width:1100px;margin:0 auto;padding:0 48px;
+  height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);
+  position:relative;z-index:1;
 }
 
 /* SECTION */
-.section{max-width:1100px;margin:auto;padding:80px 48px;}
-.section-title{
-  font-family:'Bricolage Grotesque';
-  font-size:36px;margin-bottom:40px;
+.section{max-width:1100px;margin:0 auto;padding:80px 48px;position:relative;z-index:1;}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:48px;}
+.section-tag{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);background:rgba(232,160,48,0.08);
+  border:1px solid var(--border);padding:4px 12px;border-radius:20px;white-space:nowrap;
 }
+.section-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(28px,3.5vw,40px);font-weight:800;letter-spacing:-1px;color:#fff;
+}
+.section-line{flex:1;height:1px;background:var(--border);}
 
 /* PROJECTS */
+.projects-layout{display:grid;gap:20px;}
 .project-featured{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  padding:40px;border-radius:16px;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;transition:border-color .3s,transform .3s;
 }
-.project-title{font-size:22px;margin-bottom:10px;}
-.project-desc{color:var(--muted);margin-bottom:20px;}
-
+.project-featured:hover{border-color:rgba(232,160,48,0.3);transform:translateY(-3px);}
+.project-featured-content{padding:40px;display:flex;flex-direction:column;justify-content:space-between;}
+.project-featured-visual{
+  background:var(--bg3);display:flex;align-items:center;
+  justify-content:center;font-size:72px;border-left:1px solid var(--border);
+}
+.project-number{font-size:11px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;}
+.project-title{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;
+  color:#fff;margin-bottom:12px;letter-spacing:-0.3px;line-height:1.2;
+}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:24px;}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px;}
+.ptag{
+  font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:4px;
+  background:rgba(232,160,48,0.06);border:1px solid rgba(232,160,48,0.15);color:var(--gold);
+}
+.project-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;
+  color:var(--gold);transition:gap .2s;
+}
+.project-link:hover{gap:12px;}
+.projects-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .project-card{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  padding:30px;border-radius:16px;
-  margin-top:20px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:32px;transition:border-color .3s,transform .3s;
+  display:flex;flex-direction:column;gap:16px;
 }
+.project-card:hover{border-color:rgba(232,160,48,0.25);transform:translateY(-3px);}
 
 /* STACK */
-.stack-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.stack-group{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.stack-group-label{
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);
 }
-.stack-group{
-  background:var(--bg2);
-  padding:20px;border-radius:12px;
+.stack-item{
+  font-size:13px;color:var(--muted);padding:7px 0;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.stack-item:last-child{border:none;}
+.stack-item::before{content:'›';color:var(--gold);font-size:16px;}
+
+/* CERTS */
+.certs-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cert-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  padding:28px;display:flex;gap:20px;align-items:flex-start;transition:border-color .3s;
+}
+.cert-card:hover{border-color:rgba(232,160,48,0.25);}
+.cert-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:rgba(232,160,48,0.08);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+}
+.cert-name{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:4px;}
+.cert-org{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.cert-status{
+  display:inline-flex;align-items:center;gap:6px;font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);
+  background:rgba(232,160,48,0.08);border:1px solid var(--border);padding:3px 10px;border-radius:20px;
 }
 
 /* CONTACT */
 .contact-box{
-  background:var(--bg2);
-  padding:40px;border-radius:16px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  padding:64px;display:grid;grid-template-columns:1fr auto;
+  gap:60px;align-items:center;position:relative;overflow:hidden;
 }
+.contact-box::before{
+  content:'';position:absolute;bottom:-80px;right:-80px;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,160,48,0.06),transparent 70%);pointer-events:none;
+}
+.contact-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.contact-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(28px,3.5vw,42px);font-weight:800;
+  letter-spacing:-1px;color:#fff;margin-bottom:14px;line-height:1.1;
+}
+.contact-sub{font-size:13px;color:var(--muted);max-width:380px;line-height:1.8;}
+.contact-links{display:flex;flex-direction:column;gap:10px;min-width:240px;}
 .contact-link{
-  display:block;
-  margin-top:10px;
-  color:var(--muted);
+  display:flex;align-items:center;gap:12px;padding:14px 18px;
+  border:1px solid var(--border);border-radius:10px;font-size:12px;
+  color:var(--muted);background:var(--bg3);transition:border-color .2s,color .2s,transform .2s;
 }
+.contact-link:hover{border-color:var(--gold);color:var(--gold);transform:translateX(-4px);}
+.contact-link-icon{font-size:16px;}
 
 /* FOOTER */
 footer{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-  border-top:1px solid var(--border);
+  text-align:center;padding:32px 48px;font-size:11px;
+  color:var(--muted);border-top:1px solid var(--border);
+  position:relative;z-index:1;letter-spacing:0.05em;
+}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.fade.in{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:16px 20px;}
+  .nav-link{display:none;}
+  .hero{padding:100px 24px 60px;}
+  .hero-grid{grid-template-columns:1fr;gap:40px;}
+  .hero-photo-wrap{display:none;}
+  .section{padding:60px 24px;}
+  .project-featured{grid-template-columns:1fr;}
+  .project-featured-visual{height:140px;border-left:none;border-top:1px solid var(--border);}
+  .projects-row{grid-template-columns:1fr;}
+  .stack-grid{grid-template-columns:1fr 1fr;}
+  .certs-row{grid-template-columns:1fr;}
+  .contact-box{grid-template-columns:1fr;padding:32px 20px;gap:32px;}
 }
 </style>
 </head>
-
 <body>
 
+<div class="glow"></div>
+
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Santiago <span>Acosta</span></div>
   <div class="nav-right">
     <a class="nav-link" href="#projects">Projects</a>
     <a class="nav-link" href="#stack">Stack</a>
     <a class="nav-link" href="#certifications">Certifications</a>
-    <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">LinkedIn</a>
+    <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">LinkedIn ↗</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-  <div>
-    <h1>Turn data into <em>decisions</em></h1>
-    <p class="hero-desc">
-      I build end-to-end analytical pipelines using Python, SQL and Power BI.
-    </p>
-
-    <div class="hero-buttons">
-      <a class="btn-fill" href="#projects">Projects</a>
-      <a class="btn-line" href="https://github.com/santiagoacostab17">GitHub</a>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Data Analyst</div>
+      <h1>Turn data<br>into <em>decisions</em></h1>
+      <p class="hero-desc">
+        I build <strong>end-to-end analytical pipelines</strong> that answer real business questions — from raw CSV files to SQL dashboards and Power BI reports. Based in Colombia, available remotely.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-dot pulse"></span>
+          Open to remote opportunities
+        </div>
+        <div class="meta-item">
+          <span class="meta-dot"></span>
+          Python · SQL · Power BI
+        </div>
+        <div class="meta-item">
+          <span class="meta-dot"></span>
+          English B2 — professional experience
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <a class="btn-fill" href="#projects">View Projects</a>
+        <a class="btn-line" href="https://github.com/santiagoacostab17" target="_blank">GitHub ↗</a>
+        <a class="btn-line" href="cv.pdf" download>Download CV</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="images/profile.jpg" alt="Santiago Acosta">
+      <div class="photo-frame"></div>
     </div>
   </div>
 </div>
 
-<section class="section" id="projects">
-  <h2 class="section-title">Projects</h2>
+<div class="divider"></div>
 
-  <div class="project-featured">
-    <div class="project-title">Northwind Revenue Insights</div>
-    <p class="project-desc">
-      SQL & Power BI analysis identifying revenue concentration risk.
-    </p>
+<!-- PROJECTS -->
+<section class="section fade" id="projects">
+  <div class="section-header">
+    <span class="section-tag">Portfolio</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
   </div>
+  <div class="projects-layout">
 
-  <div class="project-card">
-    <div class="project-title">EURUSD Data Pipeline</div>
-    <p class="project-desc">Forex data pipeline with Python.</p>
+    <div class="project-featured">
+      <div class="project-featured-content">
+        <div>
+          <div class="project-number">01 — Featured</div>
+          <div class="project-title">Northwind Revenue Insights</div>
+          <p class="project-desc">SQL & Power BI analysis of H1 2006 sales data. Identified that 3 products account for ~64% of $13M in total revenue — a critical concentration risk. Built a star schema data model and interactive dashboards covering product, employee, and category performance.</p>
+          <div class="project-tags">
+            <span class="ptag">MySQL</span><span class="ptag">Power BI</span>
+            <span class="ptag">Star Schema</span><span class="ptag">Business Intelligence</span><span class="ptag">EDA</span>
+          </div>
+        </div>
+        <a class="project-link" href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank">View on GitHub →</a>
+      </div>
+      <div class="project-featured-visual">📊</div>
+    </div>
+
+    <div class="projects-row">
+      <div class="project-card">
+        <div class="project-number">02</div>
+        <div class="project-title">EURUSD Data Pipeline</div>
+        <p class="project-desc">Quantitative research pipeline processing 6 years of 1-minute OHLC Forex data. Built a custom NumPy backtesting engine that evaluates a price action pattern across 81,938 observations using fully vectorized computation.</p>
+        <div class="project-tags">
+          <span class="ptag">Python</span><span class="ptag">pandas</span>
+          <span class="ptag">NumPy</span><span class="ptag">Time-Series</span><span class="ptag">Statistical Analysis</span>
+        </div>
+        <a class="project-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">03</div>
+        <div class="project-title">Netflix User Behavior Analytics</div>
+        <p class="project-desc">End-to-end analytics project on Netflix user behavior data from Kaggle. Full pipeline: data cleaning, exploratory analysis, audience segmentation, and visualization of consumption patterns.</p>
+        <div class="project-tags">
+          <span class="ptag">Python</span><span class="ptag">pandas</span>
+          <span class="ptag">Matplotlib</span><span class="ptag">EDA</span><span class="ptag">Kaggle</span>
+        </div>
+        <a class="project-link" href="https://github.com/santiagoacostab17/End-to-End-Netflix-User-Behavior-Analytics" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
   </div>
-
-  <div class="project-card">
-    <div class="project-title">Netflix Analytics</div>
-    <p class="project-desc">User behavior analysis and segmentation.</p>
-  </div>
-
 </section>
 
-<section class="section" id="stack">
-  <h2 class="section-title">Tech Stack</h2>
+<div class="divider"></div>
 
+<!-- STACK -->
+<section class="section fade" id="stack">
+  <div class="section-header">
+    <span class="section-tag">Skills</span>
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="stack-grid">
     <div class="stack-group">
-      Python<br>SQL
+      <div class="stack-group-label">Languages</div>
+      <div class="stack-item">Python</div>
+      <div class="stack-item">SQL — MySQL</div>
     </div>
     <div class="stack-group">
-      pandas<br>NumPy<br>Matplotlib
+      <div class="stack-group-label">Libraries</div>
+      <div class="stack-item">pandas</div>
+      <div class="stack-item">NumPy</div>
+      <div class="stack-item">Matplotlib</div>
+      <div class="stack-item">seaborn</div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-group-label">Visualization</div>
+      <div class="stack-item">Power BI</div>
+      <div class="stack-item">Plotly</div>
+      <div class="stack-item">Dashboards</div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-group-label">Analytical</div>
+      <div class="stack-item">EDA</div>
+      <div class="stack-item">ETL Pipelines</div>
+      <div class="stack-item">Data Cleaning</div>
+      <div class="stack-item">Statistical Analysis</div>
     </div>
   </div>
 </section>
 
-<section class="section" id="certifications">
-  <h2 class="section-title">Certifications</h2>
+<div class="divider"></div>
 
-  <p>Data Analyst — TripleTen</p>
-  <p>Data Scientist — A2</p>
-</section>
-
-<section class="section" id="contact">
-  <div class="contact-box">
-    <h2>Let's work together</h2>
-    <a class="contact-link" href="mailto:santiagoacostab17@gmail.com">Email</a>
-    <a class="contact-link" href="https://linkedin.com">LinkedIn</a>
+<!-- CERTIFICATIONS -->
+<section class="section fade" id="certifications">
+  <div class="section-header">
+    <span class="section-tag">Education</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="certs-row">
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">Data Analyst Certification</div>
+        <div class="cert-org">TripleTen</div>
+        <div class="cert-status">✦ Completing June 2026</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">Data Scientist Certification</div>
+        <div class="cert-org">A2 Capacitación</div>
+        <div class="cert-status">✦ Completing June 2026</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>
-© 2026 Santiago Acosta — Data Analyst
-</footer>
+<div class="divider"></div>
 
+<!-- CONTACT -->
+<section class="section fade" id="contact">
+  <div class="contact-box">
+    <div>
+      <div class="contact-eyebrow">Available now</div>
+      <div class="contact-title">Let's work<br>together</div>
+      <p class="contact-sub">Looking for a remote data analyst role where I can contribute from day one. Reach out via email or LinkedIn.</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:santiagoacostab17@gmail.com">
+        <span class="contact-link-icon">✉</span> santiagoacostab17@gmail.com
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">
+        <span class="contact-link-icon">in</span> linkedin.com/in/santiagoacostab17
+      </a>
+      <a class="contact-link" href="https://github.com/santiagoacostab17" target="_blank">
+        <span class="contact-link-icon">⌥</span> github.com/santiagoacostab17
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Santiago Acosta — Data Analyst · Bogotá, Colombia</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
