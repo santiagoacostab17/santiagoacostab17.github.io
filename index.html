@@ -10,7 +10,7 @@
   <style>
 
     /* =============================================
-       DESIGN TOKENS — edit colors/fonts here
+       DESIGN TOKENS
        ============================================= */
     :root {
       --bg:           #0d1117;
@@ -22,6 +22,7 @@
       --accent2:      #79c0ff;
       --green:        #3fb950;
       --yellow:       #d29922;
+      --purple:       #bc8cff;
       --text:         #e6edf3;
       --muted:        #8b949e;
       --dim:          #484f58;
@@ -243,7 +244,7 @@
     .hero-desc {
       font-size: 14px;
       color: var(--muted);
-      max-width: 460px;
+      max-width: 480px;
       line-height: 1.9;
       margin-bottom: 32px;
     }
@@ -303,13 +304,12 @@
       z-index: 0;
     }
 
-
     /* =============================================
-       PROJECTS — 3-column grid, equal cards
+       PROJECTS — 2×2 grid
        ============================================= */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
@@ -317,7 +317,7 @@
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: var(--r-xl);
-      padding: 28px 28px;
+      padding: 28px;
       display: flex;
       flex-direction: column;
       transition: border-color .25s, transform .25s, box-shadow .25s;
@@ -328,7 +328,16 @@
       box-shadow: 0 8px 32px rgba(88,166,255,.07);
     }
 
-    /* Number + language badge row */
+    /* Featured card spans full width */
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .featured-left { display: flex; flex-direction: column; }
+    .featured-right { display: flex; flex-direction: column; justify-content: space-between; }
+
     .project-meta {
       display: flex;
       justify-content: space-between;
@@ -339,8 +348,9 @@
 
     .lang-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
     .lang-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .lang-dot.python { background: #3572a5; }
-    .lang-dot.sql    { background: #e38c28; }
+    .lang-dot.python  { background: #3572a5; }
+    .lang-dot.sql     { background: #e38c28; }
+    .lang-dot.multi   { background: linear-gradient(135deg, #3572a5 50%, #e38c28 50%); }
 
     .project-title {
       font-family: var(--font-display);
@@ -354,9 +364,59 @@
     }
     .project-card:hover .project-title { color: var(--accent2); }
 
+    /* Badge for the final project */
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      background: rgba(63,185,80,.1);
+      border: 1px solid rgba(63,185,80,.25);
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .project-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
     .project-desc { font-size: 12px; color: var(--muted); line-height: 1.85; margin-bottom: 20px; flex: 1; }
 
-    /* Progress bar — only shown on PythonForge card */
+    /* Funnel mini-viz inside RappiPlus card */
+    .funnel-mini {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .funnel-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 10px;
+    }
+    .funnel-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .funnel-row:last-child { margin-bottom: 0; }
+    .funnel-stage { font-size: 10px; color: var(--muted); width: 130px; flex-shrink: 0; }
+    .funnel-bar-wrap { flex: 1; height: 5px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+    .funnel-bar-fill { height: 100%; border-radius: 3px; }
+    .funnel-pct { font-size: 10px; color: var(--muted); width: 36px; text-align: right; flex-shrink: 0; }
+    .funnel-pct.alert { color: var(--yellow); }
+
+    /* Progress bar — PythonForge */
     .progress-wrap { margin-bottom: 18px; }
     .progress-label {
       display: flex;
@@ -376,11 +436,10 @@
       height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--green));
       border-radius: 4px;
-      width: 30%;   /* 3 of 10 = 30% */
+      width: 30%;
       transition: width 1s ease;
     }
 
-    /* Mini project list inside PythonForge card */
     .project-checklist {
       display: flex;
       flex-direction: column;
@@ -423,6 +482,28 @@
       transition: gap .2s, color .2s;
     }
     .project-link:hover { gap: 10px; color: var(--accent2); }
+
+    /* Stat pills for featured card */
+    .stat-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 10px 14px;
+    }
+    .stat-pill-label { font-size: 11px; color: var(--muted); }
+    .stat-pill-value { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text); }
+    .stat-pill-value.green  { color: var(--green); }
+    .stat-pill-value.yellow { color: var(--yellow); }
+    .stat-pill-value.accent { color: var(--accent); }
 
 
     /* =============================================
@@ -589,6 +670,7 @@
       .hero-inner { grid-template-columns: 1fr; }
       .hero-photo-wrap { display: none; }
       .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-template-columns: 1fr; }
       .stack-grid    { grid-template-columns: 1fr 1fr; }
       .certs-grid    { grid-template-columns: 1fr; }
       .contact-box   { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; }
@@ -631,9 +713,9 @@
           <h1>Turn data<br>into <em>decisions</em></h1>
 
           <p class="hero-desc">
-            I build <strong>end-to-end analytical pipelines</strong> that answer real business
-            questions — from raw CSV files to SQL dashboards and Power BI reports.
-            Based in Colombia, available remotely.
+            I build <strong>end-to-end analytics pipelines</strong> — from raw CSVs and SQL queries
+            to statistical tests, cohort models, and executive dashboards.
+            Certified by TripleTen. Based in Colombia, available for remote teams worldwide.
           </p>
 
           <div class="hero-meta">
@@ -643,11 +725,11 @@
             </div>
             <div class="meta-item">
               <span class="meta-dot blue"></span>
-              Python · SQL · Power BI
+              Python · SQL · Power BI · Statistics
             </div>
             <div class="meta-item">
               <span class="meta-dot blue"></span>
-              English B2 — professional experience
+              English B2 — professional working proficiency
             </div>
           </div>
 
@@ -692,17 +774,17 @@
           </div>
           <div class="project-title">Northwind Revenue Insights</div>
           <p class="project-desc">
-            Business intelligence analysis of H1 2006 sales data. Identified that 3 products
-            account for ~64% of $13M in total revenue — a critical concentration risk.
-            Built a star schema data model and interactive dashboards covering product,
-            employee, and category performance.
+            Business intelligence analysis of H1 2006 sales data for a wholesale distributor.
+            Identified that 3 products account for ~64% of $13M in total revenue — a critical
+            concentration risk. Built a star schema data model and interactive dashboards
+            covering product, employee, and category performance with drill-through capabilities.
           </p>
           <div class="project-tags">
             <span class="ptag">MySQL</span>
             <span class="ptag">Power BI</span>
             <span class="ptag">Star Schema</span>
+            <span class="ptag">DAX</span>
             <span class="ptag">Business Intelligence</span>
-            <span class="ptag">EDA</span>
           </div>
           <a class="project-link"
              href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights"
@@ -720,7 +802,7 @@
             Research pipeline processing 6 years of 1-minute OHLC Forex data (81,938 observations).
             Custom NumPy backtesting engine evaluates a price action pattern using fully vectorized
             computation — yielding a statistically validated ~59% win rate with confidence
-            intervals and Kelly sizing.
+            intervals and Kelly criterion position sizing. Look-ahead bias corrected throughout.
           </p>
           <div class="project-tags">
             <span class="ptag">Python</span>
@@ -734,14 +816,94 @@
              target="_blank">View on GitHub →</a>
         </div>
 
+        <!-- Project 04 — RappiPlus (featured, full width) ──── -->
+        <div class="project-card featured">
+          <div class="featured-left">
+            <div class="project-meta">
+              <span class="project-number">04</span>
+              <span class="lang-badge"><span class="lang-dot multi"></span> Python · SQL · Power BI</span>
+            </div>
+            <div class="project-badge">TripleTen — Final Project ✓</div>
+            <div class="project-title">RappiPlus: End-to-End Business Analysis</div>
+            <p class="project-desc">
+              Full analytics pipeline for a subscription service — from raw data quality audit
+              to executive BI dashboards. Six-step workflow covering profitability KPIs,
+              SQL conversion funnel, cohort retention, and a statistically validated A/B test
+              on a checkout UI redesign. Delivered two Power BI dashboards with drill-through
+              capability and DAX measures.
+            </p>
+            <div class="project-tags">
+              <span class="ptag">Python</span>
+              <span class="ptag">PostgreSQL</span>
+              <span class="ptag">SQLAlchemy</span>
+              <span class="ptag">Power BI</span>
+              <span class="ptag">SciPy</span>
+              <span class="ptag">Cohort Analysis</span>
+              <span class="ptag">A/B Testing</span>
+              <span class="ptag">ETL</span>
+            </div>
+            <a class="project-link"
+               href="https://github.com/santiagoacostab17"
+               target="_blank">View on GitHub →</a>
+          </div>
+
+          <div class="featured-right">
+            <!-- Funnel mini-viz -->
+            <div class="funnel-mini">
+              <div class="funnel-label">Conversion Funnel — 7,796 users</div>
+
+              <div class="funnel-row">
+                <span class="funnel-stage">First visit</span>
+                <div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:100%; background:#58a6ff;"></div></div>
+                <span class="funnel-pct">100%</span>
+              </div>
+              <div class="funnel-row">
+                <span class="funnel-stage">Select item</span>
+                <div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:97.3%; background:#58a6ff;"></div></div>
+                <span class="funnel-pct">97.3%</span>
+              </div>
+              <div class="funnel-row">
+                <span class="funnel-stage">Add to cart</span>
+                <div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:91.7%; background:#58a6ff;"></div></div>
+                <span class="funnel-pct">91.7%</span>
+              </div>
+              <div class="funnel-row">
+                <span class="funnel-stage">Begin checkout</span>
+                <div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:86.6%; background:#d29922;"></div></div>
+                <span class="funnel-pct alert">86.6%</span>
+              </div>
+              <div class="funnel-row">
+                <span class="funnel-stage">Payment info</span>
+                <div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:80.2%; background:#f85149;"></div></div>
+                <span class="funnel-pct alert" style="color:#f85149;">80.2%</span>
+              </div>
+              <div class="funnel-row">
+                <span class="funnel-stage">Purchase ✓</span>
+                <div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:80.04%; background:#3fb950;"></div></div>
+                <span class="funnel-pct" style="color:var(--green);">80.0%</span>
+              </div>
+            </div>
+
+            <!-- Stat pills -->
+            <div class="stat-pills">
+              <div class="stat-pill">
+                <span class="stat-pill-label">Overall conversion rate</span>
+                <span class="stat-pill-value accent">80.04%</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-pill-label">Biggest drop-off step</span>
+                <span class="stat-pill-value yellow">−13.3% at payment info</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-pill-label">A/B test outcome</span>
+                <span class="stat-pill-value green">Significant (p &lt; 0.05)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Project 03 ─────────────────────────────────────── -->
-        <!--
-          When all 10 projects are complete:
-          1. Update the progress-fill width to 100%
-          2. Mark all checklist items as done (class="done")
-          3. Update the badge text to "10 of 10 completed"
-        -->
-        <div class="project-card">
+        <div class="project-card" style="grid-column: 1 / -1;">
           <div class="project-meta">
             <span class="project-number">03</span>
             <span class="lang-badge"><span class="lang-dot python"></span> Python</span>
@@ -754,41 +916,43 @@
             business-oriented deliverables.
           </p>
 
-          <!-- Progress bar -->
-          <div class="progress-wrap">
-            <div class="progress-label">
-              Progress <span>3 of 10 completed</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill"></div>
-            </div>
-          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div>
+              <div class="progress-wrap">
+                <div class="progress-label">
+                  Progress <span>3 of 10 completed</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
 
-          <!-- Checklist updated to DA-focused projects -->
-          <div class="project-checklist">
-            <div class="checklist-item done"><span class="check-icon done">✓</span> Sudoku Solver &amp; Generator</div>
-            <div class="checklist-item done"><span class="check-icon done">✓</span> Batch CSV/Excel Processor</div>
-            <div class="checklist-item done"><span class="check-icon done">✓</span> API Data Dashboard</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> Exploratory Data Analysis &amp; Statistics</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> A/B Testing Framework</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> Customer Segmentation (RFM + Clustering)</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> SQL + Python Analytics</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> Time Series Analysis &amp; Forecasting</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> Interactive Business Dashboard</div>
-            <div class="checklist-item">     <span class="check-icon todo">○</span> End-to-End Analytics Pipeline</div>
-          </div>
+              <div class="project-tags">
+                <span class="ptag">Python</span>
+                <span class="ptag">pandas</span>
+                <span class="ptag">Scikit-learn</span>
+                <span class="ptag">Statsmodels</span>
+                <span class="ptag">Streamlit</span>
+                <span class="ptag">Plotly</span>
+              </div>
+              <a class="project-link"
+                 href="https://github.com/santiagoacostab17/DataForge"
+                 target="_blank">View on GitHub →</a>
+            </div>
 
-          <div class="project-tags">
-            <span class="ptag">Python</span>
-            <span class="ptag">pandas</span>
-            <span class="ptag">Scikit-learn</span>
-            <span class="ptag">Statsmodels</span>
-            <span class="ptag">Streamlit</span>
-            <span class="ptag">Plotly</span>
+            <div class="project-checklist" style="margin-bottom:0;">
+              <div class="checklist-item done"><span class="check-icon done">✓</span> Sudoku Solver &amp; Generator</div>
+              <div class="checklist-item done"><span class="check-icon done">✓</span> Batch CSV/Excel Processor</div>
+              <div class="checklist-item done"><span class="check-icon done">✓</span> API Data Dashboard</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> Exploratory Data Analysis &amp; Statistics</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> A/B Testing Framework</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> Customer Segmentation (RFM + Clustering)</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> SQL + Python Analytics</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> Time Series Analysis &amp; Forecasting</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> Interactive Business Dashboard</div>
+              <div class="checklist-item">     <span class="check-icon todo">○</span> End-to-End Analytics Pipeline</div>
+            </div>
           </div>
-          <a class="project-link"
-             href="https://github.com/santiagoacostab17/DataForge"
-             target="_blank">View on GitHub →</a>
         </div>
 
       </div><!-- /projects-grid -->
@@ -815,31 +979,32 @@
         <div class="stack-group">
           <div class="stack-group-label">Languages</div>
           <div class="stack-item">Python</div>
-          <div class="stack-item">SQL — MySQL</div>
+          <div class="stack-item">SQL — MySQL · PostgreSQL</div>
+          <div class="stack-item">DAX</div>
         </div>
 
         <div class="stack-group">
           <div class="stack-group-label">Libraries</div>
-          <div class="stack-item">pandas</div>
-          <div class="stack-item">NumPy</div>
-          <div class="stack-item">Matplotlib</div>
-          <div class="stack-item">seaborn</div>
+          <div class="stack-item">pandas · NumPy</div>
+          <div class="stack-item">SciPy · statsmodels</div>
+          <div class="stack-item">Matplotlib · seaborn</div>
+          <div class="stack-item">SQLAlchemy</div>
         </div>
 
         <div class="stack-group">
           <div class="stack-group-label">Visualization</div>
           <div class="stack-item">Power BI</div>
-          <div class="stack-item">Plotly</div>
-          <div class="stack-item">Chart.js</div>
-          <div class="stack-item">Dashboards</div>
+          <div class="stack-item">Looker Studio</div>
+          <div class="stack-item">Plotly · Tableau</div>
+          <div class="stack-item">Dashboards &amp; Reports</div>
         </div>
 
         <div class="stack-group">
           <div class="stack-group-label">Analytical</div>
-          <div class="stack-item">EDA</div>
+          <div class="stack-item">A/B Testing</div>
+          <div class="stack-item">Cohort &amp; Funnel Analysis</div>
           <div class="stack-item">ETL Pipelines</div>
-          <div class="stack-item">Statistical Analysis</div>
-          <div class="stack-item">Data Cleaning</div>
+          <div class="stack-item">Statistical Inference</div>
         </div>
 
       </div><!-- /stack-grid -->
@@ -867,7 +1032,7 @@
           <div class="cert-icon">🎓</div>
           <div>
             <div class="cert-name">Data Analyst Certification</div>
-            <div class="cert-org">TripleTen</div>
+            <div class="cert-org">TripleTen — Full program · 9 months</div>
             <div class="cert-year">2026</div>
           </div>
         </div>
@@ -900,7 +1065,8 @@
           <div class="contact-eyebrow">Available now</div>
           <div class="contact-title">Let's work<br>together</div>
           <p class="contact-sub">
-            Looking for a remote data analyst role where I can contribute from day one.
+            Looking for a remote data analyst role where I can contribute from day one —
+            clean pipelines, clear insights, real business impact.
             Reach out via email or LinkedIn.
           </p>
         </div>
