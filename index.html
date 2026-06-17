@@ -5,201 +5,569 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Santiago Acosta — Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
-      --border:#30363d; --border-hover:#58a6ff;
-      --accent:#58a6ff; --accent2:#79c0ff;
-      --green:#3fb950; --yellow:#d29922; --purple:#bc8cff;
-      --text:#e6edf3; --muted:#8b949e; --dim:#484f58;
-      --font-display:'Bricolage Grotesque',sans-serif;
-      --font-mono:'JetBrains Mono',monospace;
-      --r-sm:6px; --r-md:8px; --r-lg:12px; --r-xl:16px;
+      --ink:      #0A0A0F;
+      --ink2:     #12121A;
+      --ink3:     #1C1C2A;
+      --border:   #252535;
+      --border2:  #2E2E42;
+      --cyan:     #00D4FF;
+      --cyan-dim: rgba(0,212,255,0.08);
+      --coral:    #FF6B35;
+      --text:     #F0F0F5;
+      --muted:    #8888A8;
+      --dim:      #44445A;
+      --display:  'Syne', sans-serif;
+      --body:     'Inter', sans-serif;
+      --mono:     'Fira Code', monospace;
     }
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{font-family:var(--font-mono);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-    a{color:var(--accent);text-decoration:none;}
-    img{display:block;}
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--ink);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
 
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.018;pointer-events:none;z-index:9999;}
-    .glow{position:fixed;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(88,166,255,0.04) 0%,transparent 65%);top:-250px;right:-250px;pointer-events:none;z-index:0;}
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
-    .container{max-width:1100px;margin:0 auto;padding:0 48px;position:relative;z-index:1;}
-    .section{padding:80px 0;}
-    .divider{max-width:1100px;margin:0 auto;padding:0 48px;height:1px;background:var(--border);position:relative;z-index:1;}
+    /* ─── NOISE ─── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022; pointer-events: none; z-index: 9999;
+    }
 
-    .section-header{display:flex;align-items:center;gap:16px;margin-bottom:40px;}
-    .section-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);background:rgba(88,166,255,0.08);border:1px solid rgba(88,166,255,0.2);padding:4px 12px;border-radius:20px;white-space:nowrap;}
-    .section-title{font-family:var(--font-display);font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.8px;color:#fff;}
-    .section-line{flex:1;height:1px;background:var(--border);}
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(10,10,15,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-wordmark {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+    .nav-wordmark span { color: var(--cyan); }
+    .nav-right { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: color .2s, background .2s;
+    }
+    .nav-link:hover { color: var(--text); background: var(--ink3); }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--cyan);
+      padding: 7px 18px;
+      border-radius: 4px;
+      margin-left: 8px;
+      transition: opacity .2s, transform .2s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .lang-toggle {
+      display: flex; align-items: center;
+      background: var(--ink3); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; margin-left: 10px;
+    }
+    .lang-btn {
+      font-family: var(--mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; color: var(--muted);
+      background: transparent; border: none;
+      padding: 5px 10px; cursor: pointer;
+      transition: color .2s, background .2s;
+    }
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active { color: var(--cyan); background: rgba(0,212,255,0.1); }
+    .lang-sep { width: 1px; height: 12px; background: var(--border); }
+    [data-i18n] { transition: opacity .15s ease; }
+    body.lang-switching [data-i18n] { opacity: 0; }
 
-    .fade{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease;}
-    .fade.in{opacity:1;transform:none;}
+    /* ─── LAYOUT ─── */
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+    section { padding: 96px 0; }
+    .sec-divider { border: none; border-top: 1px solid var(--border); }
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(13,17,23,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
-    .nav-logo{font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:-0.3px;color:var(--text);display:flex;align-items:center;gap:8px;}
-    .nav-logo::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse-blue 2.5s infinite;}
-    .nav-links{display:flex;gap:4px;align-items:center;}
-    .nav-link{font-size:12px;color:var(--muted);padding:6px 12px;border-radius:var(--r-sm);transition:color .2s,background .2s;}
-    .nav-link:hover{color:var(--text);background:var(--bg3);}
-    .nav-cta{font-size:12px;font-weight:600;color:var(--text);background:rgba(88,166,255,0.15);border:1px solid rgba(88,166,255,0.3);padding:6px 16px;border-radius:var(--r-sm);transition:background .2s,border-color .2s,transform .2s;}
-    .nav-cta:hover{background:rgba(88,166,255,0.22);border-color:var(--accent);transform:translateY(-1px);}
+    /* ─── SECTION LABEL ─── */
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .sec-label::before {
+      content: ''; width: 28px; height: 1px; background: var(--cyan);
+    }
+    .sec-title {
+      font-family: var(--display);
+      font-size: clamp(28px, 3.2vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
 
-    .lang-toggle{display:flex;align-items:center;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;margin-left:4px;}
-    .lang-btn{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--muted);background:transparent;border:none;padding:5px 10px;cursor:pointer;transition:color .2s,background .2s;line-height:1;}
-    .lang-btn:hover{color:var(--text);}
-    .lang-btn.active{color:var(--accent);background:rgba(88,166,255,0.12);}
-    .lang-sep{width:1px;height:14px;background:var(--border);flex-shrink:0;}
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 0 80px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: start;
+      width: 100%;
+    }
 
-    [data-i18n]{transition:opacity .18s ease;}
-    body.lang-switching [data-i18n]{opacity:0;}
+    /* Process pipeline — signature element */
+    .pipeline {
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 36px;
+      overflow: hidden;
+    }
+    .pipe-step {
+      display: flex; flex-direction: column;
+      opacity: 0;
+      animation: pipeIn .4s ease forwards;
+    }
+    .pipe-step:nth-child(1) { animation-delay: .1s; }
+    .pipe-step:nth-child(2) { animation-delay: .25s; }
+    .pipe-step:nth-child(3) { animation-delay: .4s; }
+    .pipe-step:nth-child(4) { animation-delay: .55s; }
+    .pipe-step:nth-child(5) { animation-delay: .7s; }
+    @keyframes pipeIn {
+      from { opacity:0; transform: translateX(-8px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+    .pipe-node {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--ink3);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: border-color .2s, color .2s;
+    }
+    .pipe-node.active {
+      color: var(--cyan);
+      border-color: rgba(0,212,255,0.35);
+      background: rgba(0,212,255,0.06);
+    }
+    .pipe-arrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--dim);
+      padding: 0 6px;
+      flex-shrink: 0;
+      align-self: center;
+      padding-bottom: 0;
+    }
 
-    @keyframes pulse-blue{0%,100%{box-shadow:0 0 0 0 rgba(88,166,255,.5);}50%{box-shadow:0 0 0 5px rgba(88,166,255,0);}}
-    @keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(63,185,80,.5);}50%{box-shadow:0 0 0 5px rgba(63,185,80,0);}}
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -3px;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .hero h1 em { font-style: normal; color: var(--cyan); }
+    .hero h1 .coral { color: var(--coral); }
+    .hero-body {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+    .hero-body strong { color: var(--text); font-weight: 500; }
 
-    /* HERO */
-    .hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 80px;}
-    .hero-inner{display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center;width:100%;}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
-    .eyebrow-line{width:20px;height:1px;background:var(--accent);}
-    .hero h1{font-family:var(--font-display);font-size:clamp(48px,6.5vw,80px);font-weight:800;line-height:0.95;letter-spacing:-3px;color:#fff;margin-bottom:28px;}
-    .hero h1 em{font-style:normal;color:var(--accent);}
-    .hero-desc{font-size:14px;color:var(--muted);max-width:480px;line-height:1.9;margin-bottom:32px;}
-    .hero-desc strong{color:var(--text);}
-    .hero-meta{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;}
-    .meta-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);}
-    .meta-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
-    .meta-dot.pulse{animation:pulse-green 2.2s infinite;}
-    .meta-dot.blue{background:var(--accent);}
-    .hero-buttons{display:flex;gap:10px;flex-wrap:wrap;}
-    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0d1117;font-family:var(--font-display);font-weight:700;font-size:13px;padding:10px 22px;border-radius:var(--r-md);transition:background .2s,transform .2s,box-shadow .2s;}
-    .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(88,166,255,.25);}
-    .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:10px 20px;border-radius:var(--r-md);transition:border-color .2s,color .2s,transform .2s;}
-    .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
-    .hero-photo-wrap{position:relative;flex-shrink:0;}
-    .hero-photo{width:220px;height:280px;object-fit:cover;border-radius:var(--r-xl);filter:grayscale(15%);position:relative;z-index:1;border:1px solid var(--border);}
-    .photo-frame{position:absolute;top:12px;left:12px;width:220px;height:280px;border-radius:var(--r-xl);border:1px solid rgba(88,166,255,.2);z-index:0;}
+    .hero-meta {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 36px;
+    }
+    .meta-row {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+    }
+    .meta-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .meta-dot.live { background: #22D46E; animation: blink 2s infinite; }
+    .meta-dot.cyan { background: var(--cyan); }
+    @keyframes blink {
+      0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(34,212,110,.5); }
+      50%      { opacity:.7; box-shadow: 0 0 0 5px rgba(34,212,110,0); }
+    }
 
-    /* PROJECTS */
-    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-    .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;display:flex;flex-direction:column;transition:border-color .25s,transform .25s,box-shadow .25s;}
-    .project-card:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 8px 32px rgba(88,166,255,.07);}
-    .project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-    .featured-left{display:flex;flex-direction:column;}
-    .featured-right{display:flex;flex-direction:column;justify-content:space-between;}
-    .project-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-    .project-number{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);}
-    .lang-badge{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
-    .lang-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-    .lang-dot.python{background:#3572a5;}
-    .lang-dot.sql{background:#e38c28;}
-    .lang-dot.multi{background:linear-gradient(135deg,#3572a5 50%,#e38c28 50%);}
-    .project-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--accent);letter-spacing:-0.2px;line-height:1.25;margin-bottom:10px;transition:color .2s;}
-    .project-card:hover .project-title{color:var(--accent2);}
-    .project-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;letter-spacing:0.08em;color:var(--green);background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.25);padding:3px 10px;border-radius:20px;margin-bottom:12px;width:fit-content;}
-    .project-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);}
-    .project-desc{font-size:12px;color:var(--muted);line-height:1.85;margin-bottom:20px;flex:1;}
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-fill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--display); font-weight: 700; font-size: 13px;
+      color: var(--ink);
+      background: var(--cyan);
+      padding: 11px 26px; border-radius: 4px;
+      transition: opacity .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-fill:hover { opacity:.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,.2); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 10px 20px; border-radius: 4px;
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+    /* Hero right — stat panel */
+    .stat-panel {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 20px;
+      position: sticky; top: 80px;
+    }
+    .stat-panel-label {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--dim);
+      padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .stat-row {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-key {
+      font-family: var(--mono); font-size: 10px; color: var(--dim);
+      letter-spacing: 0.06em;
+    }
+    .stat-val {
+      font-family: var(--display); font-size: 26px; font-weight: 800;
+      letter-spacing: -0.5px; color: var(--text);
+    }
+    .stat-val.cyan { color: var(--cyan); }
+    .stat-val.coral { color: var(--coral); }
+    .stat-sub {
+      font-family: var(--mono); font-size: 10px; color: var(--muted);
+    }
+    .stat-divider { height: 1px; background: var(--border); }
+
+    /* ─── PROJECTS ─── */
+    .projects-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .proj-row {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .proj-row:hover { border-color: var(--border2); }
+
+    .proj-header {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 24px 28px;
+      cursor: pointer;
+    }
+    .proj-num {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.1em;
+    }
+    .proj-title-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .proj-name {
+      font-family: var(--display); font-size: 18px; font-weight: 700;
+      color: var(--text); letter-spacing: -0.2px;
+    }
+    .proj-tagline {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+    }
+    .proj-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px; border-radius: 3px;
+      background: var(--ink3); border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .chip.hl { color: var(--cyan); border-color: rgba(0,212,255,.2); background: rgba(0,212,255,.05); }
+
+    .proj-body {
+      border-top: 1px solid var(--border);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .proj-body.wide { grid-template-columns: 1fr; }
+
+    .proj-desc {
+      font-size: 13.5px; color: var(--muted); line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .proj-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .proj-link {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--cyan);
+      border: 1px solid rgba(0,212,255,.2);
+      padding: 6px 14px; border-radius: 3px;
+      transition: background .2s, transform .2s;
+    }
+    .proj-link:hover { background: rgba(0,212,255,.08); transform: translateY(-1px); }
+
+    /* Data panel inside projects */
+    .data-panel {
+      background: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .dp-head {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--dim);
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--ink3);
+    }
+    .dp-body { padding: 14px; }
 
     /* Funnel */
-    .funnel-mini{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;margin-bottom:20px;}
-    .funnel-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;}
-    .funnel-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
-    .funnel-row:last-child{margin-bottom:0;}
-    .funnel-stage{font-size:10px;color:var(--muted);width:130px;flex-shrink:0;}
-    .funnel-bar-wrap{flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;}
-    .funnel-bar-fill{height:100%;border-radius:3px;}
-    .funnel-pct{font-size:10px;color:var(--muted);width:36px;text-align:right;flex-shrink:0;}
-    .funnel-pct.alert{color:var(--yellow);}
+    .funnel { display: flex; flex-direction: column; gap: 8px; }
+    .funnel-row { display: flex; align-items: center; gap: 10px; }
+    .funnel-label {
+      font-family: var(--mono); font-size: 10px; color: var(--muted);
+      width: 110px; flex-shrink: 0;
+    }
+    .funnel-track { flex: 1; height: 4px; background: var(--ink3); border-radius: 2px; overflow: hidden; }
+    .funnel-fill { height: 100%; border-radius: 2px; transition: width 1.2s cubic-bezier(.22,1,.36,1); }
+    .funnel-pct {
+      font-family: var(--mono); font-size: 10px;
+      width: 40px; text-align: right; flex-shrink: 0; color: var(--muted);
+    }
+    .funnel-pct.warn { color: #F5A623; }
+    .funnel-pct.drop { color: #F85149; }
+    .funnel-pct.ok   { color: #22D46E; }
 
-    /* Stat pills */
-    .stat-pills{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
-    .stat-pill{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 14px;}
-    .stat-pill-label{font-size:11px;color:var(--muted);}
-    .stat-pill-value{font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--text);}
-    .stat-pill-value.green{color:var(--green);}
-    .stat-pill-value.yellow{color:var(--yellow);}
-    .stat-pill-value.accent{color:var(--accent);}
+    /* KPI row */
+    .kpi-row { display: flex; flex-direction: column; gap: 8px; }
+    .kpi {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi:last-child { border: none; }
+    .kpi-k { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .kpi-v { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--text); }
+    .kpi-v.cyan  { color: var(--cyan); }
+    .kpi-v.coral { color: var(--coral); }
+    .kpi-v.green { color: #22D46E; }
 
-    /* Progress */
-    .progress-wrap{margin-bottom:18px;}
-    .progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:6px;}
-    .progress-label span{color:var(--green);}
-    .progress-bar{height:4px;background:var(--bg3);border-radius:4px;overflow:hidden;}
-    .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:4px;width:30%;transition:width 1s ease;}
+    /* Checklist / Progress for PythonForge */
+    .forge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .progress-block { margin-bottom: 16px; }
+    .prog-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--mono); font-size: 10px; color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .prog-meta span { color: var(--cyan); }
+    .prog-track { height: 3px; background: var(--ink3); border-radius: 2px; overflow: hidden; }
+    .prog-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--cyan), #22D46E);
+      width: 30%;
+      animation: fillIn 1.4s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes fillIn { from { width: 0%; } }
 
-    /* Checklist */
-    .project-checklist{display:flex;flex-direction:column;gap:4px;margin-bottom:18px;}
-    .checklist-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
-    .checklist-item.done{color:var(--text);}
-    .check-icon{font-size:11px;flex-shrink:0;}
-    .check-icon.done{color:var(--green);}
-    .check-icon.todo{color:var(--dim);}
+    .forge-tasks { display: flex; flex-direction: column; gap: 5px; }
+    .task {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+    }
+    .task.done { color: var(--muted); }
+    .task-icon { font-size: 11px; flex-shrink: 0; }
+    .task-icon.done { color: #22D46E; }
+    .task-icon.todo { color: var(--dim); }
 
-    .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
-    .ptag{font-size:10px;letter-spacing:0.06em;padding:3px 9px;border-radius:20px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);}
-    .project-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--accent);border-top:1px solid var(--border);padding-top:16px;margin-top:auto;transition:gap .2s,color .2s;}
-    .project-link:hover{gap:10px;color:var(--accent2);}
+    /* ─── STACK ─── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .stack-col {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .stack-col-label {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--cyan);
+      padding-bottom: 12px; margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-item {
+      font-size: 12.5px; color: var(--muted);
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.03);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .stack-item:last-child { border: none; }
+    .stack-item::before {
+      content: '→'; color: var(--dim); font-size: 11px;
+      font-family: var(--mono);
+    }
 
-    /* STACK */
-    .stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-    .stack-group{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px;}
-    .stack-group-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-    .stack-item{font-size:12.5px;color:var(--muted);padding:6px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.03);}
-    .stack-item:last-child{border:none;}
-    .stack-item::before{content:'›';color:var(--accent);font-size:14px;}
+    /* ─── CERTS ─── */
+    .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .cert-card {
+      background: var(--ink2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 28px;
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: border-color .25s;
+    }
+    .cert-card:hover { border-color: rgba(0,212,255,.25); }
+    .cert-icon {
+      width: 44px; height: 44px; border-radius: 4px;
+      background: rgba(0,212,255,.07);
+      border: 1px solid rgba(0,212,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .cert-name {
+      font-family: var(--display); font-size: 16px; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .cert-org { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+      color: #F5A623; background: rgba(245,166,35,.08);
+      border: 1px solid rgba(245,166,35,.2);
+      padding: 3px 8px; border-radius: 3px;
+    }
 
-    /* CERTS */
-    .certs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-    .cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .25s;}
-    .cert-card:hover{border-color:rgba(88,166,255,.3);}
-    .cert-icon{width:40px;height:40px;border-radius:var(--r-sm);background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-    .cert-name{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;}
-    .cert-org{font-size:12px;color:var(--muted);margin-bottom:8px;}
-    .cert-year{display:inline-flex;align-items:center;gap:5px;font-size:10px;letter-spacing:0.08em;color:var(--yellow);background:rgba(210,153,34,.1);border:1px solid rgba(210,153,34,.2);padding:2px 9px;border-radius:20px;}
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: start;
+    }
+    .contact-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800; letter-spacing: -1.5px;
+      line-height: 1; color: var(--text);
+      margin-bottom: 16px;
+    }
+    .contact-title em { font-style: normal; color: var(--cyan); }
+    .contact-body {
+      font-size: 14px; color: var(--muted); line-height: 1.8;
+      max-width: 380px;
+    }
+    .contact-links {
+      display: flex; flex-direction: column; gap: 8px;
+      padding-top: 8px;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px;
+      background: var(--ink2); border: 1px solid var(--border);
+      border-radius: 5px;
+      font-family: var(--mono); font-size: 12px; color: var(--muted);
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .contact-link:hover { border-color: var(--cyan); color: var(--cyan); transform: translateX(4px); }
+    .contact-link-glyph { font-size: 13px; opacity: .6; }
 
-    /* CONTACT */
-    .contact-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-xl);padding:56px 64px;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;position:relative;overflow:hidden;}
-    .contact-box::after{content:'';position:absolute;bottom:-100px;right:-100px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(88,166,255,.05),transparent 70%);pointer-events:none;}
-    .contact-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
-    .contact-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse-green 2s infinite;}
-    .contact-title{font-family:var(--font-display);font-size:clamp(26px,3.2vw,38px);font-weight:800;letter-spacing:-1px;color:#fff;margin-bottom:12px;line-height:1.1;}
-    .contact-sub{font-size:13px;color:var(--muted);max-width:360px;line-height:1.8;}
-    .contact-links{display:flex;flex-direction:column;gap:8px;min-width:260px;}
-    .contact-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--border);border-radius:var(--r-md);font-size:12px;color:var(--muted);background:var(--bg3);transition:border-color .2s,color .2s,transform .2s;}
-    .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(-3px);}
-    .contact-link-icon{font-size:14px;opacity:.7;}
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 24px 48px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+      color: var(--dim);
+      border-top: 1px solid var(--border);
+    }
 
-    footer{text-align:center;padding:28px 48px;font-size:11px;color:var(--dim);border-top:1px solid var(--border);position:relative;z-index:1;letter-spacing:0.05em;}
+    /* ─── FADE IN ─── */
+    .reveal { opacity:0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity:1; transform: none; }
 
-    @media(max-width:900px){
-      nav{padding:0 20px;}
-      .nav-link{display:none;}
-      .container{padding:0 20px;}
-      .hero{padding:80px 0 60px;}
-      .hero-inner{grid-template-columns:1fr;}
-      .hero-photo-wrap{display:none;}
-      .projects-grid{grid-template-columns:1fr;}
-      .project-card.featured{grid-template-columns:1fr;}
-      .stack-grid{grid-template-columns:1fr 1fr;}
-      .certs-grid{grid-template-columns:1fr;}
-      .contact-box{grid-template-columns:1fr;padding:32px 24px;gap:32px;}
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 0 20px; }
+      .nav-link { display: none; }
+      .wrap { padding: 0 20px; }
+      section { padding: 64px 0; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .stat-panel { display: none; }
+      .hero h1 { font-size: 52px; }
+      .proj-body { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .forge-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .proj-header { grid-template-columns: 1fr; gap: 12px; }
+      .proj-num { display: none; }
+      .stack-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, .reveal, .pipe-step { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="glow"></div>
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">Santiago Acosta</div>
-    <div class="nav-links">
+    <div class="nav-wordmark">Santiago <span>Acosta</span></div>
+    <div class="nav-right">
       <a class="nav-link" href="#projects" data-i18n="nav.projects">Projects</a>
       <a class="nav-link" href="#stack" data-i18n="nav.stack">Stack</a>
       <a class="nav-link" href="#certifications" data-i18n="nav.certs">Certifications</a>
-      <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">LinkedIn ↗</a>
+      <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank" rel="noopener">LinkedIn ↗</a>
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
         <div class="lang-sep"></div>
@@ -210,156 +578,290 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="container">
-      <div class="hero-inner">
+    <div class="wrap">
+      <div class="hero-grid">
         <div>
-          <div class="eyebrow">
-            <span class="eyebrow-line"></span>
-            <span data-i18n="hero.eyebrow">Data Analyst</span>
+          <!-- Process pipeline -->
+          <div class="pipeline" aria-hidden="true">
+            <div class="pipe-step"><span class="pipe-node" data-i18n="pipe.1">Raw data</span></div>
+            <span class="pipe-arrow">→</span>
+            <div class="pipe-step"><span class="pipe-node" data-i18n="pipe.2">Clean & model</span></div>
+            <span class="pipe-arrow">→</span>
+            <div class="pipe-step"><span class="pipe-node" data-i18n="pipe.3">Analyze</span></div>
+            <span class="pipe-arrow">→</span>
+            <div class="pipe-step"><span class="pipe-node" data-i18n="pipe.4">Test hypotheses</span></div>
+            <span class="pipe-arrow">→</span>
+            <div class="pipe-step"><span class="pipe-node active" data-i18n="pipe.5">Decision ✓</span></div>
           </div>
-          <h1 data-i18n="hero.h1">Raw data.<br><em>Real answers.</em></h1>
-          <p class="hero-desc" data-i18n="hero.desc">
-            I turn messy datasets into <strong>decisions that move the business</strong> — through SQL pipelines, statistical testing, cohort models, and executive-ready dashboards. TripleTen-certified. Colombia-based, available remotely for global teams.
+
+          <p class="hero-eyebrow" data-i18n="hero.eyebrow">Data Analyst · Remote · Bogotá</p>
+          <h1 data-i18n="hero.h1">From data<br>to <em>decisions.</em></h1>
+          <p class="hero-body" data-i18n="hero.desc">
+            I build the pipeline that takes a messy dataset and ends with a
+            <strong>decision the business can act on</strong> — SQL schemas,
+            statistical tests, cohort models, and dashboards that answer real
+            questions. TripleTen-certified. Available for remote roles globally.
           </p>
           <div class="hero-meta">
-            <div class="meta-item">
-              <span class="meta-dot pulse"></span>
+            <div class="meta-row">
+              <span class="meta-dot live"></span>
               <span data-i18n="hero.meta1">Actively seeking remote opportunities</span>
             </div>
-            <div class="meta-item">
-              <span class="meta-dot blue"></span>
-              <span data-i18n="hero.meta2">Python · SQL · Power BI · Statistics</span>
+            <div class="meta-row">
+              <span class="meta-dot cyan"></span>
+              <span data-i18n="hero.meta2">Python · SQL · Power BI · Statistical Analysis</span>
             </div>
-            <div class="meta-item">
-              <span class="meta-dot blue"></span>
+            <div class="meta-row">
+              <span class="meta-dot cyan"></span>
               <span data-i18n="hero.meta3">English B2 — professional working proficiency</span>
             </div>
           </div>
-          <div class="hero-buttons">
-            <a class="btn-primary" href="#projects" data-i18n="hero.btn1">View Projects</a>
-            <a class="btn-ghost" href="https://github.com/santiagoacostab17" target="_blank">GitHub ↗</a>
-            <a class="btn-ghost" id="cv-download" href="cv.pdf" download data-i18n="hero.btn3">Download CV</a>
+          <div class="hero-actions">
+            <a class="btn-fill" href="#projects" data-i18n="hero.btn1">View Projects</a>
+            <a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn-outline" id="cv-dl" href="cv.pdf" download data-i18n="hero.btn3">Download CV</a>
           </div>
         </div>
-        <div class="hero-photo-wrap">
-          <img class="hero-photo" src="images/profile.jpg" alt="Santiago Acosta">
-          <div class="photo-frame"></div>
+
+        <!-- Right stat panel -->
+        <div class="stat-panel">
+          <div class="stat-panel-label" data-i18n="panel.label">Selected metrics · portfolio</div>
+          <div class="stat-row">
+            <div class="stat-key" data-i18n="panel.k1">EURUSD strategy win rate</div>
+            <div class="stat-val cyan">~59%</div>
+            <div class="stat-sub" data-i18n="panel.s1">81,938 obs · CI validated · Kelly sizing</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-row">
+            <div class="stat-key" data-i18n="panel.k2">RappiPlus conversion rate</div>
+            <div class="stat-val">80.04%</div>
+            <div class="stat-sub" data-i18n="panel.s2">7,796-user SQL funnel · 6-stage</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-row">
+            <div class="stat-key" data-i18n="panel.k3">Northwind revenue analyzed</div>
+            <div class="stat-val">$13M+</div>
+            <div class="stat-sub" data-i18n="panel.s3">3 products → 64% of revenue</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-row">
+            <div class="stat-key" data-i18n="panel.k4">A/B test result</div>
+            <div class="stat-val coral">p&lt;0.05</div>
+            <div class="stat-sub" data-i18n="panel.s4">Z-test · statistically significant</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <hr class="sec-divider">
 
   <!-- PROJECTS -->
-  <section class="section fade" id="projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag" data-i18n="projects.tag">Portfolio</span>
-        <h2 class="section-title" data-i18n="projects.title">Projects</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="projects-grid">
+  <section id="projects" class="reveal">
+    <div class="wrap">
+      <div class="sec-label" data-i18n="s.projects.tag">Portfolio</div>
+      <h2 class="sec-title" data-i18n="s.projects.title">Projects</h2>
 
-        <!-- 01 -->
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-number">01</span>
-            <span class="lang-badge"><span class="lang-dot sql"></span> SQL · Power BI</span>
-          </div>
-          <div class="project-title" data-i18n="p1.title">Northwind Revenue Insights</div>
-          <p class="project-desc" data-i18n="p1.desc">
-            BI analysis of a wholesale distributor's H1 2006 sales. Discovered that just 3 products drive ~64% of $13M in total revenue — a concentration risk with direct strategic implications. Built a star schema data model and drill-through dashboards covering product, employee, and category performance.
-          </p>
-          <div class="project-tags">
-            <span class="ptag">MySQL</span><span class="ptag">Power BI</span><span class="ptag">Star Schema</span><span class="ptag">DAX</span><span class="ptag">Business Intelligence</span>
-          </div>
-          <a class="project-link" href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank" data-i18n="common.github">View on GitHub →</a>
-        </div>
+      <div class="projects-list">
 
-        <!-- 02 -->
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-number">02</span>
-            <span class="lang-badge"><span class="lang-dot python"></span> Python</span>
-          </div>
-          <div class="project-title" data-i18n="p2.title">EURUSD Quantitative Pipeline</div>
-          <p class="project-desc" data-i18n="p2.desc">
-            End-to-end research pipeline on 6 years of 1-minute OHLC Forex data (81,938 observations). Custom vectorized NumPy backtesting engine — no external libraries — validates a price action strategy at ~59% win rate with confidence intervals and Kelly criterion sizing. Zero look-ahead bias by design.
-          </p>
-          <div class="project-tags">
-            <span class="ptag">Python</span><span class="ptag">pandas</span><span class="ptag">NumPy</span><span class="ptag">Time-Series</span><span class="ptag">Statistical Analysis</span>
-          </div>
-          <a class="project-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" data-i18n="common.github">View on GitHub →</a>
-        </div>
-
-        <!-- 04 FEATURED -->
-        <div class="project-card featured">
-          <div class="featured-left">
-            <div class="project-meta">
-              <span class="project-number">04</span>
-              <span class="lang-badge"><span class="lang-dot multi"></span> Python · SQL · Power BI</span>
+        <!-- P1: Northwind -->
+        <div class="proj-row">
+          <div class="proj-header">
+            <span class="proj-num">01</span>
+            <div class="proj-title-wrap">
+              <div class="proj-name" data-i18n="p1.name">Northwind Revenue Insights</div>
+              <div class="proj-tagline" data-i18n="p1.tagline">BI · Star schema · Drill-through dashboards</div>
             </div>
-            <div class="project-badge" data-i18n="p4.badge">TripleTen — Final Project ✓</div>
-            <div class="project-title" data-i18n="p4.title">RappiPlus: End-to-End Business Analysis</div>
-            <p class="project-desc" data-i18n="p4.desc">
-              Full analytics pipeline for a subscription service — six stages from raw data audit to executive dashboards. Covered profitability KPIs, SQL conversion funnel (7,796 users), monthly cohort retention, and a statistically validated A/B test (Z-test, p&lt;0.05) on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through filters — reviewed and approved by TripleTen.
-            </p>
-            <div class="project-tags">
-              <span class="ptag">Python</span><span class="ptag">PostgreSQL</span><span class="ptag">SQLAlchemy</span><span class="ptag">Power BI</span><span class="ptag">SciPy</span><span class="ptag">Cohort Analysis</span><span class="ptag">A/B Testing</span><span class="ptag">ETL</span>
-            </div>
-            <a class="project-link" href="https://github.com/santiagoacostab17/end_to_end_business_analysis" target="_blank" data-i18n="common.github">View on GitHub →</a>
-          </div>
-          <div class="featured-right">
-            <div class="funnel-mini">
-              <div class="funnel-label" data-i18n="p4.funnel.label">Conversion Funnel — 7,796 users</div>
-              <div class="funnel-row"><span class="funnel-stage" data-i18n="funnel.s1">First visit</span><div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:100%;background:#58a6ff;"></div></div><span class="funnel-pct">100%</span></div>
-              <div class="funnel-row"><span class="funnel-stage" data-i18n="funnel.s2">Select item</span><div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:97.3%;background:#58a6ff;"></div></div><span class="funnel-pct">97.3%</span></div>
-              <div class="funnel-row"><span class="funnel-stage" data-i18n="funnel.s3">Add to cart</span><div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:91.7%;background:#58a6ff;"></div></div><span class="funnel-pct">91.7%</span></div>
-              <div class="funnel-row"><span class="funnel-stage" data-i18n="funnel.s4">Begin checkout</span><div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:86.6%;background:#d29922;"></div></div><span class="funnel-pct alert">86.6%</span></div>
-              <div class="funnel-row"><span class="funnel-stage" data-i18n="funnel.s5">Payment info</span><div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:80.2%;background:#f85149;"></div></div><span class="funnel-pct alert" style="color:#f85149;">80.2%</span></div>
-              <div class="funnel-row"><span class="funnel-stage" data-i18n="funnel.s6">Purchase ✓</span><div class="funnel-bar-wrap"><div class="funnel-bar-fill" style="width:80.04%;background:#3fb950;"></div></div><span class="funnel-pct" style="color:var(--green);">80.0%</span></div>
-            </div>
-            <div class="stat-pills">
-              <div class="stat-pill"><span class="stat-pill-label" data-i18n="p4.stat1">Overall conversion rate</span><span class="stat-pill-value accent">80.04%</span></div>
-              <div class="stat-pill"><span class="stat-pill-label" data-i18n="p4.stat2">Biggest drop-off step</span><span class="stat-pill-value yellow" data-i18n="p4.stat2val">−13.3% at payment info</span></div>
-              <div class="stat-pill"><span class="stat-pill-label" data-i18n="p4.stat3">A/B test outcome</span><span class="stat-pill-value green" data-i18n="p4.stat3val">Significant (p &lt; 0.05)</span></div>
+            <div class="proj-chips">
+              <span class="chip">MySQL</span>
+              <span class="chip">Power BI</span>
+              <span class="chip hl">DAX</span>
             </div>
           </div>
-        </div>
-
-        <!-- 03 -->
-        <div class="project-card" style="grid-column:1/-1;">
-          <div class="project-meta">
-            <span class="project-number">03</span>
-            <span class="lang-badge"><span class="lang-dot python"></span> Python</span>
-          </div>
-          <div class="project-title" data-i18n="p3.title">PythonForge: Advanced Portfolio</div>
-          <p class="project-desc" data-i18n="p3.desc">
-            10 production-grade Python projects covering the full analyst toolkit — EDA, statistical testing, customer segmentation, time-series forecasting, and deployable dashboards. Each project solves a real business problem with clean, modular code and a documented decision trail.
-          </p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="proj-body">
             <div>
-              <div class="progress-wrap">
-                <div class="progress-label"><span data-i18n="p3.progress">Progress</span> <span data-i18n="p3.progressval">3 of 10 completed</span></div>
-                <div class="progress-bar"><div class="progress-fill"></div></div>
+              <p class="proj-desc" data-i18n="p1.desc">
+                Business intelligence analysis of a wholesale distributor's H1 2006 performance.
+                Built a star schema data model from scratch, then surfaced a critical concentration risk:
+                three products account for ~64% of $13M in total revenue.
+                Drill-through dashboards cover product-level margins, employee quota attainment,
+                and category mix — each view answering a distinct executive question.
+              </p>
+              <div class="proj-links">
+                <a class="proj-link" href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
               </div>
-              <div class="project-tags">
-                <span class="ptag">Python</span><span class="ptag">pandas</span><span class="ptag">Scikit-learn</span><span class="ptag">Statsmodels</span><span class="ptag">Streamlit</span><span class="ptag">Plotly</span>
-              </div>
-              <a class="project-link" href="https://github.com/santiagoacostab17/DataForge" target="_blank" data-i18n="common.github">View on GitHub →</a>
             </div>
-            <div class="project-checklist" style="margin-bottom:0;">
-              <div class="checklist-item done"><span class="check-icon done">✓</span> <span data-i18n="p3.c1">Sudoku Solver & Generator</span></div>
-              <div class="checklist-item done"><span class="check-icon done">✓</span> <span data-i18n="p3.c2">Batch CSV/Excel Processor</span></div>
-              <div class="checklist-item done"><span class="check-icon done">✓</span> <span data-i18n="p3.c3">API Data Dashboard</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c4">Exploratory Data Analysis & Statistics</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c5">A/B Testing Framework</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c6">Customer Segmentation (RFM + Clustering)</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c7">SQL + Python Analytics</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c8">Time Series Analysis & Forecasting</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c9">Interactive Business Dashboard</span></div>
-              <div class="checklist-item"><span class="check-icon todo">○</span> <span data-i18n="p3.c10">End-to-End Analytics Pipeline</span></div>
+            <div class="data-panel">
+              <div class="dp-head" data-i18n="p1.dp.head">Key findings</div>
+              <div class="dp-body">
+                <div class="kpi-row">
+                  <div class="kpi"><span class="kpi-k" data-i18n="p1.k1">Total revenue (H1 2006)</span><span class="kpi-v cyan">$13.08M</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p1.k2">Top-3 product share</span><span class="kpi-v coral">~64%</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p1.k3">Model type</span><span class="kpi-v" style="font-size:12px;">Star schema</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p1.k4">Dashboard views</span><span class="kpi-v">3</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P2: EURUSD -->
+        <div class="proj-row">
+          <div class="proj-header">
+            <span class="proj-num">02</span>
+            <div class="proj-title-wrap">
+              <div class="proj-name" data-i18n="p2.name">EURUSD Quantitative Pipeline</div>
+              <div class="proj-tagline" data-i18n="p2.tagline">Time-series · Custom backtesting engine · Statistical validation</div>
+            </div>
+            <div class="proj-chips">
+              <span class="chip">Python</span>
+              <span class="chip">NumPy</span>
+              <span class="chip hl">pandas</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div>
+              <p class="proj-desc" data-i18n="p2.desc">
+                End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations).
+                Built a custom vectorized backtesting engine in NumPy — no external strategy libraries —
+                to eliminate look-ahead bias by design.
+                Validates a price action strategy at ~59% win rate with bootstrapped confidence intervals
+                and Kelly criterion position sizing.
+              </p>
+              <div class="proj-links">
+                <a class="proj-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
+              </div>
+            </div>
+            <div class="data-panel">
+              <div class="dp-head" data-i18n="p2.dp.head">Backtest output</div>
+              <div class="dp-body">
+                <div class="kpi-row">
+                  <div class="kpi"><span class="kpi-k" data-i18n="p2.k1">Dataset (1-min OHLC)</span><span class="kpi-v cyan">81,938</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p2.k2">Strategy win rate</span><span class="kpi-v">~59%</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p2.k3">Look-ahead bias</span><span class="kpi-v green">Zero</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p2.k4">Position sizing</span><span class="kpi-v" style="font-size:12px;">Kelly criterion</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P3: RappiPlus FEATURED -->
+        <div class="proj-row">
+          <div class="proj-header">
+            <span class="proj-num">03</span>
+            <div class="proj-title-wrap">
+              <div class="proj-name" data-i18n="p3.name">RappiPlus: End-to-End Business Analysis</div>
+              <div class="proj-tagline" data-i18n="p3.tagline">TripleTen final project · 6 pipeline stages · Two Power BI dashboards</div>
+            </div>
+            <div class="proj-chips">
+              <span class="chip">Python</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Power BI</span>
+              <span class="chip hl">A/B Testing</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div>
+              <p class="proj-desc" data-i18n="p3.desc">
+                Full analytics pipeline for a subscription service — raw data audit through executive dashboards
+                in six structured stages. Covered profitability KPIs, a 7,796-user SQL conversion funnel,
+                monthly cohort retention modeling, and a statistically validated A/B test (Z-test, p&lt;0.05)
+                on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through filters.
+                Reviewed and approved by TripleTen.
+              </p>
+              <div class="proj-links">
+                <a class="proj-link" href="https://github.com/santiagoacostab17/end_to_end_business_analysis" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
+              </div>
+            </div>
+            <div class="data-panel">
+              <div class="dp-head" data-i18n="p3.dp.head">Conversion funnel — 7,796 users</div>
+              <div class="dp-body">
+                <div class="funnel" id="funnel-chart">
+                  <div class="funnel-row">
+                    <span class="funnel-label" data-i18n="f.1">First visit</span>
+                    <div class="funnel-track"><div class="funnel-fill" style="width:100%;background:var(--cyan)"></div></div>
+                    <span class="funnel-pct ok">100%</span>
+                  </div>
+                  <div class="funnel-row">
+                    <span class="funnel-label" data-i18n="f.2">Select item</span>
+                    <div class="funnel-track"><div class="funnel-fill" style="width:97.3%;background:var(--cyan)"></div></div>
+                    <span class="funnel-pct">97.3%</span>
+                  </div>
+                  <div class="funnel-row">
+                    <span class="funnel-label" data-i18n="f.3">Add to cart</span>
+                    <div class="funnel-track"><div class="funnel-fill" style="width:91.7%;background:var(--cyan)"></div></div>
+                    <span class="funnel-pct">91.7%</span>
+                  </div>
+                  <div class="funnel-row">
+                    <span class="funnel-label" data-i18n="f.4">Begin checkout</span>
+                    <div class="funnel-track"><div class="funnel-fill" style="width:86.6%;background:#F5A623"></div></div>
+                    <span class="funnel-pct warn">86.6%</span>
+                  </div>
+                  <div class="funnel-row">
+                    <span class="funnel-label" data-i18n="f.5">Payment info</span>
+                    <div class="funnel-track"><div class="funnel-fill" style="width:80.2%;background:#F85149"></div></div>
+                    <span class="funnel-pct drop">80.2%</span>
+                  </div>
+                  <div class="funnel-row">
+                    <span class="funnel-label" data-i18n="f.6">Purchase ✓</span>
+                    <div class="funnel-track"><div class="funnel-fill" style="width:80.04%;background:#22D46E"></div></div>
+                    <span class="funnel-pct ok">80.0%</span>
+                  </div>
+                </div>
+                <div style="border-top:1px solid var(--border);margin-top:14px;padding-top:12px;">
+                  <div class="kpi"><span class="kpi-k" data-i18n="p3.k1">A/B test outcome</span><span class="kpi-v green" data-i18n="p3.k1v">Significant (p &lt; 0.05)</span></div>
+                  <div class="kpi"><span class="kpi-k" data-i18n="p3.k2">Biggest drop-off</span><span class="kpi-v coral" data-i18n="p3.k2v">−13.3% at payment info</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P4: PythonForge -->
+        <div class="proj-row">
+          <div class="proj-header">
+            <span class="proj-num">04</span>
+            <div class="proj-title-wrap">
+              <div class="proj-name" data-i18n="p4.name">PythonForge: Advanced Portfolio</div>
+              <div class="proj-tagline" data-i18n="p4.tagline">10 production-grade projects · In progress</div>
+            </div>
+            <div class="proj-chips">
+              <span class="chip">Python</span>
+              <span class="chip">Scikit-learn</span>
+              <span class="chip">Streamlit</span>
+              <span class="chip hl">3 / 10</span>
+            </div>
+          </div>
+          <div class="proj-body wide">
+            <div class="forge-grid">
+              <div>
+                <p class="proj-desc" data-i18n="p4.desc">
+                  10 production-grade Python projects covering the complete analyst toolkit — EDA,
+                  statistical testing, customer segmentation (RFM + clustering), time-series forecasting,
+                  and deployable dashboards. Each project targets a real business problem with
+                  modular code and a documented decision trail.
+                </p>
+                <div class="progress-block">
+                  <div class="prog-meta"><span data-i18n="p4.prog">Progress</span><span data-i18n="p4.progv">3 of 10 completed</span></div>
+                  <div class="prog-track"><div class="prog-fill"></div></div>
+                </div>
+                <div class="proj-links">
+                  <a class="proj-link" href="https://github.com/santiagoacostab17/DataForge" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
+                </div>
+              </div>
+              <div class="forge-tasks">
+                <div class="task done"><span class="task-icon done">✓</span><span data-i18n="t1">Sudoku Solver & Generator</span></div>
+                <div class="task done"><span class="task-icon done">✓</span><span data-i18n="t2">Batch CSV/Excel Processor</span></div>
+                <div class="task done"><span class="task-icon done">✓</span><span data-i18n="t3">API Data Dashboard</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t4">Exploratory Data Analysis & Statistics</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t5">A/B Testing Framework</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t6">Customer Segmentation (RFM + Clustering)</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t7">SQL + Python Analytics Pipeline</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t8">Time Series Analysis & Forecasting</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t9">Interactive Business Dashboard</span></div>
+                <div class="task"><span class="task-icon todo">○</span><span data-i18n="t10">End-to-End Analytics Pipeline</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -368,101 +870,96 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <hr class="sec-divider">
 
   <!-- STACK -->
-  <section class="section fade" id="stack">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag" data-i18n="stack.tag">Skills</span>
-        <h2 class="section-title" data-i18n="stack.title">Tech Stack</h2>
-        <div class="section-line"></div>
-      </div>
+  <section id="stack" class="reveal">
+    <div class="wrap">
+      <div class="sec-label" data-i18n="s.stack.tag">Skills</div>
+      <h2 class="sec-title" data-i18n="s.stack.title">Tech Stack</h2>
       <div class="stack-grid">
-        <div class="stack-group">
-          <div class="stack-group-label" data-i18n="stack.l1">Languages</div>
+        <div class="stack-col">
+          <div class="stack-col-label" data-i18n="st.l1">Languages</div>
           <div class="stack-item">Python</div>
           <div class="stack-item">SQL — MySQL · PostgreSQL</div>
           <div class="stack-item">DAX</div>
         </div>
-        <div class="stack-group">
-          <div class="stack-group-label" data-i18n="stack.l2">Libraries</div>
+        <div class="stack-col">
+          <div class="stack-col-label" data-i18n="st.l2">Libraries</div>
           <div class="stack-item">pandas · NumPy</div>
           <div class="stack-item">SciPy · statsmodels</div>
           <div class="stack-item">Matplotlib · seaborn</div>
           <div class="stack-item">SQLAlchemy</div>
         </div>
-        <div class="stack-group">
-          <div class="stack-group-label" data-i18n="stack.l3">Visualization</div>
+        <div class="stack-col">
+          <div class="stack-col-label" data-i18n="st.l3">Visualization</div>
           <div class="stack-item">Power BI</div>
-          <div class="stack-item">Looker Studio</div>
-          <div class="stack-item">Plotly · Tableau</div>
-          <div class="stack-item" data-i18n="stack.dashboards">Dashboards & Reports</div>
+          <div class="stack-item">Plotly</div>
+          <div class="stack-item" data-i18n="st.dash">Dashboards & Reports</div>
         </div>
-        <div class="stack-group">
-          <div class="stack-group-label" data-i18n="stack.l4">Analytical</div>
-          <div class="stack-item" data-i18n="stack.ab">A/B Testing</div>
-          <div class="stack-item" data-i18n="stack.cohort">Cohort & Funnel Analysis</div>
-          <div class="stack-item" data-i18n="stack.etl">ETL Pipelines</div>
-          <div class="stack-item" data-i18n="stack.stats">Statistical Inference</div>
+        <div class="stack-col">
+          <div class="stack-col-label" data-i18n="st.l4">Analytical</div>
+          <div class="stack-item" data-i18n="st.ab">A/B Testing</div>
+          <div class="stack-item" data-i18n="st.cohort">Cohort & Funnel Analysis</div>
+          <div class="stack-item" data-i18n="st.etl">ETL Pipelines</div>
+          <div class="stack-item" data-i18n="st.stats">Statistical Inference</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <hr class="sec-divider">
 
   <!-- CERTIFICATIONS -->
-  <section class="section fade" id="certifications">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag" data-i18n="certs.tag">Education</span>
-        <h2 class="section-title" data-i18n="certs.title">Certifications</h2>
-        <div class="section-line"></div>
-      </div>
+  <section id="certifications" class="reveal">
+    <div class="wrap">
+      <div class="sec-label" data-i18n="s.certs.tag">Education</div>
+      <h2 class="sec-title" data-i18n="s.certs.title">Certifications</h2>
       <div class="certs-grid">
         <div class="cert-card">
           <div class="cert-icon">🎓</div>
           <div>
-            <div class="cert-name" data-i18n="cert1.name">Data Analyst Certification</div>
-            <div class="cert-org" data-i18n="cert1.org">TripleTen — Full program · 9 months</div>
-            <div class="cert-year">2026</div>
+            <div class="cert-name" data-i18n="c1.name">Data Analyst Certification</div>
+            <div class="cert-org" data-i18n="c1.org">TripleTen — Full program · 9 months</div>
+            <div class="cert-badge">2026</div>
           </div>
         </div>
         <div class="cert-card">
           <div class="cert-icon">🎓</div>
           <div>
-            <div class="cert-name" data-i18n="cert2.name">Data Scientist Certification</div>
+            <div class="cert-name" data-i18n="c2.name">Data Scientist Certification</div>
             <div class="cert-org">A2 Capacitación</div>
-            <div class="cert-year">2026</div>
+            <div class="cert-badge">2026</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <hr class="sec-divider">
 
   <!-- CONTACT -->
-  <section class="section fade" id="contact">
-    <div class="container">
-      <div class="contact-box">
+  <section id="contact" class="reveal">
+    <div class="wrap">
+      <div class="contact-grid">
         <div>
-          <div class="contact-eyebrow" data-i18n="contact.eyebrow">Available now</div>
-          <div class="contact-title" data-i18n="contact.title">Let's build<br>something together</div>
-          <p class="contact-sub" data-i18n="contact.sub">
-            I'm looking for a remote data analyst role where my work ships insights that move the business — not just slides that get filed away. If that's what your team needs, let's talk.
+          <div class="sec-label" data-i18n="s.contact.tag">Contact</div>
+          <div class="contact-title" data-i18n="contact.title">Let's build<br><em>something</em><br>together.</div>
+          <p class="contact-body" data-i18n="contact.body">
+            I'm looking for a remote data analyst role where my work ships insights
+            that move the business — not just slides that get filed away.
+            If that's what your team needs, let's talk.
           </p>
         </div>
         <div class="contact-links">
           <a class="contact-link" href="mailto:santiagoacostab17@gmail.com">
-            <span class="contact-link-icon">✉</span>santiagoacostab17@gmail.com
+            <span class="contact-link-glyph">✉</span>santiagoacostab17@gmail.com
           </a>
-          <a class="contact-link" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank">
-            <span class="contact-link-icon">in</span>linkedin.com/in/santiagoacostab17
+          <a class="contact-link" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank" rel="noopener">
+            <span class="contact-link-glyph">in</span>linkedin.com/in/santiagoacostab17
           </a>
-          <a class="contact-link" href="https://github.com/santiagoacostab17" target="_blank">
-            <span class="contact-link-icon">⌥</span>github.com/santiagoacostab17
+          <a class="contact-link" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">
+            <span class="contact-link-glyph">⌥</span>github.com/santiagoacostab17
           </a>
         </div>
       </div>
@@ -471,151 +968,181 @@
 
   <footer><span data-i18n="footer">© 2026 Santiago Acosta — Data Analyst · Bogotá, Colombia</span></footer>
 
+  <!-- ─── I18N ─── -->
   <script>
     const T = {
       en: {
-        'nav.projects':    'Projects',
-        'nav.stack':       'Stack',
-        'nav.certs':       'Certifications',
-        'hero.eyebrow':    'Data Analyst',
-        'hero.h1':         'Raw data.<br><em>Real answers.</em>',
-        'hero.desc':       'I turn messy datasets into <strong>decisions that move the business</strong> — through SQL pipelines, statistical testing, cohort models, and executive-ready dashboards. TripleTen-certified. Colombia-based, available remotely for global teams.',
-        'hero.meta1':      'Actively seeking remote opportunities',
-        'hero.meta2':      'Python · SQL · Power BI · Statistics',
-        'hero.meta3':      'English B2 — professional working proficiency',
-        'hero.btn1':       'View Projects',
-        'hero.btn3':       'Download CV',
-        'projects.tag':    'Portfolio',
-        'projects.title':  'Projects',
-        'common.github':   'View on GitHub →',
-        'p1.title':        'Northwind Revenue Insights',
-        'p1.desc':         "BI analysis of a wholesale distributor's H1 2006 sales. Discovered that just 3 products drive ~64% of $13M in total revenue — a concentration risk with direct strategic implications. Built a star schema data model and drill-through dashboards covering product, employee, and category performance.",
-        'p2.title':        'EURUSD Quantitative Pipeline',
-        'p2.desc':         'End-to-end research pipeline on 6 years of 1-minute OHLC Forex data (81,938 observations). Custom vectorized NumPy backtesting engine — no external libraries — validates a price action strategy at ~59% win rate with confidence intervals and Kelly criterion sizing. Zero look-ahead bias by design.',
-        'p4.badge':        'TripleTen — Final Project ✓',
-        'p4.title':        'RappiPlus: End-to-End Business Analysis',
-        'p4.desc':         'Full analytics pipeline for a subscription service — six stages from raw data audit to executive dashboards. Covered profitability KPIs, SQL conversion funnel (7,796 users), monthly cohort retention, and a statistically validated A/B test (Z-test, p&lt;0.05) on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through filters — reviewed and approved by TripleTen.',
-        'p4.funnel.label': 'Conversion Funnel — 7,796 users',
-        'p4.stat1':        'Overall conversion rate',
-        'p4.stat2':        'Biggest drop-off step',
-        'p4.stat2val':     '−13.3% at payment info',
-        'p4.stat3':        'A/B test outcome',
-        'p4.stat3val':     'Significant (p < 0.05)',
-        'funnel.s1':       'First visit',
-        'funnel.s2':       'Select item',
-        'funnel.s3':       'Add to cart',
-        'funnel.s4':       'Begin checkout',
-        'funnel.s5':       'Payment info',
-        'funnel.s6':       'Purchase ✓',
-        'p3.title':        'PythonForge: Advanced Portfolio',
-        'p3.desc':         '10 production-grade Python projects covering the full analyst toolkit — EDA, statistical testing, customer segmentation, time-series forecasting, and deployable dashboards. Each project solves a real business problem with clean, modular code and a documented decision trail.',
-        'p3.progress':     'Progress',
-        'p3.progressval':  '3 of 10 completed',
-        'p3.c1':  'Sudoku Solver & Generator',
-        'p3.c2':  'Batch CSV/Excel Processor',
-        'p3.c3':  'API Data Dashboard',
-        'p3.c4':  'Exploratory Data Analysis & Statistics',
-        'p3.c5':  'A/B Testing Framework',
-        'p3.c6':  'Customer Segmentation (RFM + Clustering)',
-        'p3.c7':  'SQL + Python Analytics',
-        'p3.c8':  'Time Series Analysis & Forecasting',
-        'p3.c9':  'Interactive Business Dashboard',
-        'p3.c10': 'End-to-End Analytics Pipeline',
-        'stack.tag':        'Skills',
-        'stack.title':      'Tech Stack',
-        'stack.l1':         'Languages',
-        'stack.l2':         'Libraries',
-        'stack.l3':         'Visualization',
-        'stack.l4':         'Analytical',
-        'stack.dashboards': 'Dashboards & Reports',
-        'stack.ab':         'A/B Testing',
-        'stack.cohort':     'Cohort & Funnel Analysis',
-        'stack.etl':        'ETL Pipelines',
-        'stack.stats':      'Statistical Inference',
-        'certs.tag':        'Education',
-        'certs.title':      'Certifications',
-        'cert1.name':       'Data Analyst Certification',
-        'cert1.org':        'TripleTen — Full program · 9 months',
-        'cert2.name':       'Data Scientist Certification',
-        'contact.eyebrow':  'Available now',
-        'contact.title':    "Let's build<br>something together",
-        'contact.sub':      "I'm looking for a remote data analyst role where my work ships insights that move the business — not just slides that get filed away. If that's what your team needs, let's talk.",
-        'footer':           '© 2026 Santiago Acosta — Data Analyst · Bogotá, Colombia',
+        'nav.projects':  'Projects',
+        'nav.stack':     'Stack',
+        'nav.certs':     'Certifications',
+        'pipe.1': 'Raw data',
+        'pipe.2': 'Clean & model',
+        'pipe.3': 'Analyze',
+        'pipe.4': 'Test hypotheses',
+        'pipe.5': 'Decision ✓',
+        'hero.eyebrow': 'Data Analyst · Remote · Bogotá',
+        'hero.h1':      'From data<br>to <em>decisions.</em>',
+        'hero.desc':    'I build the pipeline that takes a messy dataset and ends with a <strong>decision the business can act on</strong> — SQL schemas, statistical tests, cohort models, and dashboards that answer real questions. TripleTen-certified. Available for remote roles globally.',
+        'hero.meta1':   'Actively seeking remote opportunities',
+        'hero.meta2':   'Python · SQL · Power BI · Statistical Analysis',
+        'hero.meta3':   'English B2 — professional working proficiency',
+        'hero.btn1':    'View Projects',
+        'hero.btn3':    'Download CV',
+        'panel.label':  'Selected metrics · portfolio',
+        'panel.k1': 'EURUSD strategy win rate',
+        'panel.s1': '81,938 obs · CI validated · Kelly sizing',
+        'panel.k2': 'RappiPlus conversion rate',
+        'panel.s2': '7,796-user SQL funnel · 6-stage',
+        'panel.k3': 'Northwind revenue analyzed',
+        'panel.s3': '3 products → 64% of revenue',
+        'panel.k4': 'A/B test result',
+        'panel.s4': 'Z-test · statistically significant',
+        'common.gh': 'View on GitHub →',
+        's.projects.tag':   'Portfolio',
+        's.projects.title': 'Projects',
+        'p1.name':     'Northwind Revenue Insights',
+        'p1.tagline':  'BI · Star schema · Drill-through dashboards',
+        'p1.desc':     "Business intelligence analysis of a wholesale distributor's H1 2006 performance. Built a star schema data model from scratch, then surfaced a critical concentration risk: three products account for ~64% of $13M in total revenue. Drill-through dashboards cover product-level margins, employee quota attainment, and category mix — each view answering a distinct executive question.",
+        'p1.dp.head':  'Key findings',
+        'p1.k1': 'Total revenue (H1 2006)',
+        'p1.k2': 'Top-3 product share',
+        'p1.k3': 'Model type',
+        'p1.k4': 'Dashboard views',
+        'p2.name':     'EURUSD Quantitative Pipeline',
+        'p2.tagline':  'Time-series · Custom backtesting engine · Statistical validation',
+        'p2.desc':     'End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations). Built a custom vectorized backtesting engine in NumPy — no external strategy libraries — to eliminate look-ahead bias by design. Validates a price action strategy at ~59% win rate with bootstrapped confidence intervals and Kelly criterion position sizing.',
+        'p2.dp.head':  'Backtest output',
+        'p2.k1': 'Dataset (1-min OHLC)',
+        'p2.k2': 'Strategy win rate',
+        'p2.k3': 'Look-ahead bias',
+        'p2.k4': 'Position sizing',
+        'p3.name':     'RappiPlus: End-to-End Business Analysis',
+        'p3.tagline':  'TripleTen final project · 6 pipeline stages · Two Power BI dashboards',
+        'p3.desc':     'Full analytics pipeline for a subscription service — raw data audit through executive dashboards in six structured stages. Covered profitability KPIs, a 7,796-user SQL conversion funnel, monthly cohort retention modeling, and a statistically validated A/B test (Z-test, p<0.05) on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through filters. Reviewed and approved by TripleTen.',
+        'p3.dp.head':  'Conversion funnel — 7,796 users',
+        'p3.k1':  'A/B test outcome', 'p3.k1v': 'Significant (p < 0.05)',
+        'p3.k2':  'Biggest drop-off',  'p3.k2v': '−13.3% at payment info',
+        'f.1': 'First visit',  'f.2': 'Select item', 'f.3': 'Add to cart',
+        'f.4': 'Begin checkout', 'f.5': 'Payment info', 'f.6': 'Purchase ✓',
+        'p4.name':     'PythonForge: Advanced Portfolio',
+        'p4.tagline':  '10 production-grade projects · In progress',
+        'p4.desc':     '10 production-grade Python projects covering the complete analyst toolkit — EDA, statistical testing, customer segmentation (RFM + clustering), time-series forecasting, and deployable dashboards. Each project targets a real business problem with modular code and a documented decision trail.',
+        'p4.prog': 'Progress', 'p4.progv': '3 of 10 completed',
+        't1': 'Sudoku Solver & Generator',
+        't2': 'Batch CSV/Excel Processor',
+        't3': 'API Data Dashboard',
+        't4': 'Exploratory Data Analysis & Statistics',
+        't5': 'A/B Testing Framework',
+        't6': 'Customer Segmentation (RFM + Clustering)',
+        't7': 'SQL + Python Analytics Pipeline',
+        't8': 'Time Series Analysis & Forecasting',
+        't9': 'Interactive Business Dashboard',
+        't10': 'End-to-End Analytics Pipeline',
+        's.stack.tag':   'Skills',
+        's.stack.title': 'Tech Stack',
+        'st.l1': 'Languages', 'st.l2': 'Libraries',
+        'st.l3': 'Visualization', 'st.l4': 'Analytical',
+        'st.dash': 'Dashboards & Reports',
+        'st.ab': 'A/B Testing', 'st.cohort': 'Cohort & Funnel Analysis',
+        'st.etl': 'ETL Pipelines', 'st.stats': 'Statistical Inference',
+        's.certs.tag':   'Education',
+        's.certs.title': 'Certifications',
+        'c1.name': 'Data Analyst Certification',
+        'c1.org':  'TripleTen — Full program · 9 months',
+        'c2.name': 'Data Scientist Certification',
+        's.contact.tag': 'Contact',
+        'contact.title': "Let's build<br><em>something</em><br>together.",
+        'contact.body':  "I'm looking for a remote data analyst role where my work ships insights that move the business — not just slides that get filed away. If that's what your team needs, let's talk.",
+        'footer': '© 2026 Santiago Acosta — Data Analyst · Bogotá, Colombia',
       },
       es: {
-        'nav.projects':    'Proyectos',
-        'nav.stack':       'Stack',
-        'nav.certs':       'Certificaciones',
-        'hero.eyebrow':    'Analista de Datos',
-        'hero.h1':         'Datos crudos.<br><em>Respuestas reales.</em>',
-        'hero.desc':       'Convierto datos desordenados en <strong>decisiones que mueven el negocio</strong> — mediante pipelines SQL, análisis estadístico, modelos de cohortes y dashboards ejecutivos. Certificado por TripleTen. Basado en Colombia, disponible remotamente para equipos globales.',
-        'hero.meta1':      'Buscando activamente oportunidades remotas',
-        'hero.meta2':      'Python · SQL · Power BI · Estadística',
-        'hero.meta3':      'Inglés B2 — competencia profesional',
-        'hero.btn1':       'Ver Proyectos',
-        'hero.btn3':       'Descargar CV',
-        'projects.tag':    'Portafolio',
-        'projects.title':  'Proyectos',
-        'common.github':   'Ver en GitHub →',
-        'p1.title':        'Northwind: Análisis de Ingresos',
-        'p1.desc':         'Análisis de BI sobre ventas H1 2006 de un distribuidor mayorista. Se descubrió que solo 3 productos generan ~64% de $13M en ingresos — un riesgo de concentración con implicaciones estratégicas directas. Modelo de datos en estrella y dashboards con drill-through por producto, empleado y categoría.',
-        'p2.title':        'Pipeline Cuantitativo EURUSD',
-        'p2.desc':         'Pipeline de investigación end-to-end con 6 años de datos OHLC de Forex en 1 minuto (81,938 observaciones). Motor de backtesting vectorizado en NumPy — sin librerías externas — valida una estrategia de price action con ~59% de acierto, intervalos de confianza y sizing por criterio de Kelly. Sin sesgo de look-ahead por diseño.',
-        'p4.badge':        'TripleTen — Proyecto Final ✓',
-        'p4.title':        'RappiPlus: Análisis de Negocio End-to-End',
-        'p4.desc':         'Pipeline analítico completo para un servicio de suscripción — seis etapas desde auditoría de datos hasta dashboards ejecutivos. KPIs de rentabilidad, embudo de conversión SQL (7,796 usuarios), retención mensual por cohortes y prueba A/B estadística (Z-test, p&lt;0.05) sobre un rediseño del checkout. Dos dashboards en Power BI con medidas DAX y filtros drill-through — aprobado por TripleTen.',
-        'p4.funnel.label': 'Embudo de Conversión — 7,796 usuarios',
-        'p4.stat1':        'Tasa de conversión total',
-        'p4.stat2':        'Mayor caída en el embudo',
-        'p4.stat2val':     '−13.3% en info de pago',
-        'p4.stat3':        'Resultado prueba A/B',
-        'p4.stat3val':     'Significativo (p < 0.05)',
-        'funnel.s1':       'Primera visita',
-        'funnel.s2':       'Seleccionar ítem',
-        'funnel.s3':       'Agregar al carrito',
-        'funnel.s4':       'Iniciar pago',
-        'funnel.s5':       'Info de pago',
-        'funnel.s6':       'Compra ✓',
-        'p3.title':        'PythonForge: Portafolio Avanzado',
-        'p3.desc':         '10 proyectos Python de nivel producción que cubren el toolkit completo del analista — EDA, pruebas estadísticas, segmentación de clientes, pronóstico de series de tiempo y dashboards desplegables. Cada proyecto resuelve un problema de negocio real con código limpio, modular y decisiones documentadas.',
-        'p3.progress':     'Progreso',
-        'p3.progressval':  '3 de 10 completados',
-        'p3.c1':  'Solucionador de Sudoku',
-        'p3.c2':  'Procesador de CSV/Excel',
-        'p3.c3':  'Dashboard con API',
-        'p3.c4':  'Análisis Exploratorio y Estadística',
-        'p3.c5':  'Framework de Pruebas A/B',
-        'p3.c6':  'Segmentación de Clientes (RFM + Clustering)',
-        'p3.c7':  'Analytics con SQL + Python',
-        'p3.c8':  'Análisis y Pronóstico de Series de Tiempo',
-        'p3.c9':  'Dashboard Interactivo de Negocio',
-        'p3.c10': 'Pipeline Analítico End-to-End',
-        'stack.tag':        'Habilidades',
-        'stack.title':      'Stack Tecnológico',
-        'stack.l1':         'Lenguajes',
-        'stack.l2':         'Librerías',
-        'stack.l3':         'Visualización',
-        'stack.l4':         'Analítico',
-        'stack.dashboards': 'Dashboards e Informes',
-        'stack.ab':         'Pruebas A/B',
-        'stack.cohort':     'Análisis de Cohortes y Embudos',
-        'stack.etl':        'Pipelines ETL',
-        'stack.stats':      'Inferencia Estadística',
-        'certs.tag':        'Educación',
-        'certs.title':      'Certificaciones',
-        'cert1.name':       'Certificación Analista de Datos',
-        'cert1.org':        'TripleTen — Programa completo · 9 meses',
-        'cert2.name':       'Certificación Científico de Datos',
-        'contact.eyebrow':  'Disponible ahora',
-        'contact.title':    'Construyamos<br>algo juntos',
-        'contact.sub':      'Busco un rol remoto de analista de datos donde mi trabajo genere insights que muevan el negocio — no solo presentaciones que se archivan. Si eso es lo que tu equipo necesita, hablemos.',
-        'footer':           '© 2026 Santiago Acosta — Analista de Datos · Bogotá, Colombia',
+        'nav.projects':  'Proyectos',
+        'nav.stack':     'Stack',
+        'nav.certs':     'Certificaciones',
+        'pipe.1': 'Datos crudos',
+        'pipe.2': 'Limpiar y modelar',
+        'pipe.3': 'Analizar',
+        'pipe.4': 'Probar hipótesis',
+        'pipe.5': 'Decisión ✓',
+        'hero.eyebrow': 'Analista de Datos · Remoto · Bogotá',
+        'hero.h1':      'De los datos<br>a las <em>decisiones.</em>',
+        'hero.desc':    'Construyo el pipeline que toma un dataset desordenado y termina con una <strong>decisión que el negocio puede ejecutar</strong> — esquemas SQL, pruebas estadísticas, modelos de cohortes y dashboards que responden preguntas reales. Certificado por TripleTen. Disponible remotamente para equipos globales.',
+        'hero.meta1':   'Buscando activamente oportunidades remotas',
+        'hero.meta2':   'Python · SQL · Power BI · Análisis Estadístico',
+        'hero.meta3':   'Inglés B2 — competencia profesional',
+        'hero.btn1':    'Ver Proyectos',
+        'hero.btn3':    'Descargar CV',
+        'panel.label':  'Métricas seleccionadas · portafolio',
+        'panel.k1': 'Win rate estrategia EURUSD',
+        'panel.s1': '81,938 obs · IC validado · sizing Kelly',
+        'panel.k2': 'Tasa de conversión RappiPlus',
+        'panel.s2': 'Embudo SQL 7,796 usuarios · 6 etapas',
+        'panel.k3': 'Revenue analizado Northwind',
+        'panel.s3': '3 productos → 64% del revenue',
+        'panel.k4': 'Resultado prueba A/B',
+        'panel.s4': 'Z-test · estadísticamente significativo',
+        'common.gh': 'Ver en GitHub →',
+        's.projects.tag':   'Portafolio',
+        's.projects.title': 'Proyectos',
+        'p1.name':     'Northwind: Análisis de Ingresos',
+        'p1.tagline':  'BI · Star schema · Dashboards con drill-through',
+        'p1.desc':     'Análisis de inteligencia de negocio sobre el desempeño H1 2006 de un distribuidor mayorista. Construí un modelo de datos en estrella desde cero y descubrí un riesgo de concentración crítico: tres productos representan ~64% de $13M en ingresos. Dashboards con drill-through por márgenes de producto, cuota de empleados y mix de categorías.',
+        'p1.dp.head':  'Hallazgos clave',
+        'p1.k1': 'Revenue total (H1 2006)',
+        'p1.k2': 'Participación top-3 productos',
+        'p1.k3': 'Tipo de modelo',
+        'p1.k4': 'Vistas del dashboard',
+        'p2.name':     'Pipeline Cuantitativo EURUSD',
+        'p2.tagline':  'Series de tiempo · Motor de backtesting custom · Validación estadística',
+        'p2.desc':     'Pipeline de investigación end-to-end con 6 años de datos OHLC en 1 minuto (81,938 observaciones). Motor de backtesting vectorizado en NumPy — sin librerías externas — para eliminar sesgo de look-ahead por diseño. Valida una estrategia de price action con ~59% de acierto, intervalos de confianza y sizing por criterio de Kelly.',
+        'p2.dp.head':  'Output del backtest',
+        'p2.k1': 'Dataset (OHLC 1-min)',
+        'p2.k2': 'Win rate de la estrategia',
+        'p2.k3': 'Sesgo look-ahead',
+        'p2.k4': 'Sizing de posición',
+        'p3.name':     'RappiPlus: Análisis de Negocio End-to-End',
+        'p3.tagline':  'Proyecto final TripleTen · 6 etapas · Dos dashboards Power BI',
+        'p3.desc':     'Pipeline analítico completo para un servicio de suscripción — desde auditoría de datos hasta dashboards ejecutivos en seis etapas. KPIs de rentabilidad, embudo de conversión SQL (7,796 usuarios), retención mensual por cohortes y prueba A/B validada (Z-test, p<0.05) sobre un rediseño del checkout. Dos dashboards en Power BI con medidas DAX y drill-through. Aprobado por TripleTen.',
+        'p3.dp.head':  'Embudo de conversión — 7,796 usuarios',
+        'p3.k1':  'Resultado prueba A/B', 'p3.k1v': 'Significativo (p < 0.05)',
+        'p3.k2':  'Mayor caída',           'p3.k2v': '−13.3% en info de pago',
+        'f.1': 'Primera visita', 'f.2': 'Seleccionar ítem', 'f.3': 'Agregar al carrito',
+        'f.4': 'Iniciar pago',  'f.5': 'Info de pago',     'f.6': 'Compra ✓',
+        'p4.name':     'PythonForge: Portafolio Avanzado',
+        'p4.tagline':  '10 proyectos nivel producción · En progreso',
+        'p4.desc':     '10 proyectos Python de nivel producción que cubren el toolkit completo del analista — EDA, pruebas estadísticas, segmentación de clientes (RFM + clustering), pronóstico de series de tiempo y dashboards desplegables. Cada proyecto resuelve un problema de negocio real con código modular y decisiones documentadas.',
+        'p4.prog': 'Progreso', 'p4.progv': '3 de 10 completados',
+        't1': 'Solucionador de Sudoku',
+        't2': 'Procesador CSV/Excel por lotes',
+        't3': 'Dashboard con datos de API',
+        't4': 'Análisis Exploratorio y Estadística',
+        't5': 'Framework de Pruebas A/B',
+        't6': 'Segmentación de Clientes (RFM + Clustering)',
+        't7': 'Pipeline Analytics SQL + Python',
+        't8': 'Análisis y Pronóstico de Series de Tiempo',
+        't9': 'Dashboard Interactivo de Negocio',
+        't10': 'Pipeline Analítico End-to-End',
+        's.stack.tag':   'Habilidades',
+        's.stack.title': 'Stack Tecnológico',
+        'st.l1': 'Lenguajes', 'st.l2': 'Librerías',
+        'st.l3': 'Visualización', 'st.l4': 'Analítico',
+        'st.dash': 'Dashboards e Informes',
+        'st.ab': 'Pruebas A/B', 'st.cohort': 'Análisis de Cohortes y Embudos',
+        'st.etl': 'Pipelines ETL', 'st.stats': 'Inferencia Estadística',
+        's.certs.tag':   'Educación',
+        's.certs.title': 'Certificaciones',
+        'c1.name': 'Certificación Analista de Datos',
+        'c1.org':  'TripleTen — Programa completo · 9 meses',
+        'c2.name': 'Certificación Científico de Datos',
+        's.contact.tag': 'Contacto',
+        'contact.title': 'Construyamos<br><em>algo</em><br>juntos.',
+        'contact.body':  'Busco un rol remoto de analista de datos donde mi trabajo genere insights que muevan el negocio — no solo presentaciones que se archivan. Si eso es lo que tu equipo necesita, hablemos.',
+        'footer': '© 2026 Santiago Acosta — Analista de Datos · Bogotá, Colombia',
       }
     };
 
-    /* ── Engine ── */
-    let cache = [];
     let currentLang = 'en';
+    let cache = [];
 
     function buildCache() {
       cache = [];
@@ -633,8 +1160,8 @@
       document.title = lang === 'es'
         ? 'Santiago Acosta — Analista de Datos'
         : 'Santiago Acosta — Data Analyst';
-      const cvBtn = document.getElementById('cv-download');
-      if (cvBtn) cvBtn.href = lang === 'es' ? 'cv_es.pdf' : 'cv.pdf';
+      const cv = document.getElementById('cv-dl');
+      if (cv) cv.href = lang === 'es' ? 'cv_es.pdf' : 'cv.pdf';
     }
 
     function setLang(lang) {
@@ -646,16 +1173,16 @@
       setTimeout(() => {
         applyLang(lang);
         document.body.classList.remove('lang-switching');
-      }, 160);
+      }, 150);
     }
 
     document.addEventListener('DOMContentLoaded', buildCache);
 
-    /* ── Scroll animations ── */
-    const observer = new IntersectionObserver(entries => {
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.06 });
-    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
