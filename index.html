@@ -5,316 +5,285 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Santiago Acosta — Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ─── TOKENS ─── */
     :root {
-      --white:    #FFFFFF;
-      --bg:       #F9F9F8;
-      --bg2:      #F3F2EF;
-      --rule:     #E5E4E0;
-      --ink:      #111111;
-      --ink2:     #444444;
-      --muted:    #888888;
-      --blue:     #2563EB;
-      --blue-bg:  rgba(37,99,235,0.06);
-      --green:    #16A34A;
-      --red:      #DC2626;
-      --serif:    'Instrument Serif', Georgia, serif;
-      --sans:     'Inter', system-ui, sans-serif;
+      --bg:       #0D0D0D;
+      --bg2:      #141414;
+      --bg3:      #1A1A1A;
+      --border:   #222222;
+      --border2:  #2C2C2C;
+      --text:     #F0F0F0;
+      --text2:    #A0A0A0;
+      --text3:    #555555;
+      --blue:     #3B82F6;
+      --blue-dim: rgba(59,130,246,0.1);
+      --blue-bd:  rgba(59,130,246,0.25);
+      --green:    #22C55E;
+      --red:      #EF4444;
+      --amber:    #F59E0B;
+      --display:  'Space Grotesk', system-ui, sans-serif;
+      --body:     'Inter', system-ui, sans-serif;
       --mono:     'JetBrains Mono', monospace;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--sans);
-      background: var(--white);
-      color: var(--ink);
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
     ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-thumb { background: var(--rule); }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
-    /* ─── NAV ─── */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 52px;
+      height: 54px;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 32px;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
+      padding: 0 40px;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
     .nav-name {
-      font-family: var(--serif);
-      font-size: 16px; color: var(--ink);
+      font-family: var(--display);
+      font-size: 15px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--text);
     }
-    .nav-right { display: flex; align-items: center; gap: 6px; }
-    .nav-link {
-      font-size: 13px; font-weight: 500; color: var(--muted);
-      padding: 5px 10px; border-radius: 5px;
+    .nav-right { display: flex; align-items: center; gap: 2px; }
+    .nav-a {
+      font-family: var(--body); font-size: 13px; font-weight: 500;
+      color: var(--text2); padding: 5px 12px; border-radius: 5px;
       transition: color .15s, background .15s;
     }
-    .nav-link:hover { color: var(--ink); background: var(--bg); }
+    .nav-a:hover { color: var(--text); background: var(--bg3); }
     .nav-cta {
-      font-size: 12px; font-weight: 600;
+      font-family: var(--display); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.01em;
       color: #fff; background: var(--blue);
-      padding: 6px 14px; border-radius: 5px; margin-left: 4px;
+      padding: 6px 16px; border-radius: 5px; margin-left: 8px;
       transition: opacity .15s;
     }
-    .nav-cta:hover { opacity: .85; }
+    .nav-cta:hover { opacity: .82; }
     .lang-toggle {
       display: flex; align-items: center;
-      border: 1px solid var(--rule); border-radius: 5px;
-      overflow: hidden; margin-left: 4px;
+      border: 1px solid var(--border); border-radius: 5px;
+      overflow: hidden; margin-left: 8px;
     }
     .lang-btn {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
-      letter-spacing: .06em; color: var(--muted);
+      letter-spacing: .08em; color: var(--text2);
       background: none; border: none;
-      padding: 5px 9px; cursor: pointer;
+      padding: 5px 10px; cursor: pointer;
       transition: color .15s, background .15s;
     }
-    .lang-btn.active { color: var(--blue); background: var(--blue-bg); }
-    .lang-sep { width: 1px; height: 10px; background: var(--rule); }
+    .lang-btn.active { color: var(--blue); background: var(--blue-dim); }
+    .lang-sep { width: 1px; height: 10px; background: var(--border); }
     [data-i18n] { transition: opacity .12s; }
     body.sw [data-i18n] { opacity: 0; }
 
-    /* ─── LAYOUT ─── */
-    .wrap { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+    /* ── LAYOUT ── */
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 40px; }
 
-    /* ─── BIO / HERO ─── */
-    .bio {
-      padding: 96px 0 72px;
-    }
+    /* ── BIO ── */
+    .bio { padding: 106px 0 72px; }
     .bio-grid {
       display: grid;
-      grid-template-columns: 1fr 160px;
-      gap: 48px;
-      align-items: start;
+      grid-template-columns: 1fr 152px;
+      gap: 44px; align-items: start;
     }
     .bio-tag {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
       letter-spacing: .14em; text-transform: uppercase;
-      color: var(--blue); margin-bottom: 20px;
+      color: var(--blue); margin-bottom: 18px;
       display: flex; align-items: center; gap: 8px;
     }
-    .bio-tag::before { content: ''; width: 18px; height: 1px; background: var(--blue); }
+    .bio-tag::before { content: ''; width: 16px; height: 1px; background: var(--blue); }
     .bio h1 {
-      font-family: var(--serif);
-      font-size: clamp(34px, 5vw, 52px);
-      font-weight: 400; line-height: 1.06;
-      letter-spacing: -.02em; color: var(--ink);
-      margin-bottom: 22px;
+      font-family: var(--display);
+      font-size: clamp(36px, 5.5vw, 54px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.03em; color: var(--text);
+      margin-bottom: 20px;
     }
-    .bio h1 em { font-style: italic; color: var(--blue); }
-    .bio-text {
-      font-size: 15px; color: var(--ink2);
-      line-height: 1.8; margin-bottom: 20px;
+    .bio h1 em { font-style: normal; color: var(--blue); }
+    .bio-p {
+      font-size: 15px; color: var(--text2);
+      line-height: 1.82; margin-bottom: 16px;
     }
-    .bio-text strong { font-weight: 600; color: var(--ink); }
-    .bio-focus {
-      display: flex; flex-wrap: wrap; gap: 7px;
-      margin-bottom: 28px;
+    .bio-p strong { font-weight: 600; color: var(--text); }
+    .bio-pills {
+      display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px;
     }
-    .focus-pill {
-      font-size: 12px; font-weight: 500;
-      color: var(--ink2); background: var(--bg2);
-      border: 1px solid var(--rule);
-      padding: 4px 12px; border-radius: 20px;
+    .pill {
+      font-family: var(--mono); font-size: 10px; font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--text2); background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 4px 11px; border-radius: 4px;
     }
-    .focus-pill.primary {
+    .pill.blue {
       color: var(--blue);
-      background: var(--blue-bg);
-      border-color: rgba(37,99,235,.2);
+      background: var(--blue-dim);
+      border-color: var(--blue-bd);
     }
-    .live-pill {
+    .live-badge {
       display: inline-flex; align-items: center; gap: 7px;
-      font-size: 12px; font-weight: 500; color: var(--green);
-      background: rgba(22,163,74,.07);
-      border: 1px solid rgba(22,163,74,.2);
-      padding: 4px 12px; border-radius: 20px;
-      margin-bottom: 28px;
+      font-family: var(--body); font-size: 12px; font-weight: 500;
+      color: var(--green);
+      background: rgba(34,197,94,.07);
+      border: 1px solid rgba(34,197,94,.2);
+      padding: 5px 13px; border-radius: 4px;
+      margin-bottom: 26px;
     }
     .live-dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green);
-      animation: liveblink 2.2s ease infinite;
+      background: var(--green); flex-shrink: 0;
+      animation: pulse 2.2s ease infinite;
     }
-    @keyframes liveblink { 0%,100%{opacity:1} 50%{opacity:.35} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
     .bio-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    .btn-primary {
-      font-size: 13px; font-weight: 600; color: #fff; background: var(--blue);
+    .btn-fill {
+      font-family: var(--display); font-size: 13px; font-weight: 700;
+      color: #fff; background: var(--blue);
       padding: 9px 22px; border-radius: 5px;
       display: inline-flex; align-items: center; gap: 6px;
       transition: opacity .15s, transform .15s;
     }
-    .btn-primary:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-ghost {
-      font-size: 13px; font-weight: 500; color: var(--ink2);
-      border: 1px solid var(--rule);
+    .btn-fill:hover { opacity: .84; transform: translateY(-1px); }
+    .btn-outline {
+      font-family: var(--body); font-size: 13px; font-weight: 500;
+      color: var(--text2); border: 1px solid var(--border2);
       padding: 8px 18px; border-radius: 5px;
       display: inline-flex; align-items: center; gap: 6px;
       transition: border-color .15s, color .15s, transform .15s;
     }
-    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); transform: translateY(-1px); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
 
-    /* Profile photo */
-    .bio-photo-wrap {
+    /* Photo */
+    .photo-wrap {
       display: flex; flex-direction: column; align-items: center; gap: 10px;
-      padding-top: 12px;
+      padding-top: 8px;
     }
-    .bio-photo {
-      width: 148px; height: 148px;
-      border-radius: 8px;
+    .photo {
+      width: 144px; height: 144px; border-radius: 10px;
       object-fit: cover;
-      border: 2px solid var(--rule);
-      background: var(--bg2);
+      border: 2px solid var(--border2);
+      background: var(--bg3);
       display: block;
     }
-    .bio-photo-name {
-      font-family: var(--serif); font-size: 13px;
-      color: var(--muted); text-align: center;
+    .photo-name {
+      font-family: var(--display); font-size: 12px; font-weight: 600;
+      color: var(--text3); text-align: center; letter-spacing: .02em;
     }
 
-    /* ─── SECTION ─── */
-    section {
-      padding: 64px 0;
-      border-top: 1px solid var(--rule);
-    }
-    .sec-head { margin-bottom: 40px; }
+    /* ── SECTION ── */
+    section { padding: 64px 0; border-top: 1px solid var(--border); }
+    .sec-head { margin-bottom: 36px; }
     .sec-tag {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
       letter-spacing: .14em; text-transform: uppercase;
       color: var(--blue); margin-bottom: 8px;
     }
     .sec-title {
-      font-family: var(--serif);
-      font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 400; letter-spacing: -.02em; color: var(--ink);
+      font-family: var(--display);
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 700; letter-spacing: -0.03em; color: var(--text);
     }
 
-    /* ─── PROJECTS ─── */
-    .proj {
-      padding: 36px 0;
-      border-top: 1px solid var(--rule);
-    }
+    /* ── PROJECTS ── */
+    .proj { padding: 36px 0; border-top: 1px solid var(--border); }
     .proj:first-child { border-top: none; }
-
-    .proj-header { margin-bottom: 14px; }
     .proj-meta {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
       letter-spacing: .1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 6px;
+      color: var(--text3); margin-bottom: 6px;
     }
     .proj-name {
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: clamp(20px, 2.8vw, 26px);
-      font-weight: 400; letter-spacing: -.01em;
-      color: var(--ink);
+      font-weight: 700; letter-spacing: -0.03em; color: var(--text);
+      margin-bottom: 18px;
     }
-    .proj-body { margin-bottom: 20px; }
-    .proj-desc {
-      font-size: 14px; color: var(--ink2);
-      line-height: 1.82; margin-bottom: 16px;
-    }
-    .proj-desc strong { font-weight: 600; color: var(--ink); }
 
-    /* Stat row — the signature element */
-    .stat-row {
+    /* Stat strip — signature element */
+    .stat-strip {
       display: flex; gap: 0;
-      border: 1px solid var(--rule);
+      border: 1px solid var(--border);
       border-radius: 6px; overflow: hidden;
       margin-bottom: 20px;
     }
     .stat-cell {
       flex: 1; padding: 16px 20px;
-      border-right: 1px solid var(--rule);
-      background: var(--bg);
+      border-right: 1px solid var(--border);
+      background: var(--bg2);
+      border-left: 2px solid transparent;
+      transition: border-left-color .2s;
     }
+    .stat-cell:first-child { border-left-color: var(--blue); }
     .stat-cell:last-child { border-right: none; }
     .stat-label {
       font-family: var(--mono); font-size: 9px; font-weight: 500;
       letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 4px;
+      color: var(--text3); margin-bottom: 5px;
     }
     .stat-val {
-      font-family: var(--serif);
-      font-size: 28px; font-weight: 400;
-      letter-spacing: -.02em; color: var(--ink);
-      line-height: 1;
+      font-family: var(--display);
+      font-size: 26px; font-weight: 700;
+      letter-spacing: -0.03em; color: var(--text); line-height: 1;
     }
-    .stat-val.blue { color: var(--blue); }
+    .stat-val.blue  { color: var(--blue); }
     .stat-val.green { color: var(--green); }
-    .stat-val.red { color: var(--red); }
+    .stat-val.red   { color: var(--red); }
     .stat-note {
-      font-size: 11px; color: var(--muted); margin-top: 3px;
-      line-height: 1.4;
+      font-size: 11px; color: var(--text3); margin-top: 4px; line-height: 1.4;
     }
 
-    /* Inline chart area */
+    /* Visual block */
     .proj-visual {
-      background: var(--bg);
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      padding: 20px 24px;
-      margin-bottom: 20px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 20px 22px; margin-bottom: 20px;
     }
-    .visual-title {
+    .visual-label {
       font-family: var(--mono); font-size: 9px; font-weight: 500;
       letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 14px;
+      color: var(--text3); margin-bottom: 14px;
     }
 
-    /* Funnel bars */
-    .funnel { display: flex; flex-direction: column; gap: 7px; }
+    /* Funnel */
+    .funnel { display: flex; flex-direction: column; gap: 8px; }
     .funnel-row { display: flex; align-items: center; gap: 10px; }
-    .funnel-label {
-      font-family: var(--mono); font-size: 10px; color: var(--muted);
-      width: 112px; flex-shrink: 0;
+    .f-label {
+      font-family: var(--mono); font-size: 10px; color: var(--text2);
+      width: 116px; flex-shrink: 0;
     }
-    .funnel-track {
-      flex: 1; height: 5px; background: var(--bg2);
-      border-radius: 3px; overflow: hidden;
-    }
-    .funnel-fill { height: 100%; border-radius: 3px; }
-    .funnel-pct {
+    .f-track { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+    .f-fill { height: 100%; border-radius: 3px; }
+    .f-pct {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
-      width: 38px; text-align: right; flex-shrink: 0; color: var(--muted);
+      width: 38px; text-align: right; flex-shrink: 0;
     }
-    .funnel-pct.ok { color: var(--green); }
-    .funnel-pct.warn { color: #D97706; }
-    .funnel-pct.drop { color: var(--red); }
+    .f-pct.ok   { color: var(--green); }
+    .f-pct.warn { color: var(--amber); }
+    .f-pct.drop { color: var(--red); }
+    .f-pct.mid  { color: var(--text2); }
 
-    /* Stack icons visual */
-    .stack-icons {
-      display: flex; flex-wrap: wrap; gap: 10px;
+    .proj-desc {
+      font-size: 14px; color: var(--text2);
+      line-height: 1.84; margin-bottom: 16px;
     }
-    .stack-icon-item {
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      width: 64px;
-    }
-    .stack-icon-box {
-      width: 48px; height: 48px; border-radius: 8px;
-      background: var(--white); border: 1px solid var(--rule);
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color .15s, box-shadow .15s;
-    }
-    .stack-icon-box:hover { border-color: var(--blue); box-shadow: 0 2px 8px rgba(37,99,235,.1); }
-    .stack-icon-box svg { width: 26px; height: 26px; }
-    .stack-icon-label {
-      font-family: var(--mono); font-size: 9px; font-weight: 500;
-      letter-spacing: .04em; color: var(--muted); text-align: center;
-      line-height: 1.2;
-    }
-
+    .proj-desc strong { font-weight: 600; color: var(--text); }
     .proj-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .tag {
       font-family: var(--mono); font-size: 10px;
-      color: var(--muted); background: var(--bg2);
-      border: 1px solid var(--rule);
+      color: var(--text3); background: var(--bg3);
+      border: 1px solid var(--border);
       padding: 3px 9px; border-radius: 4px;
     }
     .proj-link {
@@ -325,106 +294,119 @@
     }
     .proj-link:hover { gap: 9px; }
 
-    /* ─── TECH STACK SECTION ─── */
-    .stack-section-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      overflow: hidden;
+    /* ── STACK ── */
+    .stack-icons {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 20px 22px; margin-bottom: 20px;
     }
-    .stack-col {
-      background: var(--white);
-      padding: 24px 28px;
+    .si {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      width: 60px;
     }
-    .stack-col-label {
+    .si-box {
+      width: 46px; height: 46px; border-radius: 8px;
+      background: var(--bg3); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .15s;
+    }
+    .si-box:hover { border-color: var(--blue); }
+    .si-box svg { width: 24px; height: 24px; }
+    .si-label {
+      font-family: var(--mono); font-size: 9px; font-weight: 500;
+      color: var(--text3); text-align: center; line-height: 1.2;
+    }
+    .stack-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+    }
+    .sc {
+      background: var(--bg2); padding: 22px 26px;
+    }
+    .sc-label {
       font-family: var(--mono); font-size: 9px; font-weight: 500;
       letter-spacing: .14em; text-transform: uppercase;
       color: var(--blue); margin-bottom: 14px;
     }
-    .stack-item {
-      font-size: 13px; color: var(--ink2);
-      padding: 5px 0; border-bottom: 1px solid var(--bg2);
+    .si-item {
+      font-size: 13px; color: var(--text2);
+      padding: 5px 0; border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 8px;
     }
-    .stack-item:last-child { border: none; }
-    .stack-item::before {
+    .si-item:last-child { border: none; }
+    .si-item::before {
       content: ''; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--rule); flex-shrink: 0;
+      background: var(--border2); flex-shrink: 0;
     }
 
-    /* ─── EDUCATION TIMELINE ─── */
-    .edu-list { display: flex; flex-direction: column; gap: 0; }
+    /* ── EDUCATION ── */
     .edu-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--rule);
+      display: grid; grid-template-columns: 90px 1fr;
+      gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border);
       align-items: start;
     }
-    .edu-item:first-child { border-top: 1px solid var(--rule); }
+    .edu-item:first-child { border-top: 1px solid var(--border); }
     .edu-year {
       font-family: var(--mono); font-size: 11px; font-weight: 500;
-      color: var(--muted); padding-top: 2px;
+      color: var(--text3); padding-top: 2px;
     }
-    .edu-right {}
-    .edu-name { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-    .edu-org { font-size: 13px; color: var(--muted); }
+    .edu-name { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .edu-org { font-size: 13px; color: var(--text2); }
 
-    /* ─── CONTACT ─── */
+    /* ── CONTACT ── */
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 48px; align-items: start;
     }
     .contact-h {
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: clamp(28px, 4vw, 42px);
-      font-weight: 400; letter-spacing: -.02em;
-      line-height: 1.08; color: var(--ink);
-      margin-bottom: 14px;
+      font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.06; color: var(--text); margin-bottom: 14px;
     }
-    .contact-h em { font-style: italic; color: var(--blue); }
-    .contact-sub { font-size: 14px; color: var(--ink2); line-height: 1.75; }
+    .contact-h em { font-style: normal; color: var(--blue); }
+    .contact-sub { font-size: 14px; color: var(--text2); line-height: 1.75; }
     .contact-links { display: flex; flex-direction: column; gap: 6px; }
-    .contact-link {
+    .c-link {
       display: flex; align-items: center; gap: 12px;
       padding: 13px 16px;
-      background: var(--bg); border: 1px solid var(--rule);
-      border-radius: 5px;
-      font-size: 13px; color: var(--ink2);
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 5px; font-size: 13px; color: var(--text2);
       transition: border-color .15s, color .15s, background .15s;
     }
-    .contact-link:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
-    .cl-icon { width: 32px; height: 32px; border-radius: 4px; background: var(--bg2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .cl-icon svg { width: 16px; height: 16px; }
+    .c-link:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .c-icon {
+      width: 30px; height: 30px; border-radius: 5px;
+      background: var(--bg3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .c-icon svg { width: 14px; height: 14px; }
 
-    /* ─── FOOTER ─── */
+    /* ── FOOTER ── */
     footer {
-      text-align: center; padding: 24px 32px;
+      text-align: center; padding: 22px 40px;
       font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
-      color: var(--muted); border-top: 1px solid var(--rule);
+      color: var(--text3); border-top: 1px solid var(--border);
     }
 
-    /* ─── REVEAL ─── */
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 680px) {
+    /* ── RESPONSIVE ── */
+    @media (max-width: 660px) {
       nav { padding: 0 16px; }
-      .nav-link { display: none; }
+      .nav-a { display: none; }
       .wrap { padding: 0 16px; }
-      .bio { padding: 80px 0 56px; }
+      .bio { padding: 84px 0 56px; }
       .bio-grid { grid-template-columns: 1fr; }
-      .bio-photo-wrap { flex-direction: row; align-items: center; gap: 16px; order: -1; }
-      .bio-photo { width: 72px; height: 72px; }
-      .stat-row { flex-wrap: wrap; }
-      .stat-cell { min-width: 120px; }
+      .photo-wrap { flex-direction: row; align-items: center; gap: 14px; order: -1; }
+      .photo { width: 68px; height: 68px; }
+      .stat-strip { flex-wrap: wrap; }
+      .stat-cell { min-width: 140px; }
       .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .stack-section-grid { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, .reveal { animation: none !important; transition: none !important; }
@@ -437,9 +419,9 @@
 <nav>
   <div class="nav-name">Santiago Acosta</div>
   <div class="nav-right">
-    <a class="nav-link" href="#work" data-i18n="nav.work">Work</a>
-    <a class="nav-link" href="#stack" data-i18n="nav.stack">Stack</a>
-    <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+    <a class="nav-a" href="#work" data-i18n="nav.work">Work</a>
+    <a class="nav-a" href="#stack" data-i18n="nav.stack">Stack</a>
+    <a class="nav-a" href="#contact" data-i18n="nav.contact">Contact</a>
     <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank" rel="noopener">LinkedIn ↗</a>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
@@ -456,44 +438,43 @@
       <div>
         <div class="bio-tag" data-i18n="bio.tag">Data Analyst · Bogotá · Open to remote</div>
         <h1 data-i18n="bio.h1">I turn messy data<br>into <em>clear decisions.</em></h1>
-        <p class="bio-text" data-i18n="bio.p1">
-          I'm Santiago Acosta — a data analyst with hands-on experience across the full analytics lifecycle:
+        <p class="bio-p" data-i18n="bio.p1">
+          I'm Santiago Acosta — a data analyst with experience across the full analytics lifecycle:
           <strong>SQL modeling, Python-based statistical analysis, A/B testing,</strong> and
           <strong>Power BI dashboards</strong> built to answer the questions teams actually act on.
         </p>
-        <p class="bio-text" data-i18n="bio.p2">
-          My background in Mechanical Engineering at Universidad de los Andes trained me to think in systems
-          and validate assumptions before drawing conclusions. That same rigor drives how I approach data.
-          I'm now focused on <strong>product analytics, business intelligence, and data-driven decision support</strong>
-          for remote-first teams.
+        <p class="bio-p" data-i18n="bio.p2">
+          My background in Mechanical Engineering at Universidad de los Andes (2018–2023) trained me to
+          think in systems and validate assumptions rigorously before drawing conclusions.
+          I'm now focused on <strong>product analytics and business intelligence</strong> for remote-first teams.
         </p>
-        <div class="bio-focus">
-          <span class="focus-pill primary" data-i18n="fp.1">SQL &amp; Python</span>
-          <span class="focus-pill primary" data-i18n="fp.2">A/B Testing</span>
-          <span class="focus-pill primary" data-i18n="fp.3">Power BI · DAX</span>
-          <span class="focus-pill" data-i18n="fp.4">Product Analytics</span>
-          <span class="focus-pill" data-i18n="fp.5">Business Intelligence</span>
-          <span class="focus-pill" data-i18n="fp.6">Statistical Inference</span>
+        <div class="bio-pills">
+          <span class="pill blue" data-i18n="fp.1">SQL &amp; Python</span>
+          <span class="pill blue" data-i18n="fp.2">A/B Testing</span>
+          <span class="pill blue" data-i18n="fp.3">Power BI · DAX</span>
+          <span class="pill" data-i18n="fp.4">Product Analytics</span>
+          <span class="pill" data-i18n="fp.5">Business Intelligence</span>
+          <span class="pill" data-i18n="fp.6">Statistical Inference</span>
         </div>
-        <div class="live-pill">
+        <div class="live-badge">
           <span class="live-dot"></span>
-          <span data-i18n="bio.live">Available for remote roles — open to immediate start</span>
+          <span data-i18n="bio.live">Available for remote roles</span>
         </div>
         <div class="bio-actions">
-          <a class="btn-primary" href="#work" data-i18n="bio.btn1">View my work</a>
-          <a class="btn-ghost" id="cv-dl" href="Santiago_Acosta_CV.pdf" download data-i18n="bio.btn2">Download CV</a>
-          <a class="btn-ghost" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn-fill" href="#work" data-i18n="bio.btn1">View my work</a>
+          <a class="btn-outline" id="cv-dl" href="cv.pdf" download data-i18n="bio.btn2">Download CV</a>
+          <a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
-      <div class="bio-photo-wrap">
-        <img class="bio-photo" src="profile.jpg" alt="Santiago Acosta" onerror="this.style.background='var(--bg2)'">
-        <div class="bio-photo-name">Santiago<br>Acosta</div>
+      <div class="photo-wrap">
+        <img class="photo" src="images/profile.jpg" alt="Santiago Acosta" onerror="this.style.background='#1A1A1A'">
+        <div class="photo-name">Santiago Acosta</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PROJECTS -->
+<!-- WORK -->
 <section id="work" class="reveal">
   <div class="wrap">
     <div class="sec-head">
@@ -503,207 +484,196 @@
 
     <!-- P1: Northwind -->
     <div class="proj">
-      <div class="proj-header">
-        <div class="proj-meta" data-i18n="p1.meta">BI · Star schema · Revenue analysis</div>
-        <div class="proj-name" data-i18n="p1.name">Northwind Revenue Insights</div>
-      </div>
-      <div class="stat-row">
+      <div class="proj-meta" data-i18n="p1.meta">BI · Star schema · Revenue analysis</div>
+      <div class="proj-name" data-i18n="p1.name">Northwind Revenue Insights</div>
+      <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p1.s1.l">Revenue analyzed</div>
+          <div class="stat-label" data-i18n="p1.s1l">Revenue analyzed</div>
           <div class="stat-val blue">$13.08M</div>
-          <div class="stat-note" data-i18n="p1.s1.n">H1 2006 · wholesale distributor</div>
+          <div class="stat-note" data-i18n="p1.s1n">H1 2006 · wholesale distributor</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p1.s2.l">Revenue concentration</div>
+          <div class="stat-label" data-i18n="p1.s2l">Top-3 SKU share</div>
           <div class="stat-val red">64%</div>
-          <div class="stat-note" data-i18n="p1.s2.n">Top 3 of 77 SKUs — concentration risk</div>
+          <div class="stat-note" data-i18n="p1.s2n">of total revenue — concentration risk</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p1.s3.l">Dashboard views</div>
+          <div class="stat-label" data-i18n="p1.s3l">Dashboard views</div>
           <div class="stat-val">3</div>
-          <div class="stat-note" data-i18n="p1.s3.n">Product · employee · category mix</div>
+          <div class="stat-note" data-i18n="p1.s3n">Product · employee · category</div>
         </div>
       </div>
 
-      <!-- Visual: Revenue breakdown bar -->
+      <!-- Visual: Revenue concentration bar — 64% documented fact -->
       <div class="proj-visual">
-        <div class="visual-title" data-i18n="p1.vt">Revenue share by product group — top concentration</div>
-        <svg viewBox="0 0 680 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <div class="visual-label" data-i18n="p1.vl">Revenue concentration — top 3 SKUs vs. rest of catalog (77 SKUs total)</div>
+        <svg viewBox="0 0 700 52" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
           <defs>
-            <linearGradient id="barBlue" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stop-color="#2563EB"/>
-              <stop offset="100%" stop-color="#3B82F6"/>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#60A5FA"/>
             </linearGradient>
           </defs>
+          <!-- Full bar background -->
+          <rect x="0" y="16" width="700" height="20" rx="4" fill="#1A1A1A"/>
+          <!-- 64% fill -->
+          <rect x="0" y="16" width="448" height="20" rx="4" fill="url(#g1)"/>
           <!-- Labels -->
-          <text x="0" y="12" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" letter-spacing="1">PRODUCT A</text>
-          <text x="0" y="38" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" letter-spacing="1">PRODUCT B</text>
-          <text x="0" y="64" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" letter-spacing="1">PRODUCT C</text>
-          <text x="0" y="90" font-family="JetBrains Mono,monospace" font-size="9" fill="#bbb" letter-spacing="1">ALL OTHERS</text>
-          <!-- Bars -->
-          <rect x="88" y="2" width="238" height="12" rx="2" fill="url(#barBlue)"/>
-          <rect x="88" y="28" width="175" height="12" rx="2" fill="url(#barBlue)"/>
-          <rect x="88" y="54" width="140" height="12" rx="2" fill="url(#barBlue)"/>
-          <rect x="88" y="80" width="264" height="12" rx="2" fill="#E5E4E0"/>
-          <!-- Values -->
-          <text x="334" y="12" font-family="JetBrains Mono,monospace" font-size="9" fill="#2563EB" dx="6" dominant-baseline="middle" dy="6">25%</text>
-          <text x="271" y="28" font-family="JetBrains Mono,monospace" font-size="9" fill="#2563EB" dx="6" dominant-baseline="middle" dy="6">21%</text>
-          <text x="236" y="54" font-family="JetBrains Mono,monospace" font-size="9" fill="#2563EB" dx="6" dominant-baseline="middle" dy="6">18%</text>
-          <text x="360" y="80" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" dx="6" dominant-baseline="middle" dy="6">36%</text>
+          <text x="8" y="31" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#fff">Top 3 SKUs · 64%</text>
+          <text x="460" y="31" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="600" fill="#555">Remaining 74 SKUs · 36%</text>
+          <text x="0" y="10" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" letter-spacing="1">0%</text>
+          <text x="440" y="10" font-family="JetBrains Mono,monospace" font-size="8" fill="#3B82F6" letter-spacing="1">64%</text>
+          <text x="680" y="10" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" letter-spacing="1" text-anchor="end">100%</text>
         </svg>
       </div>
 
-      <div class="proj-body">
-        <p class="proj-desc" data-i18n="p1.desc">
-          Business intelligence analysis of a wholesale distributor's H1 2006 performance.
-          Designed a <strong>star schema data model from scratch</strong> and built drill-through Power BI dashboards
-          covering product margins, employee quota attainment, and category mix.
-          Key finding: three SKUs drive <strong>64% of $13M in total revenue</strong> —
-          a concentration risk with direct implications for procurement and pricing strategy.
-        </p>
-        <div class="proj-tools">
-          <span class="tag">MySQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Star schema</span>
-        </div>
+      <p class="proj-desc" data-i18n="p1.desc">
+        Business intelligence analysis of a wholesale distributor's H1 2006 performance.
+        Designed a <strong>star schema data model from scratch</strong> and built three drill-through
+        Power BI dashboards covering product margins, employee quota attainment, and category mix.
+        Key finding: just three SKUs drive <strong>64% of $13.08M in total revenue</strong> —
+        a concentration risk with direct implications for procurement and pricing strategy.
+      </p>
+      <div class="proj-tools">
+        <span class="tag">MySQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Star schema</span>
       </div>
-      <a class="proj-link" href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
     </div>
 
     <!-- P2: EURUSD -->
     <div class="proj">
-      <div class="proj-header">
-        <div class="proj-meta" data-i18n="p2.meta">Quantitative finance · Time series · Backtesting</div>
-        <div class="proj-name" data-i18n="p2.name">EURUSD Quantitative Pipeline</div>
-      </div>
-      <div class="stat-row">
+      <div class="proj-meta" data-i18n="p2.meta">Quantitative finance · Time series · Backtesting</div>
+      <div class="proj-name" data-i18n="p2.name">EURUSD Quantitative Pipeline</div>
+      <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p2.s1.l">Observations</div>
+          <div class="stat-label" data-i18n="p2.s1l">Observations</div>
           <div class="stat-val blue">81,938</div>
-          <div class="stat-note" data-i18n="p2.s1.n">1-min OHLC · 6 years</div>
+          <div class="stat-note" data-i18n="p2.s1n">1-min OHLC · 6 years of data</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p2.s2.l">Strategy win rate</div>
+          <div class="stat-label" data-i18n="p2.s2l">Strategy win rate</div>
           <div class="stat-val green">~59%</div>
-          <div class="stat-note" data-i18n="p2.s2.n">Bootstrapped CI · Kelly sizing</div>
+          <div class="stat-note" data-i18n="p2.s2n">Bootstrapped CI · Kelly sizing</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p2.s3.l">Look-ahead bias</div>
-          <div class="stat-val" style="font-size:22px;font-family:var(--sans);font-weight:600;" data-i18n="p2.s3.v">Zero</div>
-          <div class="stat-note" data-i18n="p2.s3.n">Eliminated by architecture</div>
+          <div class="stat-label" data-i18n="p2.s3l">Look-ahead bias</div>
+          <div class="stat-val" style="font-size:20px;" data-i18n="p2.s3v">Zero</div>
+          <div class="stat-note" data-i18n="p2.s3n">Eliminated by engine design</div>
         </div>
       </div>
 
-      <!-- Visual: Win rate distribution -->
+      <!-- Visual: Schematic only — clearly labeled -->
       <div class="proj-visual">
-        <div class="visual-title" data-i18n="p2.vt">Rolling 500-trade win rate — strategy validation</div>
-        <svg viewBox="0 0 680 72" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <div class="visual-label" data-i18n="p2.vl">Pipeline architecture — data flow (schematic)</div>
+        <svg viewBox="0 0 700 44" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
           <defs>
-            <linearGradient id="lineGrad" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
-            </linearGradient>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#3B82F6"/>
+            </marker>
           </defs>
-          <!-- 50% baseline -->
-          <line x1="0" y1="46" x2="680" y2="46" stroke="#E5E4E0" stroke-width="1" stroke-dasharray="4 4"/>
-          <text x="2" y="44" font-family="JetBrains Mono,monospace" font-size="8" fill="#bbb">50%</text>
-          <!-- 59% line -->
-          <line x1="0" y1="28" x2="680" y2="28" stroke="#16A34A" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
-          <text x="2" y="26" font-family="JetBrains Mono,monospace" font-size="8" fill="#16A34A">59%</text>
-          <!-- Area fill -->
-          <path d="M0,52 C40,48 80,42 130,38 C180,34 220,30 280,32 C340,34 380,28 440,26 C500,24 560,30 620,28 C650,27 668,28 680,26 L680,72 L0,72 Z" fill="url(#lineGrad)"/>
-          <!-- Line -->
-          <path d="M0,52 C40,48 80,42 130,38 C180,34 220,30 280,32 C340,34 380,28 440,26 C500,24 560,30 620,28 C650,27 668,28 680,26" fill="none" stroke="#2563EB" stroke-width="2" stroke-linejoin="round"/>
+          <!-- Boxes -->
+          <rect x="0" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="148" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="296" y="10" width="128" height="24" rx="4" fill="#1A1A1A" stroke="#3B82F6" stroke-width="1"/>
+          <rect x="474" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="612" y="10" width="88" height="24" rx="4" fill="#1F2937" stroke="#22C55E" stroke-width="1"/>
+          <!-- Labels -->
+          <text x="54" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Raw OHLC</text>
+          <text x="202" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Clean &amp; Align</text>
+          <text x="360" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">Backtest Engine</text>
+          <text x="528" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Bootstrap CI</text>
+          <text x="656" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">~59% WR</text>
+          <!-- Arrows -->
+          <line x1="110" y1="22" x2="146" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="258" y1="22" x2="294" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="426" y1="22" x2="472" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="584" y1="22" x2="610" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
         </svg>
       </div>
 
-      <div class="proj-body">
-        <p class="proj-desc" data-i18n="p2.desc">
-          End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations).
-          Built a <strong>custom vectorized backtesting engine in NumPy</strong> — no external strategy libraries —
-          with look-ahead bias eliminated by architectural design, not post-hoc filtering.
-          Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence intervals
-          and Kelly criterion position sizing.
-        </p>
-        <div class="proj-tools">
-          <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Bootstrap CI</span>
-        </div>
+      <p class="proj-desc" data-i18n="p2.desc">
+        End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations).
+        Built a <strong>custom vectorized backtesting engine in NumPy</strong> — no external strategy libraries —
+        with look-ahead bias eliminated by architectural design, not post-hoc filtering.
+        Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence
+        intervals and Kelly criterion position sizing.
+      </p>
+      <div class="proj-tools">
+        <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Bootstrap CI</span>
       </div>
-      <a class="proj-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
     </div>
 
     <!-- P3: RappiPlus -->
     <div class="proj">
-      <div class="proj-header">
-        <div class="proj-meta" data-i18n="p3.meta">TripleTen final · A/B testing · Cohort analysis · Power BI</div>
-        <div class="proj-name" data-i18n="p3.name">RappiPlus: End-to-End Business Analysis</div>
-      </div>
-      <div class="stat-row">
+      <div class="proj-meta" data-i18n="p3.meta">TripleTen final · A/B testing · Cohort analysis · Power BI</div>
+      <div class="proj-name" data-i18n="p3.name">RappiPlus: End-to-End Business Analysis</div>
+      <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p3.s1.l">Funnel conversion</div>
-          <div class="stat-val green">80.0%</div>
-          <div class="stat-note" data-i18n="p3.s1.n">7,796 users · 6-stage SQL</div>
+          <div class="stat-label" data-i18n="p3.s1l">Funnel users</div>
+          <div class="stat-val blue">7,796</div>
+          <div class="stat-note" data-i18n="p3.s1n">6-stage SQL conversion funnel</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p3.s2.l">Critical drop-off</div>
+          <div class="stat-label" data-i18n="p3.s2l">Critical drop-off</div>
           <div class="stat-val red">−13.3%</div>
-          <div class="stat-note" data-i18n="p3.s2.n">At payment entry</div>
+          <div class="stat-note" data-i18n="p3.s2n">At payment entry stage</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p3.s3.l">A/B test result</div>
-          <div class="stat-val blue">p &lt; 0.05</div>
-          <div class="stat-note" data-i18n="p3.s3.n">Z-test · statistically significant</div>
+          <div class="stat-label" data-i18n="p3.s3l">A/B test result</div>
+          <div class="stat-val green">p &lt; 0.05</div>
+          <div class="stat-note" data-i18n="p3.s3n">Z-test · statistically significant</div>
         </div>
       </div>
 
-      <!-- Funnel visual -->
+      <!-- Funnel — all numbers from the actual project -->
       <div class="proj-visual">
-        <div class="visual-title" data-i18n="p3.vt">Conversion funnel — 7,796 users</div>
+        <div class="visual-label" data-i18n="p3.vl">Conversion funnel — 7,796 users across 6 stages</div>
         <div class="funnel">
           <div class="funnel-row">
-            <span class="funnel-label" data-i18n="f.1">First visit</span>
-            <div class="funnel-track"><div class="funnel-fill" style="width:100%;background:#2563EB;opacity:.85"></div></div>
-            <span class="funnel-pct ok">100%</span>
+            <span class="f-label" data-i18n="f1">First visit</span>
+            <div class="f-track"><div class="f-fill" style="width:100%;background:#3B82F6;opacity:.9"></div></div>
+            <span class="f-pct ok">100%</span>
           </div>
           <div class="funnel-row">
-            <span class="funnel-label" data-i18n="f.2">Select item</span>
-            <div class="funnel-track"><div class="funnel-fill" style="width:97.3%;background:#2563EB;opacity:.75"></div></div>
-            <span class="funnel-pct">97.3%</span>
+            <span class="f-label" data-i18n="f2">Select item</span>
+            <div class="f-track"><div class="f-fill" style="width:97.3%;background:#3B82F6;opacity:.75"></div></div>
+            <span class="f-pct mid">97.3%</span>
           </div>
           <div class="funnel-row">
-            <span class="funnel-label" data-i18n="f.3">Add to cart</span>
-            <div class="funnel-track"><div class="funnel-fill" style="width:91.7%;background:#2563EB;opacity:.65"></div></div>
-            <span class="funnel-pct">91.7%</span>
+            <span class="f-label" data-i18n="f3">Add to cart</span>
+            <div class="f-track"><div class="f-fill" style="width:91.7%;background:#3B82F6;opacity:.6"></div></div>
+            <span class="f-pct mid">91.7%</span>
           </div>
           <div class="funnel-row">
-            <span class="funnel-label" data-i18n="f.4">Begin checkout</span>
-            <div class="funnel-track"><div class="funnel-fill" style="width:86.6%;background:#D97706"></div></div>
-            <span class="funnel-pct warn">86.6%</span>
+            <span class="f-label" data-i18n="f4">Begin checkout</span>
+            <div class="f-track"><div class="f-fill" style="width:86.6%;background:#F59E0B"></div></div>
+            <span class="f-pct warn">86.6%</span>
           </div>
           <div class="funnel-row">
-            <span class="funnel-label" data-i18n="f.5">Payment info</span>
-            <div class="funnel-track"><div class="funnel-fill" style="width:80.2%;background:#DC2626"></div></div>
-            <span class="funnel-pct drop">80.2%</span>
+            <span class="f-label" data-i18n="f5">Payment info</span>
+            <div class="f-track"><div class="f-fill" style="width:80.2%;background:#EF4444"></div></div>
+            <span class="f-pct drop">80.2%</span>
           </div>
           <div class="funnel-row">
-            <span class="funnel-label" data-i18n="f.6">Purchase ✓</span>
-            <div class="funnel-track"><div class="funnel-fill" style="width:80.04%;background:#16A34A"></div></div>
-            <span class="funnel-pct ok">80.0%</span>
+            <span class="f-label" data-i18n="f6">Purchase ✓</span>
+            <div class="f-track"><div class="f-fill" style="width:80.0%;background:#22C55E"></div></div>
+            <span class="f-pct ok">80.0%</span>
           </div>
         </div>
       </div>
 
-      <div class="proj-body">
-        <p class="proj-desc" data-i18n="p3.desc">
-          Full analytics lifecycle for a subscription service — data audit through executive dashboards
-          in six structured stages. Built a <strong>7,796-user SQL conversion funnel</strong> identifying
-          a critical 13.3% drop-off at payment entry, monthly cohort retention modeling, and a
-          <strong>statistically validated A/B test</strong> (Z-test, p&lt;0.05) on a checkout redesign.
-          Two Power BI dashboards with DAX measures and drill-through. Reviewed and approved by TripleTen.
-        </p>
-        <div class="proj-tools">
-          <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Z-test</span><span class="tag">Cohort analysis</span>
-        </div>
+      <p class="proj-desc" data-i18n="p3.desc">
+        Full analytics lifecycle for a subscription service — raw data audit through executive dashboards
+        in six structured stages. Built a <strong>7,796-user SQL conversion funnel</strong> that identified
+        a 13.3% drop-off at payment entry, monthly cohort retention modeling, and a
+        <strong>statistically validated A/B test</strong> (Z-test, p&lt;0.05) on a checkout redesign.
+        Two Power BI dashboards with DAX measures and drill-through filters. Reviewed and approved by TripleTen.
+      </p>
+      <div class="proj-tools">
+        <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Z-test</span><span class="tag">Cohort analysis</span>
       </div>
-      <a class="proj-link" href="https://github.com/santiagoacostab17/end_to_end_business_analysis" target="_blank" rel="noopener" data-i18n="common.gh">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/santiagoacostab17/end_to_end_business_analysis" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
     </div>
 
   </div>
@@ -717,126 +687,99 @@
       <h2 class="sec-title" data-i18n="s.stack.title">Tech stack</h2>
     </div>
 
-    <!-- Icon row -->
-    <div class="proj-visual" style="margin-bottom:24px;">
-      <div class="visual-title" data-i18n="st.vis.title">Core tools</div>
-      <div class="stack-icons">
-        <!-- Python -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 3C12.95 3 13.67 7.68 13.67 7.68L13.68 12.5H24.17V14H8.67S3 13.27 3 24.41C3 35.55 7.93 35.17 7.93 35.17H10.8V30.18S10.63 25.25 15.64 25.25H26.07S30.75 25.33 30.75 20.73V9.27C30.75 9.27 31.47 3 24 3Z" fill="#3776AB"/>
-              <path d="M24 45C35.05 45 34.33 40.32 34.33 40.32L34.32 35.5H23.83V34H39.33S45 34.73 45 23.59C45 12.45 40.07 12.83 40.07 12.83H37.2V17.82S37.37 22.75 32.36 22.75H21.93S17.25 22.67 17.25 27.27V38.73C17.25 38.73 16.53 45 24 45Z" fill="#FFD43B"/>
-              <circle cx="19.5" cy="8.5" r="1.5" fill="#fff"/>
-              <circle cx="28.5" cy="39.5" r="1.5" fill="#fff"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">Python</span>
-        </div>
-        <!-- SQL -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="24" cy="12" rx="16" ry="6" fill="#2563EB" opacity=".9"/>
-              <path d="M8 12v8c0 3.31 7.16 6 16 6s16-2.69 16-6v-8c0 3.31-7.16 6-16 6S8 15.31 8 12z" fill="#3B82F6"/>
-              <path d="M8 20v8c0 3.31 7.16 6 16 6s16-2.69 16-6v-8c0 3.31-7.16 6-16 6S8 23.31 8 20z" fill="#60A5FA"/>
-              <path d="M8 28v8c0 3.31 7.16 6 16 6s16-2.69 16-6v-8c0 3.31-7.16 6-16 6S8 31.31 8 28z" fill="#93C5FD"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">SQL</span>
-        </div>
-        <!-- Power BI -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="28" width="8" height="14" rx="1" fill="#F2C811"/>
-              <rect x="16" y="20" width="8" height="22" rx="1" fill="#F2C811" opacity=".85"/>
-              <rect x="26" y="12" width="8" height="30" rx="1" fill="#F2C811" opacity=".7"/>
-              <rect x="36" y="6" width="7" height="36" rx="1" fill="#F2C811" opacity=".55"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">Power BI</span>
-        </div>
-        <!-- pandas -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <rect x="8" y="6" width="10" height="36" rx="2" fill="#130754"/>
-              <rect x="30" y="6" width="10" height="36" rx="2" fill="#E70488"/>
-              <rect x="18" y="18" width="12" height="12" rx="1" fill="#130754" opacity=".4"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">pandas</span>
-        </div>
-        <!-- Git -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M44.5 21.5L26.5 3.5a3.53 3.53 0 00-5 0l-3.5 3.5 4.46 4.46a4.2 4.2 0 015.3 5.3L32 21v.1a4.2 4.2 0 11-1.5 1.5l-.1-.1-4.24-4.24v11.17a4.2 4.2 0 11-2 0V18.1a4.21 4.21 0 01-2.26-5.5L17.5 8.15l-14 14a3.53 3.53 0 000 5l18 18a3.53 3.53 0 005 0l18-18a3.53 3.53 0 000-5z" fill="#F05032"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">Git</span>
-        </div>
-        <!-- Excel -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="36" height="36" rx="3" fill="#1D7044"/>
-              <text x="10" y="30" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#fff">X</text>
-              <line x1="26" y1="10" x2="26" y2="38" stroke="#fff" stroke-width="1" opacity=".4"/>
-              <line x1="6" y1="24" x2="42" y2="24" stroke="#fff" stroke-width="1" opacity=".4"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">Excel</span>
-        </div>
-        <!-- SciPy -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 34C14 34 18 28 24 24C30 20 34 14 40 14" stroke="#0C55A5" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <path d="M8 14C14 14 18 20 24 24C30 28 34 34 40 34" stroke="#8EC44A" stroke-width="3" fill="none" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">SciPy</span>
-        </div>
-        <!-- DAX -->
-        <div class="stack-icon-item">
-          <div class="stack-icon-box">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <text x="6" y="30" font-family="JetBrains Mono,monospace" font-size="13" font-weight="500" fill="#2563EB">DAX</text>
-              <line x1="6" y1="34" x2="42" y2="34" stroke="#2563EB" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <span class="stack-icon-label">DAX</span>
-        </div>
-      </div>
+    <div class="stack-icons">
+      <!-- Python -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4C13.5 4 14.2 8.4 14.2 8.4L14.2 13H24.5V14.5H9.5C9.5 14.5 4 13.8 4 24.5C4 35.2 8.7 34.8 8.7 34.8H11.4V29.9C11.4 29.9 11.2 25.2 16 25.2H26.2C26.2 25.2 30.7 25.3 30.7 20.9V9.7C30.7 9.7 31.4 4 24 4Z" fill="#3776AB"/>
+          <path d="M24 44C34.5 44 33.8 39.6 33.8 39.6L33.8 34.9H23.5V33.5H38.5C38.5 33.5 44 34.2 44 23.5C44 12.8 39.3 13.2 39.3 13.2H36.6V18.1C36.6 18.1 36.8 22.8 32 22.8H21.8C21.8 22.8 17.3 22.7 17.3 27.1V38.3C17.3 38.3 16.6 44 24 44Z" fill="#FFD43B"/>
+          <circle cx="19" cy="8.5" r="1.5" fill="#fff"/>
+          <circle cx="29" cy="39.5" r="1.5" fill="#fff"/>
+        </svg>
+      </div><span class="si-label">Python</span></div>
+      <!-- SQL -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="24" cy="13" rx="15" ry="5.5" fill="#3B82F6" opacity=".9"/>
+          <path d="M9 13v7c0 3 6.7 5.5 15 5.5s15-2.5 15-5.5v-7c0 3-6.7 5.5-15 5.5S9 16 9 13z" fill="#60A5FA"/>
+          <path d="M9 20v7c0 3 6.7 5.5 15 5.5s15-2.5 15-5.5v-7c0 3-6.7 5.5-15 5.5S9 23 9 20z" fill="#93C5FD"/>
+          <path d="M9 27v7c0 3 6.7 5.5 15 5.5s15-2.5 15-5.5v-7c0 3-6.7 5.5-15 5.5S9 30 9 27z" fill="#BFDBFE"/>
+        </svg>
+      </div><span class="si-label">SQL</span></div>
+      <!-- Power BI -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="30" width="7" height="12" rx="1" fill="#F2C811"/>
+          <rect x="17" y="22" width="7" height="20" rx="1" fill="#F2C811" opacity=".85"/>
+          <rect x="27" y="14" width="7" height="28" rx="1" fill="#F2C811" opacity=".7"/>
+          <rect x="37" y="8" width="6" height="34" rx="1" fill="#F2C811" opacity=".55"/>
+        </svg>
+      </div><span class="si-label">Power BI</span></div>
+      <!-- pandas -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="6" width="9" height="36" rx="2" fill="#130754"/>
+          <rect x="31" y="6" width="9" height="36" rx="2" fill="#E70488"/>
+          <rect x="17" y="18" width="14" height="12" rx="1" fill="#130754" opacity=".35"/>
+        </svg>
+      </div><span class="si-label">pandas</span></div>
+      <!-- NumPy -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6L6 16v16l18 10 18-10V16L24 6z" fill="none" stroke="#4DABF7" stroke-width="2"/>
+          <path d="M6 16l18 10 18-10" stroke="#4DABF7" stroke-width="1.5" fill="none"/>
+          <line x1="24" y1="26" x2="24" y2="42" stroke="#4DABF7" stroke-width="1.5"/>
+        </svg>
+      </div><span class="si-label">NumPy</span></div>
+      <!-- Git -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M43.6 21.9L26.1 4.4a3.3 3.3 0 00-4.7 0l-3.3 3.3 4.2 4.2a3.9 3.9 0 015 5l4.1 4.1v.1a3.9 3.9 0 11-1.4 1.4l-.1-.1-3.8-3.8v10.5a3.9 3.9 0 11-2 0V18.4a3.9 3.9 0 01-2.1-5.1l-4.2-4.2L4.4 22.6a3.3 3.3 0 000 4.7l17.5 17.5a3.3 3.3 0 004.7 0l17-17a3.3 3.3 0 000-4.9z" fill="#F05032"/>
+        </svg>
+      </div><span class="si-label">Git</span></div>
+      <!-- SciPy -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 34C14 34 17 28 24 24C31 20 34 14 40 14" stroke="#0C55A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M8 14C14 14 17 20 24 24C31 28 34 34 40 34" stroke="#8EC44A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div><span class="si-label">SciPy</span></div>
+      <!-- Excel -->
+      <div class="si"><div class="si-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="36" height="36" rx="4" fill="#1D6F42"/>
+          <text x="14" y="31" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#fff">X</text>
+          <line x1="28" y1="10" x2="28" y2="38" stroke="#fff" stroke-width="1" opacity=".35"/>
+          <line x1="6" y1="24" x2="42" y2="24" stroke="#fff" stroke-width="1" opacity=".35"/>
+        </svg>
+      </div><span class="si-label">Excel</span></div>
     </div>
 
-    <div class="stack-section-grid">
-      <div class="stack-col">
-        <div class="stack-col-label" data-i18n="st.l1">Languages</div>
-        <div class="stack-item">Python</div>
-        <div class="stack-item">SQL — MySQL · PostgreSQL</div>
-        <div class="stack-item">DAX</div>
+    <div class="stack-grid">
+      <div class="sc">
+        <div class="sc-label" data-i18n="st.l1">Languages</div>
+        <div class="si-item">Python</div>
+        <div class="si-item">SQL — MySQL · PostgreSQL</div>
+        <div class="si-item">DAX</div>
       </div>
-      <div class="stack-col">
-        <div class="stack-col-label" data-i18n="st.l2">Libraries</div>
-        <div class="stack-item">pandas · NumPy · SciPy</div>
-        <div class="stack-item">statsmodels · SQLAlchemy</div>
-        <div class="stack-item">Matplotlib · seaborn · Plotly</div>
+      <div class="sc">
+        <div class="sc-label" data-i18n="st.l2">Libraries</div>
+        <div class="si-item">pandas · NumPy · SciPy</div>
+        <div class="si-item">statsmodels · SQLAlchemy</div>
+        <div class="si-item">Matplotlib · seaborn · Plotly</div>
       </div>
-      <div class="stack-col">
-        <div class="stack-col-label" data-i18n="st.l3">Visualization</div>
-        <div class="stack-item">Power BI</div>
-        <div class="stack-item">Plotly Dash</div>
-        <div class="stack-item" data-i18n="st.reports">Dashboards &amp; Reports</div>
+      <div class="sc">
+        <div class="sc-label" data-i18n="st.l3">Visualization</div>
+        <div class="si-item">Power BI</div>
+        <div class="si-item">Plotly Dash</div>
+        <div class="si-item" data-i18n="st.reports">Dashboards &amp; Reports</div>
       </div>
-      <div class="stack-col">
-        <div class="stack-col-label" data-i18n="st.l4">Analysis methods</div>
-        <div class="stack-item" data-i18n="st.ab">A/B Testing &amp; hypothesis testing</div>
-        <div class="stack-item" data-i18n="st.cohort">Cohort &amp; funnel analysis</div>
-        <div class="stack-item" data-i18n="st.etl">ETL pipelines</div>
-        <div class="stack-item" data-i18n="st.stats">Statistical inference</div>
+      <div class="sc">
+        <div class="sc-label" data-i18n="st.l4">Analysis methods</div>
+        <div class="si-item" data-i18n="st.ab">A/B Testing &amp; hypothesis testing</div>
+        <div class="si-item" data-i18n="st.cohort">Cohort &amp; funnel analysis</div>
+        <div class="si-item" data-i18n="st.etl">ETL pipelines</div>
+        <div class="si-item" data-i18n="st.stats">Statistical inference</div>
       </div>
     </div>
   </div>
@@ -850,57 +793,54 @@
       <h2 class="sec-title" data-i18n="s.edu.title">Certifications &amp; training</h2>
     </div>
 
-    <!-- Timeline visual -->
-    <div class="proj-visual" style="margin-bottom:28px;">
-      <div class="visual-title" data-i18n="edu.vt">Academic &amp; professional timeline</div>
-      <svg viewBox="0 0 680 64" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+    <!-- Timeline SVG — years confirmed -->
+    <div class="proj-visual" style="margin-bottom:24px;">
+      <div class="visual-label" data-i18n="edu.vl">Timeline</div>
+      <svg viewBox="0 0 700 56" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
         <!-- Spine -->
-        <line x1="20" y1="32" x2="660" y2="32" stroke="#E5E4E0" stroke-width="1.5"/>
-        <!-- 2018 -->
-        <circle cx="80" cy="32" r="5" fill="#2563EB"/>
-        <text x="80" y="18" font-family="JetBrains Mono,monospace" font-size="9" fill="#2563EB" text-anchor="middle">2018</text>
-        <text x="80" y="52" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Mech. Eng.</text>
-        <text x="80" y="62" font-family="Inter,sans-serif" font-size="9" fill="#aaa" text-anchor="middle">U. Andes</text>
-        <!-- 2023 -->
-        <circle cx="270" cy="32" r="5" fill="#6B7280"/>
-        <text x="270" y="18" font-family="JetBrains Mono,monospace" font-size="9" fill="#6B7280" text-anchor="middle">2023</text>
-        <text x="270" y="52" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">7 semesters</text>
-        <text x="270" y="62" font-family="Inter,sans-serif" font-size="9" fill="#aaa" text-anchor="middle">completed</text>
-        <!-- 2025 -->
-        <circle cx="460" cy="32" r="5" fill="#2563EB"/>
-        <text x="460" y="18" font-family="JetBrains Mono,monospace" font-size="9" fill="#2563EB" text-anchor="middle">2025–26</text>
-        <text x="460" y="52" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">TripleTen DA</text>
-        <text x="460" y="62" font-family="Inter,sans-serif" font-size="9" fill="#aaa" text-anchor="middle">certified</text>
-        <!-- 2026 -->
-        <circle cx="620" cy="32" r="5" fill="#16A34A"/>
-        <text x="620" y="18" font-family="JetBrains Mono,monospace" font-size="9" fill="#16A34A" text-anchor="middle">2026</text>
-        <text x="620" y="52" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Data Sci.</text>
-        <text x="620" y="62" font-family="Inter,sans-serif" font-size="9" fill="#16A34A" text-anchor="middle">in progress</text>
-        <!-- Range bar U.Andes -->
-        <rect x="80" y="30" width="190" height="4" rx="2" fill="#2563EB" opacity=".15"/>
+        <line x1="16" y1="28" x2="684" y2="28" stroke="#222" stroke-width="1.5"/>
+        <!-- U. Andes range -->
+        <rect x="60" y="24" width="224" height="8" rx="4" fill="#3B82F6" opacity=".18"/>
+        <!-- Dots -->
+        <circle cx="60" cy="28" r="5" fill="#3B82F6"/>
+        <circle cx="284" cy="28" r="5" fill="#3B82F6" opacity=".5"/>
+        <circle cx="484" cy="28" r="5" fill="#3B82F6"/>
+        <circle cx="660" cy="28" r="5" fill="#22C55E"/>
+        <!-- Year labels -->
+        <text x="60"  y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">2018</text>
+        <text x="284" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#555"    text-anchor="middle">2023</text>
+        <text x="484" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">2025–26</text>
+        <text x="660" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">2026</text>
+        <!-- Event labels -->
+        <text x="60"  y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Mech. Eng.</text>
+        <text x="60"  y="54" font-family="Inter,sans-serif" font-size="9" fill="#555" text-anchor="middle">U. Andes</text>
+        <text x="284" y="44" font-family="Inter,sans-serif" font-size="9" fill="#555" text-anchor="middle">7 semesters</text>
+        <text x="484" y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">TripleTen DA</text>
+        <text x="660" y="44" font-family="Inter,sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">Data Sci.</text>
+        <text x="660" y="54" font-family="Inter,sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">in progress</text>
       </svg>
     </div>
 
-    <div class="edu-list">
+    <div>
       <div class="edu-item">
-        <div class="edu-year">2026</div>
-        <div class="edu-right">
+        <div class="edu-year">2025–2026</div>
+        <div>
           <div class="edu-name" data-i18n="e1.name">Data Analyst Certification</div>
           <div class="edu-org" data-i18n="e1.org">TripleTen — Full program · 9 months · Python, SQL, Power BI, Statistics</div>
         </div>
       </div>
       <div class="edu-item">
         <div class="edu-year">2026</div>
-        <div class="edu-right">
+        <div>
           <div class="edu-name" data-i18n="e2.name">Data Scientist Certification</div>
           <div class="edu-org" data-i18n="e2.org">A2 Capacitación — In progress</div>
         </div>
       </div>
       <div class="edu-item">
         <div class="edu-year">2018–2023</div>
-        <div class="edu-right">
+        <div>
           <div class="edu-name" data-i18n="e3.name">Mechanical Engineering</div>
-          <div class="edu-org" data-i18n="e3.org">Universidad de los Andes, Bogotá — 7 semesters</div>
+          <div class="edu-org" data-i18n="e3.org">Universidad de los Andes, Bogotá — 7 semesters completed</div>
         </div>
       </div>
     </div>
@@ -915,30 +855,31 @@
         <div class="sec-tag" data-i18n="s.contact.tag">Contact</div>
         <h2 class="contact-h" data-i18n="contact.h">Let's talk<br>about <em>data.</em></h2>
         <p class="contact-sub" data-i18n="contact.sub">
-          Looking for a remote data analyst role where the work drives real decisions.
-          If your team values rigorous analysis and clear communication, I'd like to hear from you.
+          Looking for a remote data analyst role where the work drives real decisions —
+          not just slides that get filed. If your team values rigor and clear communication,
+          I'd like to hear from you.
         </p>
       </div>
       <div class="contact-links">
-        <a class="contact-link" href="mailto:santiagoacostab17@gmail.com">
-          <div class="cl-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+        <a class="c-link" href="mailto:santiagoacostab17@gmail.com">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
               <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 4l10 9 10-9"/>
             </svg>
           </div>
           santiagoacostab17@gmail.com
         </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank" rel="noopener">
-          <div class="cl-icon">
-            <svg viewBox="0 0 24 24" fill="#2563EB" xmlns="http://www.w3.org/2000/svg">
+        <a class="c-link" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank" rel="noopener">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="#3B82F6" xmlns="http://www.w3.org/2000/svg">
               <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>
             </svg>
           </div>
           linkedin.com/in/santiagoacostab17
         </a>
-        <a class="contact-link" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">
-          <div class="cl-icon">
-            <svg viewBox="0 0 24 24" fill="#444" xmlns="http://www.w3.org/2000/svg">
+        <a class="c-link" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="#888" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
           </div>
@@ -957,106 +898,104 @@ const T = {
     'nav.work':'Work','nav.stack':'Stack','nav.contact':'Contact',
     'bio.tag':'Data Analyst · Bogotá · Open to remote',
     'bio.h1':'I turn messy data<br>into <em>clear decisions.</em>',
-    'bio.p1':"I'm Santiago Acosta — a data analyst with hands-on experience across the full analytics lifecycle: <strong>SQL modeling, Python-based statistical analysis, A/B testing,</strong> and <strong>Power BI dashboards</strong> built to answer the questions teams actually act on.",
-    'bio.p2':'My background in Mechanical Engineering at Universidad de los Andes trained me to think in systems and validate assumptions before drawing conclusions. That same rigor drives how I approach data. I\'m now focused on <strong>product analytics, business intelligence, and data-driven decision support</strong> for remote-first teams.',
+    'bio.p1':"I'm Santiago Acosta — a data analyst with experience across the full analytics lifecycle: <strong>SQL modeling, Python-based statistical analysis, A/B testing,</strong> and <strong>Power BI dashboards</strong> built to answer the questions teams actually act on.",
+    'bio.p2':"My background in Mechanical Engineering at Universidad de los Andes (2018–2023) trained me to think in systems and validate assumptions rigorously before drawing conclusions. I'm now focused on <strong>product analytics and business intelligence</strong> for remote-first teams.",
     'fp.1':'SQL & Python','fp.2':'A/B Testing','fp.3':'Power BI · DAX',
     'fp.4':'Product Analytics','fp.5':'Business Intelligence','fp.6':'Statistical Inference',
-    'bio.live':'Available for remote roles — open to immediate start',
+    'bio.live':'Available for remote roles',
     'bio.btn1':'View my work','bio.btn2':'Download CV',
     's.work.tag':'Selected work','s.work.title':'Projects',
     'p1.meta':'BI · Star schema · Revenue analysis',
     'p1.name':'Northwind Revenue Insights',
-    'p1.s1.l':'Revenue analyzed','p1.s1.n':'H1 2006 · wholesale distributor',
-    'p1.s2.l':'Revenue concentration','p1.s2.n':'Top 3 of 77 SKUs — concentration risk',
-    'p1.s3.l':'Dashboard views','p1.s3.n':'Product · employee · category mix',
-    'p1.vt':'Revenue share by product group — top concentration',
-    'p1.desc':"Business intelligence analysis of a wholesale distributor's H1 2006 performance. Designed a <strong>star schema data model from scratch</strong> and built drill-through Power BI dashboards covering product margins, employee quota attainment, and category mix. Key finding: three SKUs drive <strong>64% of $13M in total revenue</strong> — a concentration risk with direct implications for procurement and pricing strategy.",
+    'p1.s1l':'Revenue analyzed','p1.s1n':'H1 2006 · wholesale distributor',
+    'p1.s2l':'Top-3 SKU share','p1.s2n':'of total revenue — concentration risk',
+    'p1.s3l':'Dashboard views','p1.s3n':'Product · employee · category',
+    'p1.vl':'Revenue concentration — top 3 SKUs vs. rest of catalog (77 SKUs total)',
+    'p1.desc':"Business intelligence analysis of a wholesale distributor's H1 2006 performance. Designed a <strong>star schema data model from scratch</strong> and built three drill-through Power BI dashboards covering product margins, employee quota attainment, and category mix. Key finding: just three SKUs drive <strong>64% of $13.08M in total revenue</strong> — a concentration risk with direct implications for procurement and pricing strategy.",
     'p2.meta':'Quantitative finance · Time series · Backtesting',
     'p2.name':'EURUSD Quantitative Pipeline',
-    'p2.s1.l':'Observations','p2.s1.n':'1-min OHLC · 6 years',
-    'p2.s2.l':'Strategy win rate','p2.s2.n':'Bootstrapped CI · Kelly sizing',
-    'p2.s3.l':'Look-ahead bias','p2.s3.v':'Zero','p2.s3.n':'Eliminated by architecture',
-    'p2.vt':'Rolling 500-trade win rate — strategy validation',
+    'p2.s1l':'Observations','p2.s1n':'1-min OHLC · 6 years of data',
+    'p2.s2l':'Strategy win rate','p2.s2n':'Bootstrapped CI · Kelly sizing',
+    'p2.s3l':'Look-ahead bias','p2.s3v':'Zero','p2.s3n':'Eliminated by engine design',
+    'p2.vl':'Pipeline architecture — data flow (schematic)',
     'p2.desc':'End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations). Built a <strong>custom vectorized backtesting engine in NumPy</strong> — no external strategy libraries — with look-ahead bias eliminated by architectural design, not post-hoc filtering. Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence intervals and Kelly criterion position sizing.',
     'p3.meta':'TripleTen final · A/B testing · Cohort analysis · Power BI',
     'p3.name':'RappiPlus: End-to-End Business Analysis',
-    'p3.s1.l':'Funnel conversion','p3.s1.n':'7,796 users · 6-stage SQL',
-    'p3.s2.l':'Critical drop-off','p3.s2.n':'At payment entry',
-    'p3.s3.l':'A/B test result','p3.s3.n':'Z-test · statistically significant',
-    'p3.vt':'Conversion funnel — 7,796 users',
-    'p3.desc':'Full analytics lifecycle for a subscription service — data audit through executive dashboards in six structured stages. Built a <strong>7,796-user SQL conversion funnel</strong> identifying a critical 13.3% drop-off at payment entry, monthly cohort retention modeling, and a <strong>statistically validated A/B test</strong> (Z-test, p&lt;0.05) on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through. Reviewed and approved by TripleTen.',
-    'f.1':'First visit','f.2':'Select item','f.3':'Add to cart',
-    'f.4':'Begin checkout','f.5':'Payment info','f.6':'Purchase ✓',
-    'common.gh':'View on GitHub →',
+    'p3.s1l':'Funnel users','p3.s1n':'6-stage SQL conversion funnel',
+    'p3.s2l':'Critical drop-off','p3.s2n':'At payment entry stage',
+    'p3.s3l':'A/B test result','p3.s3n':'Z-test · statistically significant',
+    'p3.vl':'Conversion funnel — 7,796 users across 6 stages',
+    'p3.desc':'Full analytics lifecycle for a subscription service — raw data audit through executive dashboards in six structured stages. Built a <strong>7,796-user SQL conversion funnel</strong> that identified a 13.3% drop-off at payment entry, monthly cohort retention modeling, and a <strong>statistically validated A/B test</strong> (Z-test, p&lt;0.05) on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through filters. Reviewed and approved by TripleTen.',
+    'f1':'First visit','f2':'Select item','f3':'Add to cart',
+    'f4':'Begin checkout','f5':'Payment info','f6':'Purchase ✓',
+    'gh':'View on GitHub →',
     's.stack.tag':'Skills','s.stack.title':'Tech stack',
-    'st.vis.title':'Core tools',
     'st.l1':'Languages','st.l2':'Libraries','st.l3':'Visualization','st.l4':'Analysis methods',
     'st.reports':'Dashboards & Reports','st.ab':'A/B Testing & hypothesis testing',
     'st.cohort':'Cohort & funnel analysis','st.etl':'ETL pipelines','st.stats':'Statistical inference',
     's.edu.tag':'Education','s.edu.title':'Certifications & training',
-    'edu.vt':'Academic & professional timeline',
+    'edu.vl':'Timeline',
     'e1.name':'Data Analyst Certification',
     'e1.org':'TripleTen — Full program · 9 months · Python, SQL, Power BI, Statistics',
     'e2.name':'Data Scientist Certification',
     'e2.org':'A2 Capacitación — In progress',
     'e3.name':'Mechanical Engineering',
-    'e3.org':'Universidad de los Andes, Bogotá — 7 semesters',
+    'e3.org':'Universidad de los Andes, Bogotá — 7 semesters completed',
     's.contact.tag':'Contact',
     'contact.h':"Let's talk<br>about <em>data.</em>",
-    'contact.sub':"Looking for a remote data analyst role where the work drives real decisions. If your team values rigorous analysis and clear communication, I'd like to hear from you.",
+    'contact.sub':"Looking for a remote data analyst role where the work drives real decisions — not just slides that get filed. If your team values rigor and clear communication, I'd like to hear from you.",
     'footer':'© 2026 Santiago Acosta — Data Analyst · Bogotá, Colombia',
   },
   es: {
     'nav.work':'Proyectos','nav.stack':'Stack','nav.contact':'Contacto',
     'bio.tag':'Analista de Datos · Bogotá · Disponible remoto',
     'bio.h1':'Convierto datos complejos<br>en <em>decisiones claras.</em>',
-    'bio.p1':'Soy Santiago Acosta — analista de datos con experiencia práctica en todo el ciclo analítico: <strong>modelado SQL, análisis estadístico en Python, pruebas A/B</strong> y <strong>dashboards en Power BI</strong> diseñados para responder las preguntas que los equipos realmente necesitan actuar.',
-    'bio.p2':'Mi formación en Ingeniería Mecánica en la Universidad de los Andes me entrenó a pensar en sistemas y validar supuestos antes de concluir. Ese mismo rigor define cómo abordo los datos. Ahora me enfoco en <strong>analítica de producto, inteligencia de negocio y soporte a la decisión basado en datos</strong> para equipos remotos.',
+    'bio.p1':'Soy Santiago Acosta — analista de datos con experiencia en todo el ciclo analítico: <strong>modelado SQL, análisis estadístico en Python, pruebas A/B</strong> y <strong>dashboards en Power BI</strong> diseñados para responder las preguntas que los equipos realmente necesitan actuar.',
+    'bio.p2':'Mi formación en Ingeniería Mecánica en la Universidad de los Andes (2018–2023) me entrenó a pensar en sistemas y validar supuestos antes de concluir. Ahora me enfoco en <strong>analítica de producto e inteligencia de negocio</strong> para equipos remotos.',
     'fp.1':'SQL & Python','fp.2':'Pruebas A/B','fp.3':'Power BI · DAX',
     'fp.4':'Analítica de Producto','fp.5':'Inteligencia de Negocio','fp.6':'Inferencia Estadística',
-    'bio.live':'Disponible para roles remotos — inicio inmediato',
+    'bio.live':'Disponible para roles remotos',
     'bio.btn1':'Ver proyectos','bio.btn2':'Descargar CV',
     's.work.tag':'Trabajo seleccionado','s.work.title':'Proyectos',
     'p1.meta':'BI · Star schema · Análisis de ingresos',
     'p1.name':'Northwind: Análisis de Ingresos',
-    'p1.s1.l':'Revenue analizado','p1.s1.n':'H1 2006 · distribuidor mayorista',
-    'p1.s2.l':'Concentración de ingresos','p1.s2.n':'Top 3 de 77 SKUs — riesgo de concentración',
-    'p1.s3.l':'Vistas del dashboard','p1.s3.n':'Producto · empleados · mix categorías',
-    'p1.vt':'Participación de ingresos por grupo de producto',
-    'p1.desc':"Análisis de inteligencia de negocio sobre el desempeño H1 2006 de un distribuidor mayorista. Diseñé un <strong>modelo de datos en estrella desde cero</strong> y construí dashboards con drill-through en Power BI para márgenes, cuota de empleados y mix de categorías. Hallazgo clave: tres SKUs concentran el <strong>64% de $13M en ingresos</strong> — un riesgo de concentración con implicaciones directas en estrategia de compras y precios.",
+    'p1.s1l':'Revenue analizado','p1.s1n':'H1 2006 · distribuidor mayorista',
+    'p1.s2l':'Participación top-3','p1.s2n':'del revenue total — riesgo de concentración',
+    'p1.s3l':'Vistas del dashboard','p1.s3n':'Producto · empleados · categoría',
+    'p1.vl':'Concentración de ingresos — top 3 SKUs vs. resto del catálogo (77 SKUs)',
+    'p1.desc':"Análisis de inteligencia de negocio sobre el desempeño H1 2006 de un distribuidor mayorista. Diseñé un <strong>modelo de datos en estrella desde cero</strong> y construí tres dashboards con drill-through en Power BI para márgenes de producto, cuota de empleados y mix de categorías. Hallazgo clave: tres SKUs concentran el <strong>64% de $13.08M en ingresos</strong> — un riesgo de concentración con implicaciones directas en compras y precios.",
     'p2.meta':'Finanzas cuantitativas · Series de tiempo · Backtesting',
     'p2.name':'Pipeline Cuantitativo EURUSD',
-    'p2.s1.l':'Observaciones','p2.s1.n':'OHLC 1-min · 6 años',
-    'p2.s2.l':'Win rate de estrategia','p2.s2.n':'IC bootstrapped · sizing Kelly',
-    'p2.s3.l':'Sesgo look-ahead','p2.s3.v':'Cero','p2.s3.n':'Eliminado por arquitectura',
-    'p2.vt':'Win rate rolling 500 trades — validación de estrategia',
+    'p2.s1l':'Observaciones','p2.s1n':'OHLC 1-min · 6 años de datos',
+    'p2.s2l':'Win rate de estrategia','p2.s2n':'IC bootstrapped · sizing Kelly',
+    'p2.s3l':'Sesgo look-ahead','p2.s3v':'Cero','p2.s3n':'Eliminado por diseño del motor',
+    'p2.vl':'Arquitectura del pipeline — flujo de datos (esquemático)',
     'p2.desc':'Pipeline de investigación end-to-end con seis años de datos OHLC en 1 minuto (81,938 observaciones). Construí un <strong>motor de backtesting vectorizado en NumPy</strong> — sin librerías externas — con sesgo look-ahead eliminado por diseño arquitectónico. Valida una estrategia de price action con <strong>~59% de acierto</strong>, intervalos de confianza bootstrapped y sizing por criterio de Kelly.',
     'p3.meta':'Proyecto final TripleTen · Pruebas A/B · Análisis de cohortes · Power BI',
     'p3.name':'RappiPlus: Análisis de Negocio End-to-End',
-    'p3.s1.l':'Conversión del embudo','p3.s1.n':'7,796 usuarios · SQL 6 etapas',
-    'p3.s2.l':'Caída crítica','p3.s2.n':'En etapa de pago',
-    'p3.s3.l':'Resultado A/B','p3.s3.n':'Z-test · estadísticamente significativo',
-    'p3.vt':'Embudo de conversión — 7,796 usuarios',
-    'p3.desc':'Ciclo analítico completo para un servicio de suscripción — desde auditoría de datos hasta dashboards ejecutivos en seis etapas. Construí un <strong>embudo de conversión SQL (7,796 usuarios)</strong> identificando una caída crítica del 13.3% en el pago, retención mensual por cohortes y una <strong>prueba A/B estadísticamente validada</strong> (Z-test, p&lt;0.05). Dos dashboards en Power BI con DAX y drill-through. Aprobado por TripleTen.',
-    'f.1':'Primera visita','f.2':'Seleccionar ítem','f.3':'Agregar al carrito',
-    'f.4':'Iniciar pago','f.5':'Info de pago','f.6':'Compra ✓',
-    'common.gh':'Ver en GitHub →',
+    'p3.s1l':'Usuarios del embudo','p3.s1n':'Embudo de conversión SQL 6 etapas',
+    'p3.s2l':'Caída crítica','p3.s2n':'En etapa de pago',
+    'p3.s3l':'Resultado A/B','p3.s3n':'Z-test · estadísticamente significativo',
+    'p3.vl':'Embudo de conversión — 7,796 usuarios en 6 etapas',
+    'p3.desc':'Ciclo analítico completo para un servicio de suscripción — desde auditoría de datos hasta dashboards ejecutivos en seis etapas. Construí un <strong>embudo de conversión SQL (7,796 usuarios)</strong> que identificó una caída del 13.3% en el pago, retención mensual por cohortes y una <strong>prueba A/B estadísticamente validada</strong> (Z-test, p&lt;0.05). Dos dashboards en Power BI con DAX y drill-through. Aprobado por TripleTen.',
+    'f1':'Primera visita','f2':'Seleccionar ítem','f3':'Agregar al carrito',
+    'f4':'Iniciar pago','f5':'Info de pago','f6':'Compra ✓',
+    'gh':'Ver en GitHub →',
     's.stack.tag':'Habilidades','s.stack.title':'Stack tecnológico',
-    'st.vis.title':'Herramientas principales',
     'st.l1':'Lenguajes','st.l2':'Librerías','st.l3':'Visualización','st.l4':'Métodos analíticos',
     'st.reports':'Dashboards e informes','st.ab':'Pruebas A/B e hipótesis',
     'st.cohort':'Análisis de cohortes y embudos','st.etl':'Pipelines ETL','st.stats':'Inferencia estadística',
     's.edu.tag':'Educación','s.edu.title':'Certificaciones y formación',
-    'edu.vt':'Línea de tiempo académica y profesional',
+    'edu.vl':'Línea de tiempo',
     'e1.name':'Certificación Analista de Datos',
     'e1.org':'TripleTen — Programa completo · 9 meses · Python, SQL, Power BI, Estadística',
     'e2.name':'Certificación Científico de Datos',
     'e2.org':'A2 Capacitación — En curso',
     'e3.name':'Ingeniería Mecánica',
-    'e3.org':'Universidad de los Andes, Bogotá — 7 semestres',
+    'e3.org':'Universidad de los Andes, Bogotá — 7 semestres completados',
     's.contact.tag':'Contacto',
     'contact.h':'Hablemos<br>de <em>datos.</em>',
-    'contact.sub':'Busco un rol remoto de analista de datos donde el trabajo genere decisiones reales. Si tu equipo valora el rigor analítico y la comunicación clara, me gustaría escucharte.',
+    'contact.sub':'Busco un rol remoto de analista de datos donde el trabajo genere decisiones reales. Si tu equipo valora el rigor y la comunicación clara, me gustaría escucharte.',
     'footer':'© 2026 Santiago Acosta — Analista de Datos · Bogotá, Colombia',
   }
 };
