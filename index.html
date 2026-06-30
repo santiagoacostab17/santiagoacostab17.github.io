@@ -22,6 +22,7 @@
       --green:    #22C55E;
       --red:      #EF4444;
       --amber:    #F59E0B;
+      --purple:   #A78BFA;
       --display:  'Space Grotesk', system-ui, sans-serif;
       --body:     'Inter', system-ui, sans-serif;
       --mono:     'JetBrains Mono', monospace;
@@ -294,6 +295,39 @@
     }
     .proj-link:hover { gap: 9px; }
 
+    /* ── ANALYTICAL DECISIONS (new) ── */
+    .ad-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--purple);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .ad-label {
+      font-family: var(--mono); font-size: 9px; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--purple); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .ad-label::before { content: '◆'; font-size: 8px; }
+    .ad-item {
+      display: grid; grid-template-columns: 86px 1fr;
+      gap: 12px; padding: 10px 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .ad-item:first-of-type { border-top: none; padding-top: 0; }
+    .ad-tag {
+      font-family: var(--mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .04em; text-transform: uppercase;
+      color: var(--text3); padding-top: 1px;
+    }
+    .ad-text {
+      font-size: 13px; color: var(--text2); line-height: 1.7;
+    }
+    .ad-text strong { font-weight: 600; color: var(--text); }
+
     /* ── STACK ── */
     .stack-icons {
       display: flex; flex-wrap: wrap; gap: 8px;
@@ -407,6 +441,7 @@
       .stat-cell { min-width: 140px; }
       .contact-grid { grid-template-columns: 1fr; gap: 32px; }
       .stack-grid { grid-template-columns: 1fr; }
+      .ad-item { grid-template-columns: 1fr; gap: 4px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, .reveal { animation: none !important; transition: none !important; }
@@ -514,11 +549,8 @@
               <stop offset="100%" stop-color="#60A5FA"/>
             </linearGradient>
           </defs>
-          <!-- Full bar background -->
           <rect x="0" y="16" width="700" height="20" rx="4" fill="#1A1A1A"/>
-          <!-- 64% fill -->
           <rect x="0" y="16" width="448" height="20" rx="4" fill="url(#g1)"/>
-          <!-- Labels -->
           <text x="8" y="31" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#fff">Top 3 SKUs · 64%</text>
           <text x="460" y="31" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="600" fill="#555">Remaining 74 SKUs · 36%</text>
           <text x="0" y="10" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" letter-spacing="1">0%</text>
@@ -534,6 +566,24 @@
         Key finding: just three SKUs drive <strong>64% of $13.08M in total revenue</strong> —
         a concentration risk with direct implications for procurement and pricing strategy.
       </p>
+
+      <!-- Analytical Decisions -->
+      <div class="ad-box">
+        <div class="ad-label" data-i18n="p1.ad.label">Analytical Decisions</div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
+          <div class="ad-text" data-i18n="p1.ad.1">This was a structured exploration, not a hypothesis-driven investigation: <strong>I designed the star schema first</strong>, then built dashboards across company overview, sales reps, products, and a geographic sales map to see what patterns the data would surface on its own.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.finding">What surfaced</div>
+          <div class="ad-text" data-i18n="p1.ad.2">The product-level view <strong>surfaced a concentration pattern</strong> — three SKUs accounting for 64% of revenue — that wasn't something I went looking for, but something the visualization made visible once the model was in place.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
+          <div class="ad-text" data-i18n="p1.ad.3">The 64% figure is descriptive, not diagnostic — it tells you where to look, but <strong>I didn't have the business context to say why</strong> it happens or whether it's actually a problem worth acting on.</div>
+        </div>
+      </div>
+
       <div class="proj-tools">
         <span class="tag">MySQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Star schema</span>
       </div>
@@ -571,19 +621,16 @@
               <path d="M0,0 L6,3 L0,6 Z" fill="#3B82F6"/>
             </marker>
           </defs>
-          <!-- Boxes -->
           <rect x="0" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
           <rect x="148" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
           <rect x="296" y="10" width="128" height="24" rx="4" fill="#1A1A1A" stroke="#3B82F6" stroke-width="1"/>
           <rect x="474" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
           <rect x="612" y="10" width="88" height="24" rx="4" fill="#1F2937" stroke="#22C55E" stroke-width="1"/>
-          <!-- Labels -->
           <text x="54" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Raw OHLC</text>
           <text x="202" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Clean &amp; Align</text>
           <text x="360" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">Backtest Engine</text>
           <text x="528" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Bootstrap CI</text>
           <text x="656" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">~59% WR</text>
-          <!-- Arrows -->
           <line x1="110" y1="22" x2="146" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
           <line x1="258" y1="22" x2="294" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
           <line x1="426" y1="22" x2="472" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
@@ -598,6 +645,24 @@
         Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence
         intervals and Kelly criterion position sizing.
       </p>
+
+      <!-- Analytical Decisions -->
+      <div class="ad-box">
+        <div class="ad-label" data-i18n="p2.ad.label">Analytical Decisions</div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
+          <div class="ad-text" data-i18n="p2.ad.1">I treated the pattern as a <strong>potential directional indicator, not a standalone strategy</strong>: a candle-continuation setup where the next candle's close relative to a defined level determines whether the pattern held. The goal was to test relevance, not to claim predictive power.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.judgment">Judgment call</div>
+          <div class="ad-text" data-i18n="p2.ad.2">A ~59% win rate is a real but modest edge. <strong>I chose to report it as "may or may not be useful for short-term setups"</strong> rather than overstate it, since a single-pattern signal isn't enough on its own to justify live capital without further validation.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
+          <div class="ad-text" data-i18n="p2.ad.3">The backtest validates the pattern historically across 81,938 observations, but <strong>doesn't account for live execution factors</strong> — slippage, spread variability, and regime change — which is why I frame the result as a research finding, not a ready-to-trade system.</div>
+        </div>
+      </div>
+
       <div class="proj-tools">
         <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Bootstrap CI</span>
       </div>
@@ -670,6 +735,24 @@
         <strong>statistically validated A/B test</strong> (Z-test, p&lt;0.05) on a checkout redesign.
         Two Power BI dashboards with DAX measures and drill-through filters. Reviewed and approved by TripleTen.
       </p>
+
+      <!-- Analytical Decisions -->
+      <div class="ad-box">
+        <div class="ad-label" data-i18n="p3.ad.label">Analytical Decisions</div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
+          <div class="ad-text" data-i18n="p3.ad.1">The core question was whether a proposed change to the platform would actually move the needle. <strong>I designed and ran an A/B test</strong> on a checkout redesign to test for a measurable benefit rather than assume one.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.judgment">Judgment call</div>
+          <div class="ad-text" data-i18n="p3.ad.2">Midway through, I found a meaningful sample size imbalance between the control and treatment groups. Rather than restarting data collection, <strong>I recalculated significance accounting for the imbalance</strong> using a two-proportion z-test, and flagged the limitation directly in the final report instead of presenting the result at face value.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
+          <div class="ad-text" data-i18n="p3.ad.3">Statistical significance (p&lt;0.05) tells you the effect is real, but <strong>not why it happened</strong> — that would require qualitative user research the dataset didn't include.</div>
+        </div>
+      </div>
+
       <div class="proj-tools">
         <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Z-test</span><span class="tag">Cohort analysis</span>
       </div>
@@ -688,7 +771,6 @@
     </div>
 
     <div class="stack-icons">
-      <!-- Python -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 4C13.5 4 14.2 8.4 14.2 8.4L14.2 13H24.5V14.5H9.5C9.5 14.5 4 13.8 4 24.5C4 35.2 8.7 34.8 8.7 34.8H11.4V29.9C11.4 29.9 11.2 25.2 16 25.2H26.2C26.2 25.2 30.7 25.3 30.7 20.9V9.7C30.7 9.7 31.4 4 24 4Z" fill="#3776AB"/>
@@ -697,7 +779,6 @@
           <circle cx="29" cy="39.5" r="1.5" fill="#fff"/>
         </svg>
       </div><span class="si-label">Python</span></div>
-      <!-- SQL -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="24" cy="13" rx="15" ry="5.5" fill="#3B82F6" opacity=".9"/>
@@ -706,7 +787,6 @@
           <path d="M9 27v7c0 3 6.7 5.5 15 5.5s15-2.5 15-5.5v-7c0 3-6.7 5.5-15 5.5S9 30 9 27z" fill="#BFDBFE"/>
         </svg>
       </div><span class="si-label">SQL</span></div>
-      <!-- Power BI -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <rect x="7" y="30" width="7" height="12" rx="1" fill="#F2C811"/>
@@ -715,7 +795,6 @@
           <rect x="37" y="8" width="6" height="34" rx="1" fill="#F2C811" opacity=".55"/>
         </svg>
       </div><span class="si-label">Power BI</span></div>
-      <!-- pandas -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <rect x="8" y="6" width="9" height="36" rx="2" fill="#130754"/>
@@ -723,7 +802,6 @@
           <rect x="17" y="18" width="14" height="12" rx="1" fill="#130754" opacity=".35"/>
         </svg>
       </div><span class="si-label">pandas</span></div>
-      <!-- NumPy -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 6L6 16v16l18 10 18-10V16L24 6z" fill="none" stroke="#4DABF7" stroke-width="2"/>
@@ -731,20 +809,17 @@
           <line x1="24" y1="26" x2="24" y2="42" stroke="#4DABF7" stroke-width="1.5"/>
         </svg>
       </div><span class="si-label">NumPy</span></div>
-      <!-- Git -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path d="M43.6 21.9L26.1 4.4a3.3 3.3 0 00-4.7 0l-3.3 3.3 4.2 4.2a3.9 3.9 0 015 5l4.1 4.1v.1a3.9 3.9 0 11-1.4 1.4l-.1-.1-3.8-3.8v10.5a3.9 3.9 0 11-2 0V18.4a3.9 3.9 0 01-2.1-5.1l-4.2-4.2L4.4 22.6a3.3 3.3 0 000 4.7l17.5 17.5a3.3 3.3 0 004.7 0l17-17a3.3 3.3 0 000-4.9z" fill="#F05032"/>
         </svg>
       </div><span class="si-label">Git</span></div>
-      <!-- SciPy -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 34C14 34 17 28 24 24C31 20 34 14 40 14" stroke="#0C55A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
           <path d="M8 14C14 14 17 20 24 24C31 28 34 34 40 34" stroke="#8EC44A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
         </svg>
       </div><span class="si-label">SciPy</span></div>
-      <!-- Excel -->
       <div class="si"><div class="si-box">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <rect x="6" y="6" width="36" height="36" rx="4" fill="#1D6F42"/>
@@ -793,25 +868,19 @@
       <h2 class="sec-title" data-i18n="s.edu.title">Certifications &amp; training</h2>
     </div>
 
-    <!-- Timeline SVG — years confirmed -->
     <div class="proj-visual" style="margin-bottom:24px;">
       <div class="visual-label" data-i18n="edu.vl">Timeline</div>
       <svg viewBox="0 0 700 56" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-        <!-- Spine -->
         <line x1="16" y1="28" x2="684" y2="28" stroke="#222" stroke-width="1.5"/>
-        <!-- U. Andes range -->
         <rect x="60" y="24" width="224" height="8" rx="4" fill="#3B82F6" opacity=".18"/>
-        <!-- Dots -->
         <circle cx="60" cy="28" r="5" fill="#3B82F6"/>
         <circle cx="284" cy="28" r="5" fill="#3B82F6" opacity=".5"/>
         <circle cx="484" cy="28" r="5" fill="#3B82F6"/>
         <circle cx="660" cy="28" r="5" fill="#22C55E"/>
-        <!-- Year labels -->
         <text x="60"  y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">2018</text>
         <text x="284" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#555"    text-anchor="middle">2023</text>
         <text x="484" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">2025–26</text>
         <text x="660" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">2026</text>
-        <!-- Event labels -->
         <text x="60"  y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Mech. Eng.</text>
         <text x="60"  y="54" font-family="Inter,sans-serif" font-size="9" fill="#555" text-anchor="middle">U. Andes</text>
         <text x="284" y="44" font-family="Inter,sans-serif" font-size="9" fill="#555" text-anchor="middle">7 semesters</text>
@@ -912,6 +981,10 @@ const T = {
     'p1.s3l':'Dashboard views','p1.s3n':'Product · employee · category',
     'p1.vl':'Revenue concentration — top 3 SKUs vs. rest of catalog (77 SKUs total)',
     'p1.desc':"Business intelligence analysis of a wholesale distributor's H1 2006 performance. Designed a <strong>star schema data model from scratch</strong> and built three drill-through Power BI dashboards covering product margins, employee quota attainment, and category mix. Key finding: just three SKUs drive <strong>64% of $13.08M in total revenue</strong> — a concentration risk with direct implications for procurement and pricing strategy.",
+    'p1.ad.label':'Analytical Decisions',
+    'p1.ad.1':'This was a structured exploration, not a hypothesis-driven investigation: <strong>I designed the star schema first</strong>, then built dashboards across company overview, sales reps, products, and a geographic sales map to see what patterns the data would surface on its own.',
+    'p1.ad.2':"The product-level view <strong>surfaced a concentration pattern</strong> — three SKUs accounting for 64% of revenue — that wasn't something I went looking for, but something the visualization made visible once the model was in place.",
+    'p1.ad.3':"The 64% figure is descriptive, not diagnostic — it tells you where to look, but <strong>I didn't have the business context to say why</strong> it happens or whether it's actually a problem worth acting on.",
     'p2.meta':'Quantitative finance · Time series · Backtesting',
     'p2.name':'EURUSD Quantitative Pipeline',
     'p2.s1l':'Observations','p2.s1n':'1-min OHLC · 6 years of data',
@@ -919,6 +992,10 @@ const T = {
     'p2.s3l':'Look-ahead bias','p2.s3v':'Zero','p2.s3n':'Eliminated by engine design',
     'p2.vl':'Pipeline architecture — data flow (schematic)',
     'p2.desc':'End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations). Built a <strong>custom vectorized backtesting engine in NumPy</strong> — no external strategy libraries — with look-ahead bias eliminated by architectural design, not post-hoc filtering. Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence intervals and Kelly criterion position sizing.',
+    'p2.ad.label':'Analytical Decisions',
+    'p2.ad.1':"I treated the pattern as a <strong>potential directional indicator, not a standalone strategy</strong>: a candle-continuation setup where the next candle's close relative to a defined level determines whether the pattern held. The goal was to test relevance, not to claim predictive power.",
+    'p2.ad.2':'A ~59% win rate is a real but modest edge. <strong>I chose to report it as "may or may not be useful for short-term setups"</strong> rather than overstate it, since a single-pattern signal isn\'t enough on its own to justify live capital without further validation.',
+    'p2.ad.3':"The backtest validates the pattern historically across 81,938 observations, but <strong>doesn't account for live execution factors</strong> — slippage, spread variability, and regime change — which is why I frame the result as a research finding, not a ready-to-trade system.",
     'p3.meta':'TripleTen final · A/B testing · Cohort analysis · Power BI',
     'p3.name':'RappiPlus: End-to-End Business Analysis',
     'p3.s1l':'Funnel users','p3.s1n':'6-stage SQL conversion funnel',
@@ -926,6 +1003,11 @@ const T = {
     'p3.s3l':'A/B test result','p3.s3n':'Z-test · statistically significant',
     'p3.vl':'Conversion funnel — 7,796 users across 6 stages',
     'p3.desc':'Full analytics lifecycle for a subscription service — raw data audit through executive dashboards in six structured stages. Built a <strong>7,796-user SQL conversion funnel</strong> that identified a 13.3% drop-off at payment entry, monthly cohort retention modeling, and a <strong>statistically validated A/B test</strong> (Z-test, p&lt;0.05) on a checkout redesign. Two Power BI dashboards with DAX measures and drill-through filters. Reviewed and approved by TripleTen.',
+    'p3.ad.label':'Analytical Decisions',
+    'p3.ad.1':'The core question was whether a proposed change to the platform would actually move the needle. <strong>I designed and ran an A/B test</strong> on a checkout redesign to test for a measurable benefit rather than assume one.',
+    'p3.ad.2':'Midway through, I found a meaningful sample size imbalance between the control and treatment groups. Rather than restarting data collection, <strong>I recalculated significance accounting for the imbalance</strong> using a two-proportion z-test, and flagged the limitation directly in the final report instead of presenting the result at face value.',
+    'p3.ad.3':'Statistical significance (p&lt;0.05) tells you the effect is real, but <strong>not why it happened</strong> — that would require qualitative user research the dataset didn\'t include.',
+    'ad.tag.scope':'Scope','ad.tag.finding':'What surfaced','ad.tag.assumption':'Assumption','ad.tag.tradeoff':'Trade-off','ad.tag.limit':'Known limit','ad.tag.judgment':'Judgment call',
     'f1':'First visit','f2':'Select item','f3':'Add to cart',
     'f4':'Begin checkout','f5':'Payment info','f6':'Purchase ✓',
     'gh':'View on GitHub →',
@@ -964,6 +1046,10 @@ const T = {
     'p1.s3l':'Vistas del dashboard','p1.s3n':'Producto · empleados · categoría',
     'p1.vl':'Concentración de ingresos — top 3 SKUs vs. resto del catálogo (77 SKUs)',
     'p1.desc':"Análisis de inteligencia de negocio sobre el desempeño H1 2006 de un distribuidor mayorista. Diseñé un <strong>modelo de datos en estrella desde cero</strong> y construí tres dashboards con drill-through en Power BI para márgenes de producto, cuota de empleados y mix de categorías. Hallazgo clave: tres SKUs concentran el <strong>64% de $13.08M en ingresos</strong> — un riesgo de concentración con implicaciones directas en compras y precios.",
+    'p1.ad.label':'Decisiones Analíticas',
+    'p1.ad.1':'Esta fue una exploración estructurada, no una investigación guiada por una hipótesis: <strong>diseñé primero el modelo en estrella</strong> y luego construí dashboards de visión general de la empresa, vendedores, productos y un mapa de ventas geográfico para ver qué patrones emergían por sí solos.',
+    'p1.ad.2':'La vista a nivel de producto <strong>reveló un patrón de concentración</strong> — tres SKUs representando el 64% del revenue — que no fue algo que busqué deliberadamente, sino algo que la visualización hizo visible una vez que el modelo estaba listo.',
+    'p1.ad.3':'La cifra del 64% es descriptiva, no diagnóstica — indica dónde mirar, pero <strong>no tuve el contexto de negocio para explicar por qué</strong> ocurre o si realmente es un problema que valga la pena atacar.',
     'p2.meta':'Finanzas cuantitativas · Series de tiempo · Backtesting',
     'p2.name':'Pipeline Cuantitativo EURUSD',
     'p2.s1l':'Observaciones','p2.s1n':'OHLC 1-min · 6 años de datos',
@@ -971,6 +1057,10 @@ const T = {
     'p2.s3l':'Sesgo look-ahead','p2.s3v':'Cero','p2.s3n':'Eliminado por diseño del motor',
     'p2.vl':'Arquitectura del pipeline — flujo de datos (esquemático)',
     'p2.desc':'Pipeline de investigación end-to-end con seis años de datos OHLC en 1 minuto (81,938 observaciones). Construí un <strong>motor de backtesting vectorizado en NumPy</strong> — sin librerías externas — con sesgo look-ahead eliminado por diseño arquitectónico. Valida una estrategia de price action con <strong>~59% de acierto</strong>, intervalos de confianza bootstrapped y sizing por criterio de Kelly.',
+    'p2.ad.label':'Decisiones Analíticas',
+    'p2.ad.1':'Traté el patrón como un <strong>posible indicador de dirección, no como una estrategia independiente</strong>: un setup de continuación de vela donde el cierre de la siguiente vela respecto a un nivel definido determina si el patrón se sostuvo. El objetivo era probar relevancia, no afirmar poder predictivo.',
+    'p2.ad.2':'Un win rate de ~59% es una ventaja real pero modesta. <strong>Opté por reportarlo como "podría o no ser útil para operaciones cortas"</strong> en lugar de exagerarlo, ya que una señal de un solo patrón no basta por sí sola para justificar capital real sin más validación.',
+    'p2.ad.3':'El backtest valida el patrón históricamente en 81,938 observaciones, pero <strong>no contempla factores de ejecución en vivo</strong> — slippage, variabilidad del spread y cambios de régimen — por eso presento el resultado como un hallazgo de investigación, no como un sistema listo para operar.',
     'p3.meta':'Proyecto final TripleTen · Pruebas A/B · Análisis de cohortes · Power BI',
     'p3.name':'RappiPlus: Análisis de Negocio End-to-End',
     'p3.s1l':'Usuarios del embudo','p3.s1n':'Embudo de conversión SQL 6 etapas',
@@ -978,6 +1068,11 @@ const T = {
     'p3.s3l':'Resultado A/B','p3.s3n':'Z-test · estadísticamente significativo',
     'p3.vl':'Embudo de conversión — 7,796 usuarios en 6 etapas',
     'p3.desc':'Ciclo analítico completo para un servicio de suscripción — desde auditoría de datos hasta dashboards ejecutivos en seis etapas. Construí un <strong>embudo de conversión SQL (7,796 usuarios)</strong> que identificó una caída del 13.3% en el pago, retención mensual por cohortes y una <strong>prueba A/B estadísticamente validada</strong> (Z-test, p&lt;0.05). Dos dashboards en Power BI con DAX y drill-through. Aprobado por TripleTen.',
+    'p3.ad.label':'Decisiones Analíticas',
+    'p3.ad.1':'La pregunta central era si un cambio propuesto en la plataforma realmente generaría un beneficio medible. <strong>Diseñé y ejecuté una prueba A/B</strong> sobre un rediseño del checkout para comprobarlo en vez de asumirlo.',
+    'p3.ad.2':'A mitad de camino encontré un desbalance significativo en el tamaño de muestra entre los grupos de control y tratamiento. En lugar de reiniciar la recolección de datos, <strong>recalculé la significancia considerando el desbalance</strong> con un z-test de dos proporciones, y reporté la limitación directamente en el informe final en vez de presentar el resultado tal cual.',
+    'p3.ad.3':'La significancia estadística (p&lt;0.05) confirma que el efecto es real, pero <strong>no explica por qué ocurrió</strong> — eso requeriría investigación cualitativa de usuarios que el dataset no incluía.',
+    'ad.tag.scope':'Alcance','ad.tag.finding':'Lo que surgió','ad.tag.assumption':'Supuesto','ad.tag.tradeoff':'Trade-off','ad.tag.limit':'Límite conocido','ad.tag.judgment':'Decisión bajo presión',
     'f1':'Primera visita','f2':'Seleccionar ítem','f3':'Agregar al carrito',
     'f4':'Iniciar pago','f5':'Info de pago','f6':'Compra ✓',
     'gh':'Ver en GitHub →',
