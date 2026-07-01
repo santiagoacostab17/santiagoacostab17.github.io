@@ -218,7 +218,7 @@
       display: flex; gap: 0;
       border: 1px solid var(--border);
       border-radius: 6px; overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .stat-cell {
       flex: 1; padding: 16px 20px;
@@ -245,6 +245,33 @@
     .stat-note {
       font-size: 11px; color: var(--text3); margin-top: 4px; line-height: 1.4;
     }
+
+    /* Toggle button — accordion trigger */
+    .proj-toggle {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--display); font-size: 12px; font-weight: 700;
+      letter-spacing: .01em;
+      color: var(--blue); background: var(--blue-dim);
+      border: 1px solid var(--blue-bd);
+      padding: 8px 16px; border-radius: 5px;
+      margin-bottom: 20px; cursor: pointer;
+      transition: background .15s, border-color .15s;
+    }
+    .proj-toggle:hover { background: rgba(59,130,246,.18); border-color: var(--blue); }
+    .proj-toggle .pt-chevron {
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      flex-shrink: 0;
+    }
+    .proj-toggle[aria-expanded="true"] .pt-chevron { transform: rotate(180deg); }
+
+    /* Accordion mechanics — CSS grid trick, no JS height calc */
+    .proj-details {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .4s cubic-bezier(.4,0,.2,1);
+    }
+    .proj-details.open { grid-template-rows: 1fr; }
+    .proj-details-inner { overflow: hidden; min-height: 0; }
 
     /* Visual block */
     .proj-visual {
@@ -295,7 +322,7 @@
     }
     .proj-link:hover { gap: 9px; }
 
-    /* ── ANALYTICAL DECISIONS (new) ── */
+    /* ── ANALYTICAL DECISIONS (collapsible sub-block) ── */
     .ad-box {
       background: var(--bg2);
       border: 1px solid var(--border);
@@ -304,13 +331,27 @@
       padding: 18px 22px;
       margin-bottom: 16px;
     }
+    .ad-toggle {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: none; border: none; cursor: pointer;
+      padding: 0; margin: 0;
+    }
     .ad-label {
       font-family: var(--mono); font-size: 9px; font-weight: 500;
       letter-spacing: .14em; text-transform: uppercase;
-      color: var(--purple); margin-bottom: 12px;
+      color: var(--purple);
       display: flex; align-items: center; gap: 7px;
     }
     .ad-label::before { content: '◆'; font-size: 8px; }
+    .ad-toggle .pt-chevron { color: var(--purple); transition: transform .3s cubic-bezier(.4,0,.2,1); }
+    .ad-toggle[aria-expanded="true"] .pt-chevron { transform: rotate(180deg); }
+    .ad-body {
+      display: grid; grid-template-rows: 0fr;
+      transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    }
+    .ad-body.open { grid-template-rows: 1fr; margin-top: 12px; }
+    .ad-body-inner { overflow: hidden; min-height: 0; }
     .ad-item {
       display: grid; grid-template-columns: 86px 1fr;
       gap: 12px; padding: 10px 0;
@@ -539,6 +580,13 @@
         </div>
       </div>
 
+      <button class="proj-toggle" onclick="toggleProj(this)" aria-expanded="false">
+        <span class="pt-text" data-i18n="toggle.show">View full analysis</span>
+        <svg class="pt-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="proj-details">
+        <div class="proj-details-inner">
+
       <!-- Visual: Revenue concentration bar — 64% documented fact -->
       <div class="proj-visual">
         <div class="visual-label" data-i18n="p1.vl">Revenue concentration — top 3 SKUs vs. rest of catalog (77 SKUs total)</div>
@@ -569,7 +617,12 @@
 
       <!-- Analytical Decisions -->
       <div class="ad-box">
-        <div class="ad-label" data-i18n="p1.ad.label">Analytical Decisions</div>
+        <button class="ad-toggle" onclick="toggleAd(this)" aria-expanded="false">
+          <div class="ad-label" data-i18n="p1.ad.label">Analytical Decisions</div>
+          <svg class="pt-chevron" viewBox="0 0 24 24" width="13" height="13"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="ad-body">
+          <div class="ad-body-inner">
         <div class="ad-item">
           <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
           <div class="ad-text" data-i18n="p1.ad.1">This was a structured exploration, not a hypothesis-driven investigation: <strong>I designed the star schema first</strong>, then built dashboards across company overview, sales reps, products, and a geographic sales map to see what patterns the data would surface on its own.</div>
@@ -582,12 +635,17 @@
           <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
           <div class="ad-text" data-i18n="p1.ad.3">The 64% figure is descriptive, not diagnostic — it tells you where to look, but <strong>I didn't have the business context to say why</strong> it happens or whether it's actually a problem worth acting on.</div>
         </div>
+          </div>
+        </div>
       </div>
 
       <div class="proj-tools">
         <span class="tag">MySQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Star schema</span>
       </div>
       <a class="proj-link" href="https://github.com/santiagoacostab17/Northwind-Revenue-Insights" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
+
+        </div>
+      </div>
     </div>
 
     <!-- P2: EURUSD -->
@@ -611,6 +669,13 @@
           <div class="stat-note" data-i18n="p2.s3n">Eliminated by engine design</div>
         </div>
       </div>
+
+      <button class="proj-toggle" onclick="toggleProj(this)" aria-expanded="false">
+        <span class="pt-text" data-i18n="toggle.show">View full analysis</span>
+        <svg class="pt-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="proj-details">
+        <div class="proj-details-inner">
 
       <!-- Visual: Schematic only — clearly labeled -->
       <div class="proj-visual">
@@ -648,7 +713,12 @@
 
       <!-- Analytical Decisions -->
       <div class="ad-box">
-        <div class="ad-label" data-i18n="p2.ad.label">Analytical Decisions</div>
+        <button class="ad-toggle" onclick="toggleAd(this)" aria-expanded="false">
+          <div class="ad-label" data-i18n="p2.ad.label">Analytical Decisions</div>
+          <svg class="pt-chevron" viewBox="0 0 24 24" width="13" height="13"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="ad-body">
+          <div class="ad-body-inner">
         <div class="ad-item">
           <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
           <div class="ad-text" data-i18n="p2.ad.1">I treated the pattern as a <strong>potential directional indicator, not a standalone strategy</strong>: a candle-continuation setup where the next candle's close relative to a defined level determines whether the pattern held. The goal was to test relevance, not to claim predictive power.</div>
@@ -661,12 +731,17 @@
           <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
           <div class="ad-text" data-i18n="p2.ad.3">The backtest validates the pattern historically across 81,938 observations, but <strong>doesn't account for live execution factors</strong> — slippage, spread variability, and regime change — which is why I frame the result as a research finding, not a ready-to-trade system.</div>
         </div>
+          </div>
+        </div>
       </div>
 
       <div class="proj-tools">
         <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Bootstrap CI</span>
       </div>
       <a class="proj-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
+
+        </div>
+      </div>
     </div>
 
     <!-- P3: RappiPlus -->
@@ -690,6 +765,13 @@
           <div class="stat-note" data-i18n="p3.s3n">Z-test · statistically significant</div>
         </div>
       </div>
+
+      <button class="proj-toggle" onclick="toggleProj(this)" aria-expanded="false">
+        <span class="pt-text" data-i18n="toggle.show">View full analysis</span>
+        <svg class="pt-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="proj-details">
+        <div class="proj-details-inner">
 
       <!-- Funnel — all numbers from the actual project -->
       <div class="proj-visual">
@@ -738,7 +820,12 @@
 
       <!-- Analytical Decisions -->
       <div class="ad-box">
-        <div class="ad-label" data-i18n="p3.ad.label">Analytical Decisions</div>
+        <button class="ad-toggle" onclick="toggleAd(this)" aria-expanded="false">
+          <div class="ad-label" data-i18n="p3.ad.label">Analytical Decisions</div>
+          <svg class="pt-chevron" viewBox="0 0 24 24" width="13" height="13"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="ad-body">
+          <div class="ad-body-inner">
         <div class="ad-item">
           <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
           <div class="ad-text" data-i18n="p3.ad.1">The core question was whether a proposed change to the platform would actually move the needle. <strong>I designed and ran an A/B test</strong> on a checkout redesign to test for a measurable benefit rather than assume one.</div>
@@ -751,12 +838,17 @@
           <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
           <div class="ad-text" data-i18n="p3.ad.3">Statistical significance (p&lt;0.05) tells you the effect is real, but <strong>not why it happened</strong> — that would require qualitative user research the dataset didn't include.</div>
         </div>
+          </div>
+        </div>
       </div>
 
       <div class="proj-tools">
         <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Z-test</span><span class="tag">Cohort analysis</span>
       </div>
       <a class="proj-link" href="https://github.com/santiagoacostab17/end_to_end_business_analysis" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
+
+        </div>
+      </div>
     </div>
 
   </div>
@@ -974,6 +1066,7 @@ const T = {
     'bio.live':'Available for remote roles',
     'bio.btn1':'View my work','bio.btn2':'Download CV',
     's.work.tag':'Selected work','s.work.title':'Projects',
+    'toggle.show':'View full analysis','toggle.hide':'Hide details',
     'p1.meta':'BI · Star schema · Revenue analysis',
     'p1.name':'Northwind Revenue Insights',
     'p1.s1l':'Revenue analyzed','p1.s1n':'H1 2006 · wholesale distributor',
@@ -1039,6 +1132,7 @@ const T = {
     'bio.live':'Disponible para roles remotos',
     'bio.btn1':'Ver proyectos','bio.btn2':'Descargar CV',
     's.work.tag':'Trabajo seleccionado','s.work.title':'Proyectos',
+    'toggle.show':'Ver análisis completo','toggle.hide':'Ocultar detalles',
     'p1.meta':'BI · Star schema · Análisis de ingresos',
     'p1.name':'Northwind: Análisis de Ingresos',
     'p1.s1l':'Revenue analizado','p1.s1n':'H1 2006 · distribuidor mayorista',
@@ -1102,7 +1196,17 @@ function buildCache(){
 }
 function applyLang(l){
   const t=T[l];
-  cache.forEach(({el,key})=>{ if(t[key]!==undefined) el.innerHTML=t[key]; });
+  cache.forEach(({el,key})=>{
+    if(t[key]===undefined) return;
+    // Toggle buttons must reflect open/closed state, not the base key, so skip their live text spans here
+    if(el.classList.contains('pt-text')) return;
+    el.innerHTML=t[key];
+  });
+  // Sync every toggle button's label to current language + current open/closed state
+  document.querySelectorAll('.proj-toggle').forEach(btn=>{
+    const open = btn.getAttribute('aria-expanded')==='true';
+    btn.querySelector('.pt-text').textContent = open ? t['toggle.hide'] : t['toggle.show'];
+  });
   document.documentElement.lang=l;
   document.title=l==='es'?'Santiago Acosta — Analista de Datos':'Santiago Acosta — Data Analyst';
   const cv=document.getElementById('cv-dl');
@@ -1115,6 +1219,29 @@ function setLang(l){
   document.body.classList.add('sw');
   setTimeout(()=>{ applyLang(l); document.body.classList.remove('sw'); },120);
 }
+
+function toggleProj(btn){
+  const details = btn.nextElementSibling;
+  const isOpen = details.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+  btn.querySelector('.pt-text').textContent = isOpen ? T[lang]['toggle.hide'] : T[lang]['toggle.show'];
+  if(!isOpen){
+    // collapsing a project also collapses any open Analytical Decisions block inside it
+    const adBody = details.querySelector('.ad-body.open');
+    if(adBody){
+      adBody.classList.remove('open');
+      const adBtn = details.querySelector('.ad-toggle[aria-expanded="true"]');
+      if(adBtn) adBtn.setAttribute('aria-expanded','false');
+    }
+  }
+}
+
+function toggleAd(btn){
+  const body = btn.parentElement.querySelector('.ad-body');
+  const isOpen = body.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+}
+
 document.addEventListener('DOMContentLoaded',buildCache);
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
