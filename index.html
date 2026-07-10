@@ -530,10 +530,11 @@
           I'm now focused on <strong>product analytics and business intelligence</strong> for remote-first teams.
         </p>
         <p class="bio-p" data-i18n="bio.p3">
-          Each project below comes from a different angle on the same skill: <strong>a large-scale Python
-          simulation on real market data</strong> shaped the EURUSD pipeline; <strong>retail and e-commerce
-          revenue analysis</strong> shaped the Northwind project; and a <strong>rigorous, third-party-reviewed
-          capstone</strong> with TripleTen shaped RappiPlus. Different data, same discipline.
+          Each project below comes from a different angle on the same skill: <strong>retail and e-commerce
+          revenue analysis</strong> shaped the Northwind project; a <strong>rigorous, third-party-reviewed
+          capstone</strong> with TripleTen shaped RappiPlus; <strong>customer churn analytics</strong> shaped
+          the Netflix pipeline; and a <strong>large-scale Python simulation on real market data</strong>
+          shaped the EURUSD project. Different data, same discipline.
         </p>
         <div class="bio-pills">
           <span class="pill blue" data-i18n="fp.1">SQL &amp; Python</span>
@@ -661,104 +662,6 @@
       </div>
     </div>
 
-    <!-- P2: EURUSD -->
-    <div class="proj">
-      <div class="proj-meta" data-i18n="p2.meta">Quantitative research · Python simulation on real market data</div>
-      <div class="proj-name" data-i18n="p2.name">EURUSD Quantitative Pipeline</div>
-      <div class="stat-strip">
-        <div class="stat-cell">
-          <div class="stat-label" data-i18n="p2.s1l">Observations</div>
-          <div class="stat-val blue">81,938</div>
-          <div class="stat-note" data-i18n="p2.s1n">1-min OHLC · 6 years of data</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-label" data-i18n="p2.s2l">Strategy win rate</div>
-          <div class="stat-val green">~59%</div>
-          <div class="stat-note" data-i18n="p2.s2n">Bootstrapped CI · Kelly sizing</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-label" data-i18n="p2.s3l">Look-ahead bias</div>
-          <div class="stat-val" style="font-size:20px;" data-i18n="p2.s3v">Zero</div>
-          <div class="stat-note" data-i18n="p2.s3n">Eliminated by engine design</div>
-        </div>
-      </div>
-
-      <button class="proj-toggle" onclick="toggleProj(this)" aria-expanded="false">
-        <span class="pt-text" data-i18n="toggle.show">View full analysis</span>
-        <svg class="pt-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="proj-details">
-        <div class="proj-details-inner">
-
-      <!-- Visual: Schematic only — clearly labeled -->
-      <div class="proj-visual">
-        <div class="visual-label" data-i18n="p2.vl">Pipeline architecture — data flow (schematic)</div>
-        <svg viewBox="0 0 700 44" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-          <defs>
-            <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" fill="#3B82F6"/>
-            </marker>
-          </defs>
-          <rect x="0" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
-          <rect x="148" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
-          <rect x="296" y="10" width="128" height="24" rx="4" fill="#1A1A1A" stroke="#3B82F6" stroke-width="1"/>
-          <rect x="474" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
-          <rect x="612" y="10" width="88" height="24" rx="4" fill="#1F2937" stroke="#22C55E" stroke-width="1"/>
-          <text x="54" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Raw OHLC</text>
-          <text x="202" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Clean &amp; Align</text>
-          <text x="360" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">Backtest Engine</text>
-          <text x="528" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Bootstrap CI</text>
-          <text x="656" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">~59% WR</text>
-          <line x1="110" y1="22" x2="146" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
-          <line x1="258" y1="22" x2="294" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
-          <line x1="426" y1="22" x2="472" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
-          <line x1="584" y1="22" x2="610" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
-        </svg>
-      </div>
-
-      <p class="proj-desc" data-i18n="p2.desc">
-        End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations).
-        Built a <strong>custom vectorized backtesting engine in NumPy</strong> — no external strategy libraries —
-        with look-ahead bias eliminated by architectural design, not post-hoc filtering.
-        Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence
-        intervals and Kelly criterion position sizing. Built as a rigorous, code-first simulation on a
-        large real-world dataset — the goal was to replace intuition with statistical evidence, not to
-        document a personal trading track record.
-      </p>
-
-      <!-- Analytical Decisions -->
-      <div class="ad-box">
-        <button class="ad-toggle" onclick="toggleAd(this)" aria-expanded="false">
-          <div class="ad-label" data-i18n="p2.ad.label">Analytical Decisions</div>
-          <svg class="pt-chevron" viewBox="0 0 24 24" width="13" height="13"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="ad-body">
-          <div class="ad-body-inner">
-        <div class="ad-item">
-          <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
-          <div class="ad-text" data-i18n="p2.ad.1">I treated the pattern as a <strong>potential directional indicator, not a standalone strategy</strong>: a candle-continuation setup where the next candle's close relative to a defined level determines whether the pattern held. The goal was to test relevance, not to claim predictive power.</div>
-        </div>
-        <div class="ad-item">
-          <div class="ad-tag" data-i18n="ad.tag.judgment">Judgment call</div>
-          <div class="ad-text" data-i18n="p2.ad.2">A ~59% win rate is a real but modest edge. <strong>I chose to report it as "may or may not be useful for short-term setups"</strong> rather than overstate it, since a single-pattern signal isn't enough on its own to justify live capital without further validation.</div>
-        </div>
-        <div class="ad-item">
-          <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
-          <div class="ad-text" data-i18n="p2.ad.3">The backtest validates the pattern historically across 81,938 observations, but <strong>doesn't account for live execution factors</strong> — slippage, spread variability, and regime change — which is why I frame the result as a research finding, not a ready-to-trade system.</div>
-        </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-tools">
-        <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Bootstrap CI</span>
-      </div>
-      <a class="proj-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
-
-        </div>
-      </div>
-    </div>
-
     <!-- P3: RappiPlus -->
     <div class="proj">
       <div class="proj-meta" data-i18n="p3.meta">TripleTen capstone · Reviewed &amp; approved · A/B testing · Cohort analysis · Power BI</div>
@@ -862,6 +765,199 @@
         <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Z-test</span><span class="tag">Cohort analysis</span>
       </div>
       <a class="proj-link" href="https://github.com/santiagoacostab17/end_to_end_business_analysis" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- P4: Netflix -->
+    <div class="proj">
+      <div class="proj-meta" data-i18n="p4.meta">Customer analytics · Churn prediction · Power BI</div>
+      <div class="proj-name" data-i18n="p4.name">Netflix User Behavior &amp; Churn Analytics</div>
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <div class="stat-label" data-i18n="p4.s1l">Raw records</div>
+          <div class="stat-val blue">210K+</div>
+          <div class="stat-note" data-i18n="p4.s1n">6 source tables, joined &amp; cleaned</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label" data-i18n="p4.s2l">Users analyzed</div>
+          <div class="stat-val">8,499</div>
+          <div class="stat-note" data-i18n="p4.s2n">31-feature user-level table</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label" data-i18n="p4.s3l">Churn rate</div>
+          <div class="stat-val red">64.9%</div>
+          <div class="stat-note" data-i18n="p4.s3n">Flat across plan &amp; country</div>
+        </div>
+      </div>
+
+      <button class="proj-toggle" onclick="toggleProj(this)" aria-expanded="false">
+        <span class="pt-text" data-i18n="toggle.show">View full analysis</span>
+        <svg class="pt-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="proj-details">
+        <div class="proj-details-inner">
+
+      <!-- Visual: Pipeline schematic — raw to dashboard -->
+      <div class="proj-visual">
+        <div class="visual-label" data-i18n="p4.vl">Pipeline architecture — data flow (schematic)</div>
+        <svg viewBox="0 0 700 44" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="arr4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#3B82F6"/>
+            </marker>
+          </defs>
+          <rect x="0" y="10" width="118" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="158" y="10" width="118" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="316" y="10" width="118" height="24" rx="4" fill="#1A1A1A" stroke="#3B82F6" stroke-width="1"/>
+          <rect x="474" y="10" width="128" height="24" rx="4" fill="#1F2937" stroke="#22C55E" stroke-width="1"/>
+          <text x="59"  y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">6 Raw Tables</text>
+          <text x="217" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Cleaned &amp; Joined</text>
+          <text x="375" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">31 Features</text>
+          <text x="538" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">Churn Dashboard</text>
+          <line x1="120" y1="22" x2="156" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr4)"/>
+          <line x1="278" y1="22" x2="314" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr4)"/>
+          <line x1="436" y1="22" x2="472" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr4)"/>
+        </svg>
+      </div>
+
+      <p class="proj-desc" data-i18n="p4.desc">
+        End-to-end churn analytics project on a synthetic Netflix subscriber behavior dataset
+        (210K+ raw records from Kaggle). Built a <strong>full raw → processed → features → dashboard
+        pipeline in Python</strong>, joining six source tables — subscriber profiles, watch history,
+        search logs, reviews, and recommendation logs — into a single <strong>8,499-user table with
+        31 engineered behavioral features</strong>. Designed a Power BI dashboard with custom DAX
+        measures to segment churn by plan, geography, device, and — more usefully — by actual
+        usage behavior: watch time, completion rate, session frequency, and days since last activity.
+      </p>
+
+      <!-- Analytical Decisions -->
+      <div class="ad-box">
+        <button class="ad-toggle" onclick="toggleAd(this)" aria-expanded="false">
+          <div class="ad-label" data-i18n="p4.ad.label">Analytical Decisions</div>
+          <svg class="pt-chevron" viewBox="0 0 24 24" width="13" height="13"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="ad-body">
+          <div class="ad-body-inner">
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
+          <div class="ad-text" data-i18n="p4.ad.1">Before any dashboarding, <strong>I built the feature table myself</strong> — joining six raw tables around a single user key and engineering activity-based fields like inactivity buckets, since churn analysis is only as good as the table it's built on.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.judgment">Judgment call</div>
+          <div class="ad-text" data-i18n="p4.ad.2">The first dashboard view showed <strong>churn rate nearly flat across subscription plan and country</strong> — so instead of forcing a narrative around demographics, I redirected the second page toward behavioral signals (completion rate, session frequency, recency), which is where the real separation between churned and retained users shows up.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
+          <div class="ad-text" data-i18n="p4.ad.3">The churn label is static per user, not time-based — it flags <strong>who</strong> churned but not the sequence of activity that led there, which a proper survival analysis would need to model.</div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-tools">
+        <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">DAX</span>
+      </div>
+      <a class="proj-link" href="https://github.com/santiagoacostab17/Netflix-User-Behavior-Churn-Analytics" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- P2: EURUSD -->
+    <div class="proj">
+      <div class="proj-meta" data-i18n="p2.meta">Quantitative research · Python simulation on real market data</div>
+      <div class="proj-name" data-i18n="p2.name">EURUSD Quantitative Pipeline</div>
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <div class="stat-label" data-i18n="p2.s1l">Observations</div>
+          <div class="stat-val blue">81,938</div>
+          <div class="stat-note" data-i18n="p2.s1n">1-min OHLC · 6 years of data</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label" data-i18n="p2.s2l">Strategy win rate</div>
+          <div class="stat-val green">~59%</div>
+          <div class="stat-note" data-i18n="p2.s2n">Bootstrapped CI · Kelly sizing</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label" data-i18n="p2.s3l">Look-ahead bias</div>
+          <div class="stat-val" style="font-size:20px;" data-i18n="p2.s3v">Zero</div>
+          <div class="stat-note" data-i18n="p2.s3n">Eliminated by engine design</div>
+        </div>
+      </div>
+
+      <button class="proj-toggle" onclick="toggleProj(this)" aria-expanded="false">
+        <span class="pt-text" data-i18n="toggle.show">View full analysis</span>
+        <svg class="pt-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="proj-details">
+        <div class="proj-details-inner">
+
+      <!-- Visual: Schematic only — clearly labeled -->
+      <div class="proj-visual">
+        <div class="visual-label" data-i18n="p2.vl">Pipeline architecture — data flow (schematic)</div>
+        <svg viewBox="0 0 700 44" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#3B82F6"/>
+            </marker>
+          </defs>
+          <rect x="0" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="148" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="296" y="10" width="128" height="24" rx="4" fill="#1A1A1A" stroke="#3B82F6" stroke-width="1"/>
+          <rect x="474" y="10" width="108" height="24" rx="4" fill="#1A1A1A" stroke="#2C2C2C" stroke-width="1"/>
+          <rect x="612" y="10" width="88" height="24" rx="4" fill="#1F2937" stroke="#22C55E" stroke-width="1"/>
+          <text x="54" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Raw OHLC</text>
+          <text x="202" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Clean &amp; Align</text>
+          <text x="360" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#3B82F6" text-anchor="middle">Backtest Engine</text>
+          <text x="528" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Bootstrap CI</text>
+          <text x="656" y="26" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">~59% WR</text>
+          <line x1="110" y1="22" x2="146" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="258" y1="22" x2="294" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="426" y1="22" x2="472" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="584" y1="22" x2="610" y2="22" stroke="#3B82F6" stroke-width="1.2" marker-end="url(#arr)"/>
+        </svg>
+      </div>
+
+      <p class="proj-desc" data-i18n="p2.desc">
+        End-to-end research pipeline on six years of 1-minute OHLC forex data (81,938 observations).
+        Built a <strong>custom vectorized backtesting engine in NumPy</strong> — no external strategy libraries —
+        with look-ahead bias eliminated by architectural design, not post-hoc filtering.
+        Validates a price-action strategy at <strong>~59% win rate</strong> with bootstrapped confidence
+        intervals and Kelly criterion position sizing. Built as a rigorous, code-first simulation on a
+        large real-world dataset — the goal was to replace intuition with statistical evidence, not to
+        document a personal trading track record.
+      </p>
+
+      <!-- Analytical Decisions -->
+      <div class="ad-box">
+        <button class="ad-toggle" onclick="toggleAd(this)" aria-expanded="false">
+          <div class="ad-label" data-i18n="p2.ad.label">Analytical Decisions</div>
+          <svg class="pt-chevron" viewBox="0 0 24 24" width="13" height="13"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="ad-body">
+          <div class="ad-body-inner">
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.scope">Scope</div>
+          <div class="ad-text" data-i18n="p2.ad.1">I treated the pattern as a <strong>potential directional indicator, not a standalone strategy</strong>: a candle-continuation setup where the next candle's close relative to a defined level determines whether the pattern held. The goal was to test relevance, not to claim predictive power.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.judgment">Judgment call</div>
+          <div class="ad-text" data-i18n="p2.ad.2">A ~59% win rate is a real but modest edge. <strong>I chose to report it as "may or may not be useful for short-term setups"</strong> rather than overstate it, since a single-pattern signal isn't enough on its own to justify live capital without further validation.</div>
+        </div>
+        <div class="ad-item">
+          <div class="ad-tag" data-i18n="ad.tag.limit">Known limit</div>
+          <div class="ad-text" data-i18n="p2.ad.3">The backtest validates the pattern historically across 81,938 observations, but <strong>doesn't account for live execution factors</strong> — slippage, spread variability, and regime change — which is why I frame the result as a research finding, not a ready-to-trade system.</div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-tools">
+        <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Bootstrap CI</span>
+      </div>
+      <a class="proj-link" href="https://github.com/santiagoacostab17/eurusd-pipeline" target="_blank" rel="noopener" data-i18n="gh">View on GitHub →</a>
 
         </div>
       </div>
@@ -1077,7 +1173,7 @@ const T = {
     'bio.h1':'I turn messy data<br>into <em>clear decisions.</em>',
     'bio.p1':"I'm Santiago Acosta — a data analyst with experience across the full analytics lifecycle: <strong>SQL modeling, Python-based statistical analysis, A/B testing,</strong> and <strong>Power BI dashboards</strong> built to answer the questions teams actually act on.",
     'bio.p2':"My background in Mechanical Engineering at Universidad de los Andes (2018–2023) trained me to think in systems and validate assumptions rigorously before drawing conclusions. I'm now focused on <strong>product analytics and business intelligence</strong> for remote-first teams.",
-    'bio.p3':"Each project below comes from a different angle on the same skill: <strong>a large-scale Python simulation on real market data</strong> shaped the EURUSD pipeline; <strong>retail and e-commerce revenue analysis</strong> shaped the Northwind project; and a <strong>rigorous, third-party-reviewed capstone</strong> with TripleTen shaped RappiPlus. Different data, same discipline.",
+    'bio.p3':"Each project below comes from a different angle on the same skill: <strong>retail and e-commerce revenue analysis</strong> shaped the Northwind project; a <strong>rigorous, third-party-reviewed capstone</strong> with TripleTen shaped RappiPlus; <strong>customer churn analytics</strong> shaped the Netflix pipeline; and a <strong>large-scale Python simulation on real market data</strong> shaped the EURUSD project. Different data, same discipline.",
     'fp.1':'SQL & Python','fp.2':'A/B Testing','fp.3':'Power BI · DAX',
     'fp.4':'Product Analytics','fp.5':'Business Intelligence','fp.6':'Statistical Inference',
     'bio.live':'Available for remote roles',
@@ -1117,6 +1213,17 @@ const T = {
     'p3.ad.1':'The core question was whether a proposed change to the platform would actually move the needle. <strong>I designed and ran an A/B test</strong> on a checkout redesign to test for a measurable benefit rather than assume one.',
     'p3.ad.2':'Midway through, I found a meaningful sample size imbalance between the control and treatment groups. Rather than restarting data collection, <strong>I recalculated significance accounting for the imbalance</strong> using a two-proportion z-test, and flagged the limitation directly in the final report instead of presenting the result at face value.',
     'p3.ad.3':'Statistical significance (p&lt;0.05) tells you the effect is real, but <strong>not why it happened</strong> — that would require qualitative user research the dataset didn\'t include.',
+    'p4.meta':'Customer analytics · Churn prediction · Power BI',
+    'p4.name':'Netflix User Behavior & Churn Analytics',
+    'p4.s1l':'Raw records','p4.s1n':'6 source tables, joined & cleaned',
+    'p4.s2l':'Users analyzed','p4.s2n':'31-feature user-level table',
+    'p4.s3l':'Churn rate','p4.s3n':'Flat across plan & country',
+    'p4.vl':'Pipeline architecture — data flow (schematic)',
+    'p4.desc':"End-to-end churn analytics project on a synthetic Netflix subscriber behavior dataset (210K+ raw records from Kaggle). Built a <strong>full raw → processed → features → dashboard pipeline in Python</strong>, joining six source tables — subscriber profiles, watch history, search logs, reviews, and recommendation logs — into a single <strong>8,499-user table with 31 engineered behavioral features</strong>. Designed a Power BI dashboard with custom DAX measures to segment churn by plan, geography, device, and — more usefully — by actual usage behavior: watch time, completion rate, session frequency, and days since last activity.",
+    'p4.ad.label':'Analytical Decisions',
+    'p4.ad.1':'Before any dashboarding, <strong>I built the feature table myself</strong> — joining six raw tables around a single user key and engineering activity-based fields like inactivity buckets, since churn analysis is only as good as the table it\'s built on.',
+    'p4.ad.2':"The first dashboard view showed <strong>churn rate nearly flat across subscription plan and country</strong> — so instead of forcing a narrative around demographics, I redirected the second page toward behavioral signals (completion rate, session frequency, recency), which is where the real separation between churned and retained users shows up.",
+    'p4.ad.3':"The churn label is static per user, not time-based — it flags <strong>who</strong> churned but not the sequence of activity that led there, which a proper survival analysis would need to model.",
     'ad.tag.scope':'Scope','ad.tag.finding':'What surfaced','ad.tag.assumption':'Assumption','ad.tag.tradeoff':'Trade-off','ad.tag.limit':'Known limit','ad.tag.judgment':'Judgment call',
     'f1':'First visit','f2':'Select item','f3':'Add to cart',
     'f4':'Begin checkout','f5':'Payment info','f6':'Purchase ✓',
@@ -1144,7 +1251,7 @@ const T = {
     'bio.h1':'Convierto datos complejos<br>en <em>decisiones claras.</em>',
     'bio.p1':'Soy Santiago Acosta — analista de datos con experiencia en todo el ciclo analítico: <strong>modelado SQL, análisis estadístico en Python, pruebas A/B</strong> y <strong>dashboards en Power BI</strong> diseñados para responder las preguntas que los equipos realmente necesitan actuar.',
     'bio.p2':'Mi formación en Ingeniería Mecánica en la Universidad de los Andes (2018–2023) me entrenó a pensar en sistemas y validar supuestos antes de concluir. Ahora me enfoco en <strong>analítica de producto e inteligencia de negocio</strong> para equipos remotos.',
-    'bio.p3':'Cada proyecto a continuación viene de un ángulo distinto de la misma habilidad: <strong>una simulación a gran escala en Python sobre datos reales de mercado</strong> dio forma al pipeline de EURUSD; <strong>análisis de ingresos de retail y e-commerce</strong> dio forma al proyecto Northwind; y un <strong>capstone riguroso, revisado por un tercero</strong> con TripleTen dio forma a RappiPlus. Datos distintos, la misma disciplina.',
+    'bio.p3':'Cada proyecto a continuación viene de un ángulo distinto de la misma habilidad: <strong>análisis de ingresos de retail y e-commerce</strong> dio forma al proyecto Northwind; un <strong>capstone riguroso, revisado por un tercero</strong> con TripleTen dio forma a RappiPlus; <strong>analítica de churn de clientes</strong> dio forma al pipeline de Netflix; y una <strong>simulación a gran escala en Python sobre datos reales de mercado</strong> dio forma al proyecto EURUSD. Datos distintos, la misma disciplina.',
     'fp.1':'SQL & Python','fp.2':'Pruebas A/B','fp.3':'Power BI · DAX',
     'fp.4':'Analítica de Producto','fp.5':'Inteligencia de Negocio','fp.6':'Inferencia Estadística',
     'bio.live':'Disponible para roles remotos',
@@ -1184,6 +1291,17 @@ const T = {
     'p3.ad.1':'La pregunta central era si un cambio propuesto en la plataforma realmente generaría un beneficio medible. <strong>Diseñé y ejecuté una prueba A/B</strong> sobre un rediseño del checkout para comprobarlo en vez de asumirlo.',
     'p3.ad.2':'A mitad de camino encontré un desbalance significativo en el tamaño de muestra entre los grupos de control y tratamiento. En lugar de reiniciar la recolección de datos, <strong>recalculé la significancia considerando el desbalance</strong> con un z-test de dos proporciones, y reporté la limitación directamente en el informe final en vez de presentar el resultado tal cual.',
     'p3.ad.3':'La significancia estadística (p&lt;0.05) confirma que el efecto es real, pero <strong>no explica por qué ocurrió</strong> — eso requeriría investigación cualitativa de usuarios que el dataset no incluía.',
+    'p4.meta':'Analítica de clientes · Predicción de churn · Power BI',
+    'p4.name':'Netflix: Comportamiento de Usuario y Análisis de Churn',
+    'p4.s1l':'Registros raw','p4.s1n':'6 tablas fuente, unidas y limpiadas',
+    'p4.s2l':'Usuarios analizados','p4.s2n':'Tabla de usuario con 31 features',
+    'p4.s3l':'Tasa de churn','p4.s3n':'Plana entre plan y país',
+    'p4.vl':'Arquitectura del pipeline — flujo de datos (esquemático)',
+    'p4.desc':'Proyecto de analítica de churn end-to-end sobre un dataset sintético de comportamiento de suscriptores de Netflix (210K+ registros raw de Kaggle). Construí un <strong>pipeline completo raw → processed → features → dashboard en Python</strong>, uniendo seis tablas fuente — perfiles de usuario, historial de reproducción, búsquedas, reseñas y logs de recomendación — en una sola <strong>tabla de 8,499 usuarios con 31 features de comportamiento</strong>. Diseñé un dashboard en Power BI con medidas DAX personalizadas para segmentar el churn por plan, geografía, dispositivo y — de forma más útil — por comportamiento real de uso: tiempo de reproducción, tasa de finalización, frecuencia de sesiones y días desde la última actividad.',
+    'p4.ad.label':'Decisiones Analíticas',
+    'p4.ad.1':'Antes de armar el dashboard, <strong>construí yo mismo la tabla de features</strong> — uniendo seis tablas raw alrededor de una sola llave de usuario y creando campos de comportamiento como buckets de inactividad, porque un análisis de churn es tan bueno como la tabla sobre la que se construye.',
+    'p4.ad.2':'La primera vista del dashboard mostró que la <strong>tasa de churn era casi plana entre plan de suscripción y país</strong> — así que en vez de forzar una narrativa alrededor de la demografía, redirigí la segunda página hacia señales de comportamiento (tasa de finalización, frecuencia de sesiones, recencia), que es donde realmente se separan los usuarios que abandonan de los que se quedan.',
+    'p4.ad.3':'La etiqueta de churn es estática por usuario, no temporal — indica <strong>quién</strong> abandonó pero no la secuencia de actividad que llevó a eso, algo que un análisis de supervivencia adecuado tendría que modelar.',
     'ad.tag.scope':'Alcance','ad.tag.finding':'Lo que surgió','ad.tag.assumption':'Supuesto','ad.tag.tradeoff':'Trade-off','ad.tag.limit':'Límite conocido','ad.tag.judgment':'Decisión bajo presión',
     'f1':'Primera visita','f2':'Seleccionar ítem','f3':'Agregar al carrito',
     'f4':'Iniciar pago','f5':'Info de pago','f6':'Compra ✓',
