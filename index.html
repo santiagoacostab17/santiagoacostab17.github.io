@@ -420,6 +420,29 @@
       background: var(--border2); flex-shrink: 0;
     }
 
+    /* ── EXPERIENCE ── */
+    .xp-item {
+      display: grid; grid-template-columns: 90px 1fr;
+      gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .xp-item:first-child { border-top: 1px solid var(--border); }
+    .xp-year {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--text3); padding-top: 2px;
+    }
+    .xp-role { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .xp-org { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
+    .xp-bullets { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .xp-bullet {
+      font-size: 13px; color: var(--text2); line-height: 1.6;
+      display: flex; gap: 8px; align-items: baseline;
+    }
+    .xp-bullet::before {
+      content: '·'; color: var(--blue); font-weight: 700; flex-shrink: 0;
+    }
+    .xp-bullet strong { font-weight: 600; color: var(--text); }
+
     /* ── EDUCATION ── */
     .edu-item {
       display: grid; grid-template-columns: 90px 1fr;
@@ -501,6 +524,7 @@
   <div class="nav-name">Santiago Acosta</div>
   <div class="nav-right">
     <a class="nav-a" href="#work" data-i18n="nav.work">Work</a>
+    <a class="nav-a" href="#experience" data-i18n="nav.experience">Experience</a>
     <a class="nav-a" href="#stack" data-i18n="nav.stack">Stack</a>
     <a class="nav-a" href="#contact" data-i18n="nav.contact">Contact</a>
     <a class="nav-cta" href="https://www.linkedin.com/in/santiagoacostab17" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -550,7 +574,7 @@
         </div>
         <div class="bio-actions">
           <a class="btn-fill" href="#work" data-i18n="bio.btn1">View my work</a>
-          <a class="btn-outline" id="cv-dl" href="Santiago_Acosta_CV.pdf" download data-i18n="bio.btn2">Download CV</a>
+          <a class="btn-outline" id="cv-dl" href="Santiago_Acosta_Barriga_CV.pdf" download data-i18n="bio.btn2">Download CV</a>
           <a class="btn-outline" href="https://github.com/santiagoacostab17" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
@@ -966,6 +990,45 @@
   </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag" data-i18n="s.xp.tag">Before analytics</div>
+      <h2 class="sec-title" data-i18n="s.xp.title">Professional experience</h2>
+    </div>
+
+    <div>
+      <div class="xp-item">
+        <div class="xp-year">2025</div>
+        <div>
+          <div class="xp-role" data-i18n="x1.role">Vehicle Rental Support Specialist</div>
+          <div class="xp-org" data-i18n="x1.org">Teleperformance — English-language support, ~2 months</div>
+          <div class="xp-bullets">
+            <div class="xp-bullet" data-i18n="x1.b1">Diagnosed root causes of customer and account issues in a fast-paced, English-language support environment.</div>
+            <div class="xp-bullet" data-i18n="x1.b2">Maintained precise records across CRM and internal systems, supporting fast, accurate decisions with incomplete information.</div>
+          </div>
+        </div>
+      </div>
+      <div class="xp-item">
+        <div class="xp-year">2024</div>
+        <div>
+          <div class="xp-role" data-i18n="x2.role">Credit Card Collections Specialist</div>
+          <div class="xp-org" data-i18n="x2.org">Concentrix — English-language support, ~2 months</div>
+          <div class="xp-bullets">
+            <div class="xp-bullet" data-i18n="x2.b1">Communicated clearly under pressure in English with international customers to resolve account issues.</div>
+            <div class="xp-bullet" data-i18n="x2.b2">Applied structured problem-solving and data accuracy in a high-volume, metrics-driven environment.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="proj-desc" style="margin-top:22px;" data-i18n="xp.note">
+      Four months in English-language BPO roles before moving into analytics — the base for skills I use daily now:
+      fluent communication under pressure, root-cause diagnosis, precise data handling, and fast decisions with incomplete information.
+    </p>
+  </div>
+</section>
+
 <!-- STACK -->
 <section id="stack" class="reveal">
   <div class="wrap">
@@ -1168,7 +1231,7 @@
 <script>
 const T = {
   en: {
-    'nav.work':'Work','nav.stack':'Stack','nav.contact':'Contact',
+    'nav.work':'Work','nav.experience':'Experience','nav.stack':'Stack','nav.contact':'Contact',
     'bio.tag':'Data Analyst · Bogotá · Open to remote',
     'bio.h1':'I turn messy data<br>into <em>clear decisions.</em>',
     'bio.p1':"I'm Santiago Acosta — a data analyst with experience across the full analytics lifecycle: <strong>SQL modeling, Python-based statistical analysis, A/B testing,</strong> and <strong>Power BI dashboards</strong> built to answer the questions teams actually act on.",
@@ -1228,6 +1291,16 @@ const T = {
     'f1':'First visit','f2':'Select item','f3':'Add to cart',
     'f4':'Begin checkout','f5':'Payment info','f6':'Purchase ✓',
     'gh':'View on GitHub →',
+    's.xp.tag':'Before analytics','s.xp.title':'Professional experience',
+    'x1.role':'Vehicle Rental Support Specialist',
+    'x1.org':'Teleperformance — English-language support, ~2 months',
+    'x1.b1':'Diagnosed root causes of customer and account issues in a fast-paced, English-language support environment.',
+    'x1.b2':'Maintained precise records across CRM and internal systems, supporting fast, accurate decisions with incomplete information.',
+    'x2.role':'Credit Card Collections Specialist',
+    'x2.org':'Concentrix — English-language support, ~2 months',
+    'x2.b1':'Communicated clearly under pressure in English with international customers to resolve account issues.',
+    'x2.b2':'Applied structured problem-solving and data accuracy in a high-volume, metrics-driven environment.',
+    'xp.note':'Four months in English-language BPO roles before moving into analytics — the base for skills I use daily now: fluent communication under pressure, root-cause diagnosis, precise data handling, and fast decisions with incomplete information.',
     's.stack.tag':'Skills','s.stack.title':'Tech stack',
     'st.l1':'Languages','st.l2':'Libraries','st.l3':'Visualization','st.l4':'Analysis methods',
     'st.reports':'Dashboards & Reports','st.ab':'A/B Testing & hypothesis testing',
@@ -1246,7 +1319,7 @@ const T = {
     'footer':'© 2026 Santiago Acosta — Data Analyst · Bogotá, Colombia',
   },
   es: {
-    'nav.work':'Proyectos','nav.stack':'Stack','nav.contact':'Contacto',
+    'nav.work':'Proyectos','nav.experience':'Experiencia','nav.stack':'Stack','nav.contact':'Contacto',
     'bio.tag':'Analista de Datos · Bogotá · Disponible remoto',
     'bio.h1':'Convierto datos complejos<br>en <em>decisiones claras.</em>',
     'bio.p1':'Soy Santiago Acosta — analista de datos con experiencia en todo el ciclo analítico: <strong>modelado SQL, análisis estadístico en Python, pruebas A/B</strong> y <strong>dashboards en Power BI</strong> diseñados para responder las preguntas que los equipos realmente necesitan actuar.',
@@ -1306,6 +1379,16 @@ const T = {
     'f1':'Primera visita','f2':'Seleccionar ítem','f3':'Agregar al carrito',
     'f4':'Iniciar pago','f5':'Info de pago','f6':'Compra ✓',
     'gh':'Ver en GitHub →',
+    's.xp.tag':'Antes de la analítica','s.xp.title':'Experiencia profesional',
+    'x1.role':'Especialista de Soporte de Renta de Vehículos',
+    'x1.org':'Teleperformance — Soporte en inglés, ~2 meses',
+    'x1.b1':'Diagnostiqué causas raíz de problemas de clientes y cuentas en un entorno de soporte en inglés y alto ritmo.',
+    'x1.b2':'Mantuve registros precisos en CRM y sistemas internos, apoyando decisiones rápidas y certeras con información incompleta.',
+    'x2.role':'Especialista de Cobranza de Tarjetas de Crédito',
+    'x2.org':'Concentrix — Soporte en inglés, ~2 meses',
+    'x2.b1':'Comuniqué con claridad bajo presión, en inglés, con clientes internacionales para resolver problemas de cuenta.',
+    'x2.b2':'Apliqué resolución estructurada de problemas y precisión de datos en un entorno de alto volumen orientado a métricas.',
+    'xp.note':'Cuatro meses en roles BPO en inglés antes de dedicarme a la analítica — la base de habilidades que uso a diario hoy: comunicación fluida bajo presión, diagnóstico de causa raíz, manejo preciso de datos y decisiones rápidas con información incompleta.',
     's.stack.tag':'Habilidades','s.stack.title':'Stack tecnológico',
     'st.l1':'Lenguajes','st.l2':'Librerías','st.l3':'Visualización','st.l4':'Métodos analíticos',
     'st.reports':'Dashboards e informes','st.ab':'Pruebas A/B e hipótesis',
@@ -1346,7 +1429,7 @@ function applyLang(l){
   document.documentElement.lang=l;
   document.title=l==='es'?'Santiago Acosta — Analista de Datos':'Santiago Acosta — Data Analyst';
   const cv=document.getElementById('cv-dl');
-  if(cv) cv.href=l==='es'?'Santiago_Acosta_CV.pdf':'Santiago_Acosta_CV_es.pdf';
+  if(cv) cv.href=l==='es'?'Santiago_Acosta_Barriga_CV.pdf':'Santiago_Acosta_Barriga_CV.pdf';
 }
 function setLang(l){
   if(l===lang) return; lang=l;
